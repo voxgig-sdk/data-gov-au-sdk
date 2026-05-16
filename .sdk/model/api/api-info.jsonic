@@ -1,0 +1,27 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        email: "support@data.gov.au"
+      }
+      description: "The Data.gov.au API provides programmatic access to datasets published by the Australian government. It allows users to search, filter, and retrieve detailed information about datasets, including metadata and download options."
+      license: {
+        name: "CC BY 4.0"
+        url: "https://creativecommons.org/licenses/by/4.0/"
+      }
+      servers: [
+        {
+          description: "Production CKAN API server"
+          url: "https://data.gov.au/api/3"
+        }
+      ]
+      title: "Data.gov.au API"
+      version: "1.0.0"
+    }
+  }
+}
+
+}

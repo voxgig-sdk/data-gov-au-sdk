@@ -1,0 +1,29 @@
+{
+  "existing": {
+    "dataset": {
+      "DATASET00": {
+        "result": {},
+        "success": false,
+        "id": "DATASET00"
+      },
+      "DATASET01": {
+        "result": {},
+        "success": false,
+        "id": "DATASET01"
+      },
+      "DATASET02": {
+        "result": {},
+        "success": false,
+        "id": "DATASET02"
+      }
+    }
+  },
+  "new": {
+    "dataset": {
+      "dataset_ref01": {
+        "result": {},
+        "success": false
+      }
+    }
+  }
+}

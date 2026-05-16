@@ -1,0 +1,26 @@
+{
+  "existing": {
+    "metadata": {
+      "METADATA00": {
+        "result": [],
+        "success": false
+      },
+      "METADATA01": {
+        "result": [],
+        "success": false
+      },
+      "METADATA02": {
+        "result": [],
+        "success": false
+      }
+    }
+  },
+  "new": {
+    "metadata": {
+      "metadata_ref01": {
+        "result": [],
+        "success": false
+      }
+    }
+  }
+}

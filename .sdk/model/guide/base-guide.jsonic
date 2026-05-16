@@ -1,0 +1,32 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 3
+  metrics: count: path: 5
+  metrics: count: method: 5
+
+  entity: dataset: {
+    path: "/action/package_search": {
+      op: load: method: *GET
+    }
+    path: "/action/package_show": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: metadata: {
+    path: "/action/tag_list": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: organization: {
+    path: "/action/organization_list": {
+      op: list: method: *GET
+    }
+    path: "/action/organization_show": {
+      op: load: method: *GET
+    }
+  }
+
+}

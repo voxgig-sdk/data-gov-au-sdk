@@ -1,0 +1,748 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Data.gov.au API",
+    "description": "The Data.gov.au API provides programmatic access to datasets published by the Australian government. It allows users to search, filter, and retrieve detailed information about datasets, including metadata and download options.",
+    "version": "1.0.0",
+    "contact": {
+      "email": "support@data.gov.au"
+    },
+    "license": {
+      "name": "CC BY 4.0",
+      "url": "https://creativecommons.org/licenses/by/4.0/"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://data.gov.au/api/3",
+      "description": "Production CKAN API server"
+    }
+  ],
+  "paths": {
+    "/action/package_search": {
+      "get": {
+        "summary": "Search datasets",
+        "description": "Search for datasets in the Data.gov.au catalogue. This endpoint allows filtering, sorting, and pagination of dataset results.",
+        "operationId": "searchDatasets",
+        "tags": [
+          "Datasets"
+        ],
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "description": "Search query string to filter datasets",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "health"
+            }
+          },
+          {
+            "name": "fq",
+            "in": "query",
+            "description": "Filter query using Solr syntax for advanced filtering",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "organization:health-dept"
+            }
+          },
+          {
+            "name": "rows",
+            "in": "query",
+            "description": "Number of results to return per page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 10,
+              "minimum": 1,
+              "maximum": 1000
+            }
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "description": "Offset for pagination",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 0,
+              "minimum": 0
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Sort order for results (e.g., 'metadata_modified desc')",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "metadata_modified desc"
+            }
+          },
+          {
+            "name": "facet.field",
+            "in": "query",
+            "description": "Fields to facet on for aggregated results",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "style": "form",
+            "explode": true
+          },
+          {
+            "name": "include_private",
+            "in": "query",
+            "description": "Include private datasets (requires authentication)",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with dataset search results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "result": {
+                      "type": "object",
+                      "properties": {
+                        "count": {
+                          "type": "integer",
+                          "description": "Total number of datasets matching the query"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string",
+                                "description": "Unique identifier for the dataset"
+                              },
+                              "name": {
+                                "type": "string",
+                                "description": "Machine-readable name of the dataset"
+                              },
+                              "title": {
+                                "type": "string",
+                                "description": "Human-readable title of the dataset"
+                              },
+                              "notes": {
+                                "type": "string",
+                                "description": "Description of the dataset"
+                              },
+                              "author": {
+                                "type": "string",
+                                "description": "Author of the dataset"
+                              },
+                              "author_email": {
+                                "type": "string",
+                                "format": "email",
+                                "description": "Contact email for the dataset author"
+                              },
+                              "maintainer": {
+                                "type": "string",
+                                "description": "Maintainer of the dataset"
+                              },
+                              "maintainer_email": {
+                                "type": "string",
+                                "format": "email",
+                                "description": "Contact email for the dataset maintainer"
+                              },
+                              "license_id": {
+                                "type": "string",
+                                "description": "License identifier for the dataset"
+                              },
+                              "license_title": {
+                                "type": "string",
+                                "description": "License title for the dataset"
+                              },
+                              "metadata_created": {
+                                "type": "string",
+                                "format": "date-time",
+                                "description": "Date and time when the metadata was created"
+                              },
+                              "metadata_modified": {
+                                "type": "string",
+                                "format": "date-time",
+                                "description": "Date and time when the metadata was last modified"
+                              },
+                              "organization": {
+                                "type": "object",
+                                "properties": {
+                                  "id": {
+                                    "type": "string",
+                                    "description": "Organization ID"
+                                  },
+                                  "name": {
+                                    "type": "string",
+                                    "description": "Organization name"
+                                  },
+                                  "title": {
+                                    "type": "string",
+                                    "description": "Organization title"
+                                  },
+                                  "description": {
+                                    "type": "string",
+                                    "description": "Organization description"
+                                  }
+                                }
+                              },
+                              "tags": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "string"
+                                    },
+                                    "name": {
+                                      "type": "string"
+                                    },
+                                    "display_name": {
+                                      "type": "string"
+                                    }
+                                  }
+                                }
+                              },
+                              "resources": {
+                                "type": "array",
+                                "description": "List of downloadable resources associated with the dataset",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "string",
+                                      "description": "Resource ID"
+                                    },
+                                    "name": {
+                                      "type": "string",
+                                      "description": "Resource name"
+                                    },
+                                    "description": {
+                                      "type": "string",
+                                      "description": "Resource description"
+                                    },
+                                    "url": {
+                                      "type": "string",
+                                      "format": "uri",
+                                      "description": "URL to download the resource"
+                                    },
+                                    "format": {
+                                      "type": "string",
+                                      "description": "File format of the resource"
+                                    },
+                                    "created": {
+                                      "type": "string",
+                                      "format": "date-time"
+                                    },
+                                    "last_modified": {
+                                      "type": "string",
+                                      "format": "date-time"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "facets": {
+                          "type": "object",
+                          "description": "Faceted search results for aggregation"
+                        },
+                        "search_facets": {
+                          "type": "object",
+                          "description": "Search facet information"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string"
+                        },
+                        "__type": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/action/package_show": {
+      "get": {
+        "summary": "Get dataset details",
+        "description": "Retrieve detailed information about a specific dataset by its ID or name",
+        "operationId": "getDataset",
+        "tags": [
+          "Datasets"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "The ID or name of the dataset",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "include_tracking",
+            "in": "query",
+            "description": "Include tracking information",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with dataset details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "result": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "notes": {
+                          "type": "string"
+                        },
+                        "author": {
+                          "type": "string"
+                        },
+                        "author_email": {
+                          "type": "string",
+                          "format": "email"
+                        },
+                        "maintainer": {
+                          "type": "string"
+                        },
+                        "maintainer_email": {
+                          "type": "string",
+                          "format": "email"
+                        },
+                        "license_id": {
+                          "type": "string"
+                        },
+                        "license_title": {
+                          "type": "string"
+                        },
+                        "metadata_created": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "metadata_modified": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "organization": {
+                          "type": "object"
+                        },
+                        "tags": {
+                          "type": "array",
+                          "items": {
+                            "type": "object"
+                          }
+                        },
+                        "resources": {
+                          "type": "array",
+                          "items": {
+                            "type": "object"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Dataset not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "Not found"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/action/organization_list": {
+      "get": {
+        "summary": "List organizations",
+        "description": "Retrieve a list of all organizations publishing datasets on Data.gov.au",
+        "operationId": "listOrganizations",
+        "tags": [
+          "Organizations"
+        ],
+        "parameters": [
+          {
+            "name": "all_fields",
+            "in": "query",
+            "description": "Return full organization details instead of just names",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of organizations to return",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Offset for pagination",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with list of organizations",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "result": {
+                      "type": "array",
+                      "items": {
+                        "oneOf": [
+                          {
+                            "type": "string",
+                            "description": "Organization name when all_fields is false"
+                          },
+                          {
+                            "type": "object",
+                            "description": "Organization details when all_fields is true",
+                            "properties": {
+                              "id": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "title": {
+                                "type": "string"
+                              },
+                              "description": {
+                                "type": "string"
+                              },
+                              "image_url": {
+                                "type": "string",
+                                "format": "uri"
+                              },
+                              "created": {
+                                "type": "string",
+                                "format": "date-time"
+                              },
+                              "package_count": {
+                                "type": "integer"
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/action/organization_show": {
+      "get": {
+        "summary": "Get organization details",
+        "description": "Retrieve detailed information about a specific organization",
+        "operationId": "getOrganization",
+        "tags": [
+          "Organizations"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "The ID or name of the organization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "include_datasets",
+            "in": "query",
+            "description": "Include a list of the organization's datasets",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with organization details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "result": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "description": {
+                          "type": "string"
+                        },
+                        "image_url": {
+                          "type": "string",
+                          "format": "uri"
+                        },
+                        "created": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "package_count": {
+                          "type": "integer"
+                        },
+                        "packages": {
+                          "type": "array",
+                          "items": {
+                            "type": "object"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Organization not found"
+          }
+        }
+      }
+    },
+    "/action/tag_list": {
+      "get": {
+        "summary": "List tags",
+        "description": "Retrieve a list of all tags used in the dataset catalogue",
+        "operationId": "listTags",
+        "tags": [
+          "Metadata"
+        ],
+        "parameters": [
+          {
+            "name": "all_fields",
+            "in": "query",
+            "description": "Return full tag details instead of just names",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with list of tags",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "result": {
+                      "type": "array",
+                      "items": {
+                        "oneOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "vocabulary_id": {
+                                "type": "string",
+                                "nullable": true
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-CKAN-API-Key",
+        "description": "API key for authentication (required for certain operations like creating or modifying datasets)"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Datasets",
+      "description": "Operations related to searching and retrieving datasets"
+    },
+    {
+      "name": "Organizations",
+      "description": "Operations related to organizations publishing datasets"
+    },
+    {
+      "name": "Metadata",
+      "description": "Operations related to dataset metadata and categorization"
+    }
+  ],
+  "externalDocs": {
+    "description": "CKAN API Documentation",
+    "url": "https://docs.ckan.org/en/latest/api/"
+  }
+}

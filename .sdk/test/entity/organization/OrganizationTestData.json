@@ -1,0 +1,29 @@
+{
+  "existing": {
+    "organization": {
+      "ORGANIZATION00": {
+        "result": {},
+        "success": false,
+        "id": "ORGANIZATION00"
+      },
+      "ORGANIZATION01": {
+        "result": {},
+        "success": false,
+        "id": "ORGANIZATION01"
+      },
+      "ORGANIZATION02": {
+        "result": {},
+        "success": false,
+        "id": "ORGANIZATION02"
+      }
+    }
+  },
+  "new": {
+    "organization": {
+      "organization_ref01": {
+        "result": {},
+        "success": false
+      }
+    }
+  }
+}
