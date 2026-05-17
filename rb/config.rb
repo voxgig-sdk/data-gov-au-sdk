@@ -14,7 +14,7 @@ module DataGovAuConfig
         },
       },
       "options" => {
-        "base" => "https://data.gov.au/api/3",
+        "base" => "https://data.gov.au/data/api/3",
         "auth" => {
           "prefix" => "Bearer",
         },

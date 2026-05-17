@@ -14,7 +14,7 @@
   },
   "servers": [
     {
-      "url": "https://data.gov.au/api/3",
+      "url": "https://data.gov.au/data/api/3",
       "description": "Production CKAN API server"
     }
   ],
