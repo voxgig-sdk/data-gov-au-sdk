@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/data-gov-au-sdk"
-	"github.com/voxgig-sdk/data-gov-au-sdk/core"
+	sdk "github.com/voxgig-sdk/data-gov-au-sdk/go"
+	"github.com/voxgig-sdk/data-gov-au-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/data-gov-au-sdk/go/utility/struct"
 )
 
 func TestDatasetEntity(t *testing.T) {

@@ -3,7 +3,7 @@ package sdktest
 import (
 	"testing"
 
-	sdk "github.com/voxgig-sdk/data-gov-au-sdk"
+	sdk "github.com/voxgig-sdk/data-gov-au-sdk/go"
 )
 
 func TestExists(t *testing.T) {

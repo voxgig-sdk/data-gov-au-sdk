@@ -1,10 +1,10 @@
 package voxgigdatagovausdk
 
 import (
-	"github.com/voxgig-sdk/data-gov-au-sdk/core"
-	"github.com/voxgig-sdk/data-gov-au-sdk/entity"
-	"github.com/voxgig-sdk/data-gov-au-sdk/feature"
-	_ "github.com/voxgig-sdk/data-gov-au-sdk/utility"
+	"github.com/voxgig-sdk/data-gov-au-sdk/go/core"
+	"github.com/voxgig-sdk/data-gov-au-sdk/go/entity"
+	"github.com/voxgig-sdk/data-gov-au-sdk/go/feature"
+	_ "github.com/voxgig-sdk/data-gov-au-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

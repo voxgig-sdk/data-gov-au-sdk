@@ -1,9 +1,9 @@
 package entity
 
 import (
-	"github.com/voxgig-sdk/data-gov-au-sdk/core"
+	"github.com/voxgig-sdk/data-gov-au-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/data-gov-au-sdk/go/utility/struct"
 )
 
 type OrganizationEntity struct {

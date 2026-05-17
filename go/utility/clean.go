@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/data-gov-au-sdk/core"
+import "github.com/voxgig-sdk/data-gov-au-sdk/go/core"
 
 func cleanUtil(ctx *core.Context, val any) any {
 	return val
