@@ -20,7 +20,19 @@
           }
         ],
         "title": "Data.gov.au API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "tagline": "Search and retrieve open datasets published by the Australian government via CKAN",
+        "homepage": "https://data.gov.au/",
+        "docs_url": "https://docs.ckan.org/en/latest/api/index.html",
+        "license_short": "Most datasets are licensed CC BY 4.0; individual datasets may set their own licence.",
+        "license_md": "- Platform metadata and most catalogued datasets are published under [Creative Commons Attribution 4.0 (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).\n- Each dataset record carries its own `license_id` / `license_title`; check the package metadata before redistribution.\n- Attribution to the publishing agency (and to data.gov.au) is required when reusing data.\n- Some datasets may be restricted or carry custom terms — always honour the per-resource licence.",
+        "about_md": "[data.gov.au](https://data.gov.au/) is the Australian government's central open-data catalogue, operated by the Department of Finance. It aggregates datasets published by federal, state, territory and local government agencies and exposes them through a standard [CKAN](https://ckan.org/) Action API at `https://data.gov.au/data/api/3`.\n\nThe API follows the CKAN v3 Action API conventions. All endpoints live under `/api/3/action/<function_name>` and return JSON envelopes shaped `{ \"success\": bool, \"result\": ..., \"help\": \"...\" }`. Both GET (with query string) and POST (with JSON body) are supported for most read operations.\n\nWhat you get from the API:\n- Dataset (package) listing, search and full metadata — titles, descriptions, tags, resources, temporal/spatial coverage, licence.\n- Organization listing and details — the agencies that publish data on the portal.\n- Arbitrary metadata fields exposed by CKAN extensions used on data.gov.au (e.g. geospatial, harvest source info).\n\nRead endpoints are public and do not require an API key. Write operations (create/update/delete) require an authenticated CKAN account and an API token sent via the `Authorization` header; this SDK is primarily useful for read access.",
+        "entity_desc": {
+          "dataset": "A CKAN package representing a published dataset and its resources (files, services, links); reachable via `/api/3/action/package_list`, `/api/3/action/package_show` and `/api/3/action/package_search`.",
+          "metadata": "Descriptive fields attached to packages, resources and groups — tags, licence, temporal/spatial extent and custom extras — returned inline by `package_show` and exposed via helpers such as `/api/3/action/tag_list` and `/api/3/action/license_list`.",
+          "organization": "A publishing agency or body that owns datasets on the portal; reachable via `/api/3/action/organization_list` and `/api/3/action/organization_show`."
+        },
+        "auth": false
       },
       "config": {
         "auth": {
@@ -28,7 +40,15 @@
         },
         "headers": {
           "content-type": "application/json"
-        }
+        },
+        "docs_order": [
+          "ts",
+          "py",
+          "php",
+          "go",
+          "rb",
+          "lua"
+        ]
       },
       "entity": {
         "dataset": {

@@ -62,14 +62,12 @@ function dataset_direct_setup(mockres)
   local env = runner.env_override({
     ["DATAGOVAU_TEST_DATASET_ENTID"] = {},
     ["DATAGOVAU_TEST_LIVE"] = "FALSE",
-    ["DATAGOVAU_APIKEY"] = "NONE",
   })
 
   local live = env["DATAGOVAU_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
-      apikey = env["DATAGOVAU_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

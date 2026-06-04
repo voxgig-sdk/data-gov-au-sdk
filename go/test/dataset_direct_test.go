@@ -99,14 +99,12 @@ func datasetDirectSetup(mockres any) *datasetDirectSetupResult {
 	env := envOverride(map[string]any{
 		"DATAGOVAU_TEST_DATASET_ENTID": map[string]any{},
 		"DATAGOVAU_TEST_LIVE":    "FALSE",
-		"DATAGOVAU_APIKEY":       "NONE",
 	})
 
 	live := env["DATAGOVAU_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["DATAGOVAU_APIKEY"],
 		}
 		client := sdk.NewDataGovAuSDK(mergedOpts)
 

@@ -31,9 +31,7 @@ loading a specific record.
 ```ruby
 require_relative "DataGovAu_sdk"
 
-client = DataGovAuSDK.new({
-  "apikey" => ENV["DATA-GOV-AU_APIKEY"],
-})
+client = DataGovAuSDK.new({})
 ```
 
 ### 3. Load a dataset
@@ -121,7 +119,6 @@ Create a `.env.local` file at the project root:
 
 ```
 DATA-GOV-AU_TEST_LIVE=TRUE
-DATA-GOV-AU_APIKEY=<your-key>
 ```
 
 Then run:
@@ -144,7 +141,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `String` | API key for authentication. |
 | `base` | `String` | Base URL of the API server. |
 | `prefix` | `String` | URL path prefix prepended to all requests. |
 | `suffix` | `String` | URL path suffix appended to all requests. |

@@ -106,14 +106,12 @@ def organization_direct_setup(mockres)
   env = Runner.env_override({
     "DATAGOVAU_TEST_ORGANIZATION_ENTID" => {},
     "DATAGOVAU_TEST_LIVE" => "FALSE",
-    "DATAGOVAU_APIKEY" => "NONE",
   })
 
   live = env["DATAGOVAU_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
-      "apikey" => env["DATAGOVAU_APIKEY"],
     }
     client = DataGovAuSDK.new(merged_opts)
     return {

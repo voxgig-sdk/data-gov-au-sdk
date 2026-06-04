@@ -15,9 +15,6 @@ def make_config():
         },
         "options": {
             "base": "https://data.gov.au/data/api/3",
-            "auth": {
-                "prefix": "Bearer",
-            },
             "headers": {
         "content-type": "application/json",
       },
