@@ -89,6 +89,7 @@ def organization_basic_setup(extra)
     "DATAGOVAU_TEST_ORGANIZATION_ENTID" => idmap,
     "DATAGOVAU_TEST_LIVE" => "FALSE",
     "DATAGOVAU_TEST_EXPLAIN" => "FALSE",
+    "DATAGOVAU_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -100,6 +101,7 @@ def organization_basic_setup(extra)
   if env["DATAGOVAU_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
+        "apikey" => env["DATAGOVAU_APIKEY"],
       },
       extra || {},
     ])

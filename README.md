@@ -1,21 +1,8 @@
 # DataGovAu SDK
 
-Search and retrieve open datasets published by the Australian government via CKAN
+Data.gov.au API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Data.gov.au API
-
-[data.gov.au](https://data.gov.au/) is the Australian government's central open-data catalogue, operated by the Department of Finance. It aggregates datasets published by federal, state, territory and local government agencies and exposes them through a standard [CKAN](https://ckan.org/) Action API at `https://data.gov.au/data/api/3`.
-
-The API follows the CKAN v3 Action API conventions. All endpoints live under `/api/3/action/<function_name>` and return JSON envelopes shaped `{ "success": bool, "result": ..., "help": "..." }`. Both GET (with query string) and POST (with JSON body) are supported for most read operations.
-
-What you get from the API:
-- Dataset (package) listing, search and full metadata — titles, descriptions, tags, resources, temporal/spatial coverage, licence.
-- Organization listing and details — the agencies that publish data on the portal.
-- Arbitrary metadata fields exposed by CKAN extensions used on data.gov.au (e.g. geospatial, harvest source info).
-
-Read endpoints are public and do not require an API key. Write operations (create/update/delete) require an authenticated CKAN account and an API token sent via the `Authorization` header; this SDK is primarily useful for read access.
 
 ## Try it
 
@@ -49,27 +36,31 @@ gem install data-gov-au-sdk
 luarocks install data-gov-au-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { DataGovAuSDK } from 'data-gov-au'
 
-const client = new DataGovAuSDK({})
+const client = new DataGovAuSDK({
+  apikey: process.env.DATA-GOV-AU_APIKEY,
+})
 
+// Load dataset data
+const dataset = await client.Dataset().load({})
+console.log(dataset.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -99,9 +90,9 @@ The API exposes 3 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Dataset** | A CKAN package representing a published dataset and its resources (files, services, links); reachable via `/api/3/action/package_list`, `/api/3/action/package_show` and `/api/3/action/package_search`. | `/action/package_search` |
-| **Metadata** | Descriptive fields attached to packages, resources and groups — tags, licence, temporal/spatial extent and custom extras — returned inline by `package_show` and exposed via helpers such as `/api/3/action/tag_list` and `/api/3/action/license_list`. | `/action/tag_list` |
-| **Organization** | A publishing agency or body that owns datasets on the portal; reachable via `/api/3/action/organization_list` and `/api/3/action/organization_show`. | `/action/organization_list` |
+| **Dataset** |  | `/action/package_search` |
+| **Metadata** |  | `/action/tag_list` |
+| **Organization** |  | `/action/organization_list` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -111,15 +102,17 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from datagovau_sdk import DataGovAuSDK
 
-client = DataGovAuSDK({})
+client = DataGovAuSDK({
+    "apikey": os.environ.get("DATA-GOV-AU_APIKEY"),
+})
 
 
 # Load a specific dataset
-dataset, err = client.Dataset(None).load(
-    {"id": "example_id"}, None
-)
+dataset, err = client.Dataset().load({"id": "example_id"})
+print(dataset)
 ```
 
 ### PHP
@@ -128,13 +121,14 @@ dataset, err = client.Dataset(None).load(
 <?php
 require_once 'datagovau_sdk.php';
 
-$client = new DataGovAuSDK([]);
+$client = new DataGovAuSDK([
+    "apikey" => getenv("DATA-GOV-AU_APIKEY"),
+]);
 
 
 // Load a specific dataset
-[$dataset, $err] = $client->Dataset(null)->load(
-    ["id" => "example_id"], null
-);
+[$dataset, $err] = $client->Dataset()->load(["id" => "example_id"]);
+print_r($dataset);
 ```
 
 ### Golang
@@ -142,8 +136,13 @@ $client = new DataGovAuSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/data-gov-au-sdk/go"
 
-client := sdk.NewDataGovAuSDK(map[string]any{})
+client := sdk.NewDataGovAuSDK(map[string]any{
+    "apikey": os.Getenv("DATA-GOV-AU_APIKEY"),
+})
 
+// Load dataset data
+dataset, err := client.Dataset(nil).Load(map[string]any{}, nil)
+fmt.Println(dataset)
 ```
 
 ### Ruby
@@ -151,13 +150,14 @@ client := sdk.NewDataGovAuSDK(map[string]any{})
 ```ruby
 require_relative "DataGovAu_sdk"
 
-client = DataGovAuSDK.new({})
+client = DataGovAuSDK.new({
+  "apikey" => ENV["DATA-GOV-AU_APIKEY"],
+})
 
 
 # Load a specific dataset
-dataset, err = client.Dataset(nil).load(
-  { "id" => "example_id" }, nil
-)
+dataset, err = client.Dataset().load({ "id" => "example_id" })
+puts dataset
 ```
 
 ### Lua
@@ -165,13 +165,14 @@ dataset, err = client.Dataset(nil).load(
 ```lua
 local sdk = require("data-gov-au_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("DATA-GOV-AU_APIKEY"),
+})
 
 
 -- Load a specific dataset
-local dataset, err = client:Dataset(nil):load(
-  { id = "example_id" }, nil
-)
+local dataset, err = client:Dataset():load({ id = "example_id" })
+print(dataset)
 ```
 
 ## Unit testing in offline mode
@@ -190,25 +191,21 @@ const result = await client.Dataset().load({ id: 'test01' })
 ### Python
 
 ```python
-client = DataGovAuSDK.test(None, None)
-result, err = client.Dataset(None).load(
-    {"id": "test01"}, None
-)
+client = DataGovAuSDK.test()
+result, err = client.Dataset().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = DataGovAuSDK::test(null, null);
-[$result, $err] = $client->Dataset(null)->load(
-    ["id" => "test01"], null
-);
+$client = DataGovAuSDK::test();
+[$result, $err] = $client->Dataset()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Dataset(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -217,19 +214,15 @@ result, err := client.Dataset(nil).Load(
 ### Ruby
 
 ```ruby
-client = DataGovAuSDK.test(nil, nil)
-result, err = client.Dataset(nil).load(
-  { "id" => "test01" }, nil
-)
+client = DataGovAuSDK.test
+result, err = client.Dataset().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Dataset(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Dataset():load({ id = "test01" })
 ```
 
 ## How it works
@@ -333,16 +326,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Data.gov.au API
-
-- Upstream: [https://data.gov.au/](https://data.gov.au/)
-- API docs: [https://docs.ckan.org/en/latest/api/index.html](https://docs.ckan.org/en/latest/api/index.html)
-
-- Platform metadata and most catalogued datasets are published under [Creative Commons Attribution 4.0 (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).
-- Each dataset record carries its own `license_id` / `license_title`; check the package metadata before redistribution.
-- Attribution to the publishing agency (and to data.gov.au) is required when reusing data.
-- Some datasets may be restricted or carry custom terms — always honour the per-resource licence.
 
 ---
 

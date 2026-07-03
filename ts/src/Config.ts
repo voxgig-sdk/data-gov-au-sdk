@@ -38,6 +38,10 @@ class Config {
   options = {
     base: 'https://data.gov.au/data/api/3',
 
+    auth: {
+      prefix: 'Bearer',
+    },
+
     headers: {
       "content-type": "application/json"
     },
@@ -61,89 +65,91 @@ class Config {
     "dataset": {
       "fields": [
         {
+          "active": true,
           "name": "result",
           "req": false,
           "type": "`$OBJECT`",
-          "active": true,
           "index$": 0
         },
         {
+          "active": true,
           "name": "success",
           "req": false,
           "type": "`$BOOLEAN`",
-          "active": true,
           "index$": 1
         }
       ],
       "name": "dataset",
       "op": {
         "load": {
+          "input": "data",
           "name": "load",
           "points": [
             {
+              "active": true,
               "args": {
                 "query": [
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "facet_field",
                     "orig": "facet_field",
                     "reqd": false,
-                    "type": "`$ARRAY`",
-                    "active": true
+                    "type": "`$ARRAY`"
                   },
                   {
+                    "active": true,
                     "example": "organization:health-dept",
                     "kind": "query",
                     "name": "fq",
                     "orig": "fq",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "example": false,
                     "kind": "query",
                     "name": "include_private",
                     "orig": "include_private",
                     "reqd": false,
-                    "type": "`$BOOLEAN`",
-                    "active": true
+                    "type": "`$BOOLEAN`"
                   },
                   {
+                    "active": true,
                     "example": "health",
                     "kind": "query",
                     "name": "q",
                     "orig": "q",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "example": 10,
                     "kind": "query",
                     "name": "row",
                     "orig": "row",
                     "reqd": false,
-                    "type": "`$INTEGER`",
-                    "active": true
+                    "type": "`$INTEGER`"
                   },
                   {
+                    "active": true,
                     "example": "metadata_modified desc",
                     "kind": "query",
                     "name": "sort",
                     "orig": "sort",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "example": 0,
                     "kind": "query",
                     "name": "start",
                     "orig": "start",
                     "reqd": false,
-                    "type": "`$INTEGER`",
-                    "active": true
+                    "type": "`$INTEGER`"
                   }
                 ]
               },
@@ -168,28 +174,28 @@ class Config {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "active": true,
               "index$": 0
             },
             {
+              "active": true,
               "args": {
                 "query": [
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "example": false,
                     "kind": "query",
                     "name": "include_tracking",
                     "orig": "include_tracking",
                     "reqd": false,
-                    "type": "`$BOOLEAN`",
-                    "active": true
+                    "type": "`$BOOLEAN`"
                   }
                 ]
               },
@@ -209,11 +215,9 @@ class Config {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "active": true,
               "index$": 1
             }
           ],
-          "input": "data",
           "key$": "load"
         }
       },
@@ -224,36 +228,38 @@ class Config {
     "metadata": {
       "fields": [
         {
+          "active": true,
           "name": "result",
           "req": false,
           "type": "`$ARRAY`",
-          "active": true,
           "index$": 0
         },
         {
+          "active": true,
           "name": "success",
           "req": false,
           "type": "`$BOOLEAN`",
-          "active": true,
           "index$": 1
         }
       ],
       "name": "metadata",
       "op": {
         "list": {
+          "input": "data",
           "name": "list",
           "points": [
             {
+              "active": true,
               "args": {
                 "query": [
                   {
+                    "active": true,
                     "example": false,
                     "kind": "query",
                     "name": "all_field",
                     "orig": "all_field",
                     "reqd": false,
-                    "type": "`$BOOLEAN`",
-                    "active": true
+                    "type": "`$BOOLEAN`"
                   }
                 ]
               },
@@ -272,11 +278,9 @@ class Config {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "active": true,
               "index$": 0
             }
           ],
-          "input": "data",
           "key$": "list"
         }
       },
@@ -287,53 +291,55 @@ class Config {
     "organization": {
       "fields": [
         {
+          "active": true,
           "name": "result",
           "req": false,
           "type": "`$OBJECT`",
-          "active": true,
           "index$": 0
         },
         {
+          "active": true,
           "name": "success",
           "req": false,
           "type": "`$BOOLEAN`",
-          "active": true,
           "index$": 1
         }
       ],
       "name": "organization",
       "op": {
         "list": {
+          "input": "data",
           "name": "list",
           "points": [
             {
+              "active": true,
               "args": {
                 "query": [
                   {
+                    "active": true,
                     "example": false,
                     "kind": "query",
                     "name": "all_field",
                     "orig": "all_field",
                     "reqd": false,
-                    "type": "`$BOOLEAN`",
-                    "active": true
+                    "type": "`$BOOLEAN`"
                   },
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "limit",
                     "orig": "limit",
                     "reqd": false,
-                    "type": "`$INTEGER`",
-                    "active": true
+                    "type": "`$INTEGER`"
                   },
                   {
+                    "active": true,
                     "example": 0,
                     "kind": "query",
                     "name": "offset",
                     "orig": "offset",
                     "reqd": false,
-                    "type": "`$INTEGER`",
-                    "active": true
+                    "type": "`$INTEGER`"
                   }
                 ]
               },
@@ -354,35 +360,35 @@ class Config {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "active": true,
               "index$": 0
             }
           ],
-          "input": "data",
           "key$": "list"
         },
         "load": {
+          "input": "data",
           "name": "load",
           "points": [
             {
+              "active": true,
               "args": {
                 "query": [
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "example": true,
                     "kind": "query",
                     "name": "include_dataset",
                     "orig": "include_dataset",
                     "reqd": false,
-                    "type": "`$BOOLEAN`",
-                    "active": true
+                    "type": "`$BOOLEAN`"
                   }
                 ]
               },
@@ -402,11 +408,9 @@ class Config {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "active": true,
               "index$": 0
             }
           ],
-          "input": "data",
           "key$": "load"
         }
       },

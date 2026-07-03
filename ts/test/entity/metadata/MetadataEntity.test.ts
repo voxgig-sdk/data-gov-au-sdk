@@ -113,6 +113,7 @@ function basicSetup(extra?: any) {
     'DATA_GOV_AU_TEST_METADATA_ENTID': idmap,
     'DATA_GOV_AU_TEST_LIVE': 'FALSE',
     'DATA_GOV_AU_TEST_EXPLAIN': 'FALSE',
+    'DATA_GOV_AU_APIKEY': 'NONE',
   })
 
   idmap = env['DATA_GOV_AU_TEST_METADATA_ENTID']
@@ -122,6 +123,7 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new DataGovAuSDK(merge([
       {
+        apikey: env.DATA_GOV_AU_APIKEY,
       },
       extra
     ]))

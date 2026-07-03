@@ -1,45 +1,13 @@
 {
-  "name": "data-gov-au",
-  "origin": "voxgig-sdk",
   "def": "data.gov.au_0.1.0.json",
   "main": {
+    "def": {
+      "desc": ""
+    },
     "kit": {
-      "info": {
-        "contact": {
-          "email": "support@data.gov.au"
-        },
-        "description": "The Data.gov.au API provides programmatic access to datasets published by the Australian government. It allows users to search, filter, and retrieve detailed information about datasets, including metadata and download options.",
-        "license": {
-          "name": "CC BY 4.0",
-          "url": "https://creativecommons.org/licenses/by/4.0/"
-        },
-        "servers": [
-          {
-            "description": "Production CKAN API server",
-            "url": "https://data.gov.au/data/api/3"
-          }
-        ],
-        "title": "Data.gov.au API",
-        "version": "1.0.0",
-        "tagline": "Search and retrieve open datasets published by the Australian government via CKAN",
-        "homepage": "https://data.gov.au/",
-        "docs_url": "https://docs.ckan.org/en/latest/api/index.html",
-        "license_short": "Most datasets are licensed CC BY 4.0; individual datasets may set their own licence.",
-        "license_md": "- Platform metadata and most catalogued datasets are published under [Creative Commons Attribution 4.0 (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).\n- Each dataset record carries its own `license_id` / `license_title`; check the package metadata before redistribution.\n- Attribution to the publishing agency (and to data.gov.au) is required when reusing data.\n- Some datasets may be restricted or carry custom terms — always honour the per-resource licence.",
-        "about_md": "[data.gov.au](https://data.gov.au/) is the Australian government's central open-data catalogue, operated by the Department of Finance. It aggregates datasets published by federal, state, territory and local government agencies and exposes them through a standard [CKAN](https://ckan.org/) Action API at `https://data.gov.au/data/api/3`.\n\nThe API follows the CKAN v3 Action API conventions. All endpoints live under `/api/3/action/<function_name>` and return JSON envelopes shaped `{ \"success\": bool, \"result\": ..., \"help\": \"...\" }`. Both GET (with query string) and POST (with JSON body) are supported for most read operations.\n\nWhat you get from the API:\n- Dataset (package) listing, search and full metadata — titles, descriptions, tags, resources, temporal/spatial coverage, licence.\n- Organization listing and details — the agencies that publish data on the portal.\n- Arbitrary metadata fields exposed by CKAN extensions used on data.gov.au (e.g. geospatial, harvest source info).\n\nRead endpoints are public and do not require an API key. Write operations (create/update/delete) require an authenticated CKAN account and an API token sent via the `Authorization` header; this SDK is primarily useful for read access.",
-        "entity_desc": {
-          "dataset": "A CKAN package representing a published dataset and its resources (files, services, links); reachable via `/api/3/action/package_list`, `/api/3/action/package_show` and `/api/3/action/package_search`.",
-          "metadata": "Descriptive fields attached to packages, resources and groups — tags, licence, temporal/spatial extent and custom extras — returned inline by `package_show` and exposed via helpers such as `/api/3/action/tag_list` and `/api/3/action/license_list`.",
-          "organization": "A publishing agency or body that owns datasets on the portal; reachable via `/api/3/action/organization_list` and `/api/3/action/organization_show`."
-        },
-        "auth": false
-      },
       "config": {
         "auth": {
           "prefix": "Bearer"
-        },
-        "headers": {
-          "content-type": "application/json"
         },
         "docs_order": [
           "ts",
@@ -48,96 +16,102 @@
           "go",
           "rb",
           "lua"
-        ]
+        ],
+        "headers": {
+          "content-type": "application/json"
+        }
       },
       "entity": {
         "dataset": {
+          "active": true,
           "alias": {
             "field": {}
           },
           "fields": [
             {
+              "active": true,
               "name": "result",
               "req": false,
-              "type": "`$OBJECT`",
-              "active": true
+              "type": "`$OBJECT`"
             },
             {
+              "active": true,
               "name": "success",
               "req": false,
-              "type": "`$BOOLEAN`",
-              "active": true
+              "type": "`$BOOLEAN`"
             }
           ],
           "name": "dataset",
           "op": {
             "load": {
+              "input": "data",
               "name": "load",
               "points": [
                 {
+                  "active": true,
                   "args": {
                     "query": [
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "facet_field",
                         "orig": "facet_field",
                         "reqd": false,
-                        "type": "`$ARRAY`",
-                        "active": true
+                        "type": "`$ARRAY`"
                       },
                       {
+                        "active": true,
                         "example": "organization:health-dept",
                         "kind": "query",
                         "name": "fq",
                         "orig": "fq",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "example": false,
                         "kind": "query",
                         "name": "include_private",
                         "orig": "include_private",
                         "reqd": false,
-                        "type": "`$BOOLEAN`",
-                        "active": true
+                        "type": "`$BOOLEAN`"
                       },
                       {
+                        "active": true,
                         "example": "health",
                         "kind": "query",
                         "name": "q",
                         "orig": "q",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "example": 10,
                         "kind": "query",
                         "name": "row",
                         "orig": "row",
                         "reqd": false,
-                        "type": "`$INTEGER`",
-                        "active": true
+                        "type": "`$INTEGER`"
                       },
                       {
+                        "active": true,
                         "example": "metadata_modified desc",
                         "kind": "query",
                         "name": "sort",
                         "orig": "sort",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "example": 0,
                         "kind": "query",
                         "name": "start",
                         "orig": "start",
                         "reqd": false,
-                        "type": "`$INTEGER`",
-                        "active": true
+                        "type": "`$INTEGER`"
                       }
                     ]
                   },
@@ -161,28 +135,28 @@
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true
+                  }
                 },
                 {
+                  "active": true,
                   "args": {
                     "query": [
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "id",
                         "orig": "id",
                         "reqd": true,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "example": false,
                         "kind": "query",
                         "name": "include_tracking",
                         "orig": "include_tracking",
                         "reqd": false,
-                        "type": "`$BOOLEAN`",
-                        "active": true
+                        "type": "`$BOOLEAN`"
                       }
                     ]
                   },
@@ -201,52 +175,52 @@
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             }
           },
-          "active": true,
           "relations": {
             "ancestors": []
           }
         },
         "metadata": {
+          "active": true,
           "alias": {
             "field": {}
           },
           "fields": [
             {
+              "active": true,
               "name": "result",
               "req": false,
-              "type": "`$ARRAY`",
-              "active": true
+              "type": "`$ARRAY`"
             },
             {
+              "active": true,
               "name": "success",
               "req": false,
-              "type": "`$BOOLEAN`",
-              "active": true
+              "type": "`$BOOLEAN`"
             }
           ],
           "name": "metadata",
           "op": {
             "list": {
+              "input": "data",
               "name": "list",
               "points": [
                 {
+                  "active": true,
                   "args": {
                     "query": [
                       {
+                        "active": true,
                         "example": false,
                         "kind": "query",
                         "name": "all_field",
                         "orig": "all_field",
                         "reqd": false,
-                        "type": "`$BOOLEAN`",
-                        "active": true
+                        "type": "`$BOOLEAN`"
                       }
                     ]
                   },
@@ -264,69 +238,69 @@
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             }
           },
-          "active": true,
           "relations": {
             "ancestors": []
           }
         },
         "organization": {
+          "active": true,
           "alias": {
             "field": {}
           },
           "fields": [
             {
+              "active": true,
               "name": "result",
               "req": false,
-              "type": "`$OBJECT`",
-              "active": true
+              "type": "`$OBJECT`"
             },
             {
+              "active": true,
               "name": "success",
               "req": false,
-              "type": "`$BOOLEAN`",
-              "active": true
+              "type": "`$BOOLEAN`"
             }
           ],
           "name": "organization",
           "op": {
             "list": {
+              "input": "data",
               "name": "list",
               "points": [
                 {
+                  "active": true,
                   "args": {
                     "query": [
                       {
+                        "active": true,
                         "example": false,
                         "kind": "query",
                         "name": "all_field",
                         "orig": "all_field",
                         "reqd": false,
-                        "type": "`$BOOLEAN`",
-                        "active": true
+                        "type": "`$BOOLEAN`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "limit",
                         "orig": "limit",
                         "reqd": false,
-                        "type": "`$INTEGER`",
-                        "active": true
+                        "type": "`$INTEGER`"
                       },
                       {
+                        "active": true,
                         "example": 0,
                         "kind": "query",
                         "name": "offset",
                         "orig": "offset",
                         "reqd": false,
-                        "type": "`$INTEGER`",
-                        "active": true
+                        "type": "`$INTEGER`"
                       }
                     ]
                   },
@@ -346,34 +320,34 @@
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             },
             "load": {
+              "input": "data",
               "name": "load",
               "points": [
                 {
+                  "active": true,
                   "args": {
                     "query": [
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "id",
                         "orig": "id",
                         "reqd": true,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "example": true,
                         "kind": "query",
                         "name": "include_dataset",
                         "orig": "include_dataset",
                         "reqd": false,
-                        "type": "`$BOOLEAN`",
-                        "active": true
+                        "type": "`$BOOLEAN`"
                       }
                     ]
                   },
@@ -392,14 +366,11 @@
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             }
           },
-          "active": true,
           "relations": {
             "ancestors": []
           }
@@ -407,9 +378,6 @@
       },
       "feature": {
         "test": {
-          "name": "test",
-          "title": "In-memory mock transport for testing without a live server",
-          "version": "0.0.1",
           "active": true,
           "config": {
             "options": {
@@ -417,6 +385,14 @@
             }
           },
           "hook": {
+            "GetData": {
+              "active": true,
+              "await": false
+            },
+            "GetMatch": {
+              "active": true,
+              "await": false
+            },
             "PostConstruct": {
               "active": true,
               "await": false
@@ -425,25 +401,11 @@
               "active": true,
               "await": false
             },
-            "SetData": {
-              "active": true,
-              "await": false
-            },
-            "GetData": {
-              "active": true,
-              "await": false
-            },
-            "SetMatch": {
-              "active": true
-            },
-            "GetMatch": {
-              "active": true,
+            "PostOperation": {
+              "active": false,
               "await": false
             },
             "PrePoint": {
-              "active": true
-            },
-            "PreSpec": {
               "active": true,
               "await": false
             },
@@ -459,20 +421,32 @@
               "active": true,
               "await": false
             },
+            "PreSpec": {
+              "active": true,
+              "await": false
+            },
             "PreTarget": {
               "active": false,
               "await": false
             },
-            "PostOperation": {
-              "active": false,
+            "SetData": {
+              "active": true,
+              "await": false
+            },
+            "SetMatch": {
+              "active": true,
               "await": false
             }
           },
+          "name": "test",
           "target": {
-            "ts": {
+            "go": {
               "deps": {}
             },
-            "go": {
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
               "deps": {}
             },
             "lua": {
@@ -487,28 +461,34 @@
             "rb": {
               "deps": {}
             },
-            "go-cli": {
-              "deps": {}
-            },
-            "go-mcp": {
+            "ts": {
               "deps": {}
             }
-          }
+          },
+          "title": "In-memory mock transport for testing without a live server",
+          "version": "0.0.1"
         }
       },
       "flow": {
         "BasicDatasetFlow": {
+          "active": true,
           "entity": "dataset",
+          "key$": "BasicDatasetFlow",
           "kind": "basic",
           "name": "BasicDatasetFlow",
+          "param": {},
           "step": [
             {
+              "active": true,
+              "data": {},
               "input": {
                 "ref": "dataset_ref01",
                 "srcdatavar": "dataset_ref01_data",
                 "suffix": "_dt0"
               },
+              "match": {},
               "op": "load",
+              "spec": [],
               "valid": [
                 {
                   "apply": "TextFieldMark",
@@ -516,24 +496,25 @@
                     "mark": "Mark01-dataset_ref01"
                   }
                 }
-              ],
-              "active": true,
-              "match": {},
-              "data": {},
-              "spec": []
+              ]
             }
-          ],
-          "key$": "BasicDatasetFlow",
-          "active": true,
-          "param": {}
+          ]
         },
         "BasicMetadataFlow": {
+          "active": true,
           "entity": "metadata",
+          "key$": "BasicMetadataFlow",
           "kind": "basic",
           "name": "BasicMetadataFlow",
+          "param": {},
           "step": [
             {
+              "active": true,
+              "data": {},
+              "input": {},
+              "match": {},
               "op": "list",
+              "spec": [],
               "valid": [
                 {
                   "apply": "ItemExists",
@@ -541,25 +522,25 @@
                     "ref": "metadata_ref01"
                   }
                 }
-              ],
-              "active": true,
-              "match": {},
-              "data": {},
-              "input": {},
-              "spec": []
+              ]
             }
-          ],
-          "key$": "BasicMetadataFlow",
-          "active": true,
-          "param": {}
+          ]
         },
         "BasicOrganizationFlow": {
+          "active": true,
           "entity": "organization",
+          "key$": "BasicOrganizationFlow",
           "kind": "basic",
           "name": "BasicOrganizationFlow",
+          "param": {},
           "step": [
             {
+              "active": true,
+              "data": {},
+              "input": {},
+              "match": {},
               "op": "list",
+              "spec": [],
               "valid": [
                 {
                   "apply": "ItemExists",
@@ -567,20 +548,19 @@
                     "ref": "organization_ref01"
                   }
                 }
-              ],
-              "active": true,
-              "match": {},
-              "data": {},
-              "input": {},
-              "spec": []
+              ]
             },
             {
+              "active": true,
+              "data": {},
               "input": {
                 "ref": "organization_ref01",
                 "srcdatavar": "organization_ref01_data",
                 "suffix": "_dt0"
               },
+              "match": {},
               "op": "load",
+              "spec": [],
               "valid": [
                 {
                   "apply": "TextFieldMark",
@@ -588,28 +568,56 @@
                     "mark": "Mark01-organization_ref01"
                   }
                 }
-              ],
-              "active": true,
-              "match": {},
-              "data": {},
-              "spec": []
+              ]
             }
-          ],
-          "key$": "BasicOrganizationFlow",
-          "active": true,
-          "param": {}
+          ]
         }
       },
+      "info": {
+        "contact": {
+          "email": "support@data.gov.au"
+        },
+        "description": "The Data.gov.au API provides programmatic access to datasets published by the Australian government. It allows users to search, filter, and retrieve detailed information about datasets, including metadata and download options.",
+        "license": {
+          "name": "CC BY 4.0",
+          "url": "https://creativecommons.org/licenses/by/4.0/"
+        },
+        "servers": [
+          {
+            "description": "Production CKAN API server",
+            "url": "https://data.gov.au/data/api/3"
+          }
+        ],
+        "title": "Data.gov.au API",
+        "version": "1.0.0"
+      },
+      "option": {},
       "target": {
-        "go-cli": {
-          "title": "Go CLI",
-          "ext": "go",
+        "go": {
+          "active": true,
           "comment": {
             "line": "//"
           },
+          "deps": {},
+          "ext": "go",
           "module": {
             "name": "data-gov-au"
           },
+          "name": "go",
+          "srcfeature": false,
+          "title": "Golang"
+        },
+        "go-cli": {
+          "active": true,
+          "comment": {
+            "line": "//"
+          },
+          "deps": {},
+          "ext": "go",
+          "module": {
+            "name": "data-gov-au"
+          },
+          "name": "go-cli",
           "phase": {
             "entity": {
               "active": false
@@ -624,19 +632,19 @@
               "active": false
             }
           },
-          "deps": {},
-          "name": "go-cli",
-          "active": true
+          "title": "Go CLI"
         },
         "go-mcp": {
-          "title": "Go MCP server",
-          "ext": "go",
+          "active": true,
           "comment": {
             "line": "//"
           },
+          "deps": {},
+          "ext": "go",
           "module": {
             "name": "data-gov-au"
           },
+          "name": "go-mcp",
           "phase": {
             "entity": {
               "active": false
@@ -651,138 +659,120 @@
               "active": false
             }
           },
-          "deps": {},
-          "name": "go-mcp",
-          "active": true
-        },
-        "ts": {
-          "title": "TypeScript",
-          "ext": "ts",
-          "comment": {
-            "line": "//"
-          },
-          "module": {
-            "name": "data-gov-au"
-          },
-          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
-          "deps": {
-            "dotenv": {
-              "active": true,
-              "version": "^17.4.2",
-              "kind": "dev"
-            },
-            "typescript": {
-              "active": true,
-              "version": "^5.9.3",
-              "kind": "dev"
-            },
-            "@types/node": {
-              "active": true,
-              "version": "^25.6.0",
-              "kind": "dev"
-            }
-          },
-          "name": "ts",
-          "active": true
-        },
-        "go": {
-          "title": "Golang",
-          "ext": "go",
-          "comment": {
-            "line": "//"
-          },
-          "module": {
-            "name": "data-gov-au"
-          },
-          "srcfeature": false,
-          "deps": {},
-          "name": "go",
-          "active": true
+          "title": "Go MCP server"
         },
         "lua": {
-          "title": "Lua",
-          "ext": "lua",
+          "active": true,
           "comment": {
             "line": "--"
           },
-          "module": {
-            "name": "data-gov-au"
-          },
-          "srcfeature": false,
           "deps": {
             "dkjson": {
               "active": true,
-              "version": "2.5",
-              "kind": "prod"
+              "kind": "prod",
+              "version": "2.5"
             }
           },
+          "ext": "lua",
+          "module": {
+            "name": "data-gov-au"
+          },
           "name": "lua",
-          "active": true
+          "srcfeature": false,
+          "title": "Lua"
         },
         "php": {
-          "title": "PHP",
-          "ext": "php",
+          "active": true,
           "comment": {
             "line": "//"
           },
+          "deps": {},
+          "ext": "php",
           "module": {
             "name": "data-gov-au"
           },
-          "srcfeature": false,
-          "deps": {},
           "name": "php",
-          "active": true
+          "srcfeature": false,
+          "title": "PHP"
         },
         "py": {
-          "title": "Python",
-          "ext": "py",
+          "active": true,
           "comment": {
             "line": "#"
           },
-          "module": {
-            "name": "data-gov-au"
-          },
-          "srcfeature": false,
           "deps": {
             "requests": {
               "active": true,
-              "version": "2.33",
-              "kind": "prod"
+              "kind": "prod",
+              "version": "2.33"
             }
           },
-          "name": "py",
-          "active": true
-        },
-        "rb": {
-          "title": "Ruby",
-          "ext": "rb",
-          "comment": {
-            "line": "#"
-          },
+          "ext": "py",
           "module": {
             "name": "data-gov-au"
           },
+          "name": "py",
           "srcfeature": false,
+          "title": "Python"
+        },
+        "rb": {
+          "active": true,
+          "comment": {
+            "line": "#"
+          },
           "deps": {
-            "voxgig-struct": {
-              "active": true,
-              "version": "0.0.10",
-              "kind": "prod"
-            },
             "json": {
               "active": true,
-              "version": "0",
-              "kind": "prod"
+              "kind": "prod",
+              "version": "0"
+            },
+            "voxgig-struct": {
+              "active": true,
+              "kind": "prod",
+              "version": "0.0.10"
             }
           },
+          "ext": "rb",
+          "module": {
+            "name": "data-gov-au"
+          },
           "name": "rb",
-          "active": true
+          "srcfeature": false,
+          "title": "Ruby"
+        },
+        "ts": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "//"
+          },
+          "deps": {
+            "@types/node": {
+              "active": true,
+              "kind": "dev",
+              "version": "^25.6.0"
+            },
+            "dotenv": {
+              "active": true,
+              "kind": "dev",
+              "version": "^17.4.2"
+            },
+            "typescript": {
+              "active": true,
+              "kind": "dev",
+              "version": "^5.9.3"
+            }
+          },
+          "ext": "ts",
+          "module": {
+            "name": "data-gov-au"
+          },
+          "name": "ts",
+          "title": "TypeScript"
         }
-      },
-      "option": {}
-    },
-    "def": {
-      "desc": ""
+      }
     }
-  }
+  },
+  "name": "data-gov-au",
+  "origin": "voxgig-sdk"
 }

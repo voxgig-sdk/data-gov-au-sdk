@@ -117,6 +117,7 @@ func datasetBasicSetup(extra map[string]any) *entityTestSetup {
 		"DATAGOVAU_TEST_DATASET_ENTID": idmap,
 		"DATAGOVAU_TEST_LIVE":      "FALSE",
 		"DATAGOVAU_TEST_EXPLAIN":   "FALSE",
+		"DATAGOVAU_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["DATAGOVAU_TEST_DATASET_ENTID"])
@@ -127,6 +128,7 @@ func datasetBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["DATAGOVAU_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
+				"apikey": env["DATAGOVAU_APIKEY"],
 			},
 			extra,
 		})

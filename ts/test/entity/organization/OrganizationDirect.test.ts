@@ -135,12 +135,14 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'DATAGOVAU_TEST_ORGANIZATION_ENTID': {},
     'DATAGOVAU_TEST_LIVE': 'FALSE',
+    'DATAGOVAU_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.DATAGOVAU_TEST_LIVE
 
   if (live) {
     const client = new DataGovAuSDK({
+      apikey: env.DATAGOVAU_APIKEY,
     })
 
     let idmap: any = env['DATAGOVAU_TEST_ORGANIZATION_ENTID']

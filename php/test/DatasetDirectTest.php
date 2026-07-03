@@ -67,12 +67,14 @@ function dataset_direct_setup($mockres)
     $env = Runner::env_override([
         "DATAGOVAU_TEST_DATASET_ENTID" => [],
         "DATAGOVAU_TEST_LIVE" => "FALSE",
+        "DATAGOVAU_APIKEY" => "NONE",
     ]);
 
     $live = $env["DATAGOVAU_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
+            "apikey" => $env["DATAGOVAU_APIKEY"],
         ];
         $client = new DataGovAuSDK($merged_opts);
         return [
