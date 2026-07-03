@@ -10,7 +10,7 @@ The Lua SDK for the DataGovAu API — an entity-oriented client using Lua conven
 
 ## Install
 ```bash
-luarocks install data-gov-au-sdk
+luarocks install voxgig-sdk-data-gov-au
 ```
 
 If the module is not yet published, add the source directory to

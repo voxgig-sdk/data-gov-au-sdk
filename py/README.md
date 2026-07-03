@@ -10,7 +10,7 @@ The Python SDK for the DataGovAu API — an entity-oriented client following Pyt
 
 ## Install
 ```bash
-pip install data-gov-au-sdk
+pip install voxgig-sdk-data-gov-au
 ```
 
 Or install from source:

@@ -10,7 +10,7 @@ The PHP SDK for the DataGovAu API — an entity-oriented client using PHP conven
 
 ## Install
 ```bash
-composer require voxgig/data-gov-au-sdk
+composer require voxgig-sdk/data-gov-au
 ```
 
 

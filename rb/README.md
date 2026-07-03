@@ -10,13 +10,13 @@ The Ruby SDK for the DataGovAu API — an entity-oriented client using idiomatic
 
 ## Install
 ```bash
-gem install data-gov-au-sdk
+gem install voxgig-sdk-data-gov-au
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "data-gov-au-sdk"
+gem "voxgig-sdk-data-gov-au"
 ```
 
 Then run:
