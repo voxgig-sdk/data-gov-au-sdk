@@ -43,14 +43,12 @@ class OrganizationEntityTest < Minitest::Test
     organization_ref01_ent = client.Organization(nil)
     organization_ref01_match = {}
 
-    organization_ref01_list_result, err = organization_ref01_ent.list(organization_ref01_match, nil)
-    assert_nil err
+    organization_ref01_list_result = organization_ref01_ent.list(organization_ref01_match, nil)
     assert organization_ref01_list_result.is_a?(Array)
 
     # LOAD
     organization_ref01_match_dt0 = {}
-    organization_ref01_data_dt0_loaded, err = organization_ref01_ent.load(organization_ref01_match_dt0, nil)
-    assert_nil err
+    organization_ref01_data_dt0_loaded = organization_ref01_ent.load(organization_ref01_match_dt0, nil)
     assert !organization_ref01_data_dt0_loaded.nil?
 
   end

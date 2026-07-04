@@ -50,14 +50,12 @@ class OrganizationEntityTest extends TestCase
         $organization_ref01_ent = $client->Organization(null);
         $organization_ref01_match = [];
 
-        [$organization_ref01_list_result, $err] = $organization_ref01_ent->list($organization_ref01_match, null);
-        $this->assertNull($err);
+        $organization_ref01_list_result = $organization_ref01_ent->list($organization_ref01_match, null);
         $this->assertIsArray($organization_ref01_list_result);
 
         // LOAD
         $organization_ref01_match_dt0 = [];
-        [$organization_ref01_data_dt0_loaded, $err] = $organization_ref01_ent->load($organization_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $organization_ref01_data_dt0_loaded = $organization_ref01_ent->load($organization_ref01_match_dt0, null);
         $this->assertNotNull($organization_ref01_data_dt0_loaded);
 
     }

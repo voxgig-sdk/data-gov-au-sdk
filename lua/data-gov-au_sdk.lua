@@ -244,18 +244,57 @@ end
 
 
 
+-- Idiomatic facade: client:dataset():list() / client:dataset():load({ id = ... })
+function DataGovAuSDK:dataset(data)
+  local EntityMod = require("entity.dataset_entity")
+  if data == nil then
+    if self._dataset == nil then
+      self._dataset = EntityMod.new(self, nil)
+    end
+    return self._dataset
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:dataset() instead.
 function DataGovAuSDK:Dataset(data)
   local EntityMod = require("entity.dataset_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:metadata():list() / client:metadata():load({ id = ... })
+function DataGovAuSDK:metadata(data)
+  local EntityMod = require("entity.metadata_entity")
+  if data == nil then
+    if self._metadata == nil then
+      self._metadata = EntityMod.new(self, nil)
+    end
+    return self._metadata
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:metadata() instead.
 function DataGovAuSDK:Metadata(data)
   local EntityMod = require("entity.metadata_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:organization():list() / client:organization():load({ id = ... })
+function DataGovAuSDK:organization(data)
+  local EntityMod = require("entity.organization_entity")
+  if data == nil then
+    if self._organization == nil then
+      self._organization = EntityMod.new(self, nil)
+    end
+    return self._organization
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:organization() instead.
 function DataGovAuSDK:Organization(data)
   local EntityMod = require("entity.organization_entity")
   return EntityMod.new(self, data)

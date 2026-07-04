@@ -49,8 +49,7 @@ class TestDatasetEntity:
         # LOAD
         dataset_ref01_ent = client.Dataset(None)
         dataset_ref01_match_dt0 = {}
-        dataset_ref01_data_dt0_loaded, err = dataset_ref01_ent.load(dataset_ref01_match_dt0, None)
-        assert err is None
+        dataset_ref01_data_dt0_loaded = dataset_ref01_ent.load(dataset_ref01_match_dt0, None)
         assert dataset_ref01_data_dt0_loaded is not None
 
 

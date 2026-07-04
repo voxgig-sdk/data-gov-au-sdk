@@ -9,9 +9,12 @@ The TypeScript SDK for the DataGovAu API — a type-safe, entity-oriented client
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/data-gov-au
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/data-gov-au-sdk/releases](https://github.com/voxgig-sdk/data-gov-au-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,17 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { DataGovAuSDK } from 'data-gov-au'
+import { DataGovAuSDK } from '@voxgig-sdk/data-gov-au'
 
 const client = new DataGovAuSDK({
-  apikey: process.env.DATA-GOV-AU_APIKEY,
+  apikey: process.env.DATA_GOV_AU_APIKEY,
 })
 ```
 
 ### 3. Load a dataset
 
 ```ts
-const result = await client.Dataset().load({ id: 'example_id' })
+const result = await client.dataset.load({ id: 'example_id' })
 
 if (result.ok) {
   console.log(result.data)
@@ -79,7 +82,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = DataGovAuSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.dataset.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -96,7 +99,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.dataset
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -133,8 +136,8 @@ const client = new DataGovAuSDK({
 Create a `.env.local` file at the project root:
 
 ```
-DATA-GOV-AU_TEST_LIVE=TRUE
-DATA-GOV-AU_APIKEY=<your-key>
+DATA_GOV_AU_TEST_LIVE=TRUE
+DATA_GOV_AU_APIKEY=<your-key>
 ```
 
 Then run:
@@ -291,7 +294,7 @@ API path: `/action/organization_list`
 
 ### Dataset
 
-Create an instance: `const dataset = client.Dataset()`
+Create an instance: `const dataset = client.dataset`
 
 #### Operations
 
@@ -309,13 +312,13 @@ Create an instance: `const dataset = client.Dataset()`
 #### Example: Load
 
 ```ts
-const dataset = await client.Dataset().load({ id: 'dataset_id' })
+const dataset = await client.dataset.load({ id: 'dataset_id' })
 ```
 
 
 ### Metadata
 
-Create an instance: `const metadata = client.Metadata()`
+Create an instance: `const metadata = client.metadata`
 
 #### Operations
 
@@ -333,13 +336,13 @@ Create an instance: `const metadata = client.Metadata()`
 #### Example: List
 
 ```ts
-const metadatas = await client.Metadata().list()
+const metadatas = await client.metadata.list()
 ```
 
 
 ### Organization
 
-Create an instance: `const organization = client.Organization()`
+Create an instance: `const organization = client.organization`
 
 #### Operations
 
@@ -358,13 +361,13 @@ Create an instance: `const organization = client.Organization()`
 #### Example: Load
 
 ```ts
-const organization = await client.Organization().load({ id: 'organization_id' })
+const organization = await client.organization.load({ id: 'organization_id' })
 ```
 
 #### Example: List
 
 ```ts
-const organizations = await client.Organization().list()
+const organizations = await client.organization.list()
 ```
 
 
@@ -425,7 +428,7 @@ data-gov-au/
 Import the SDK from the package root:
 
 ```ts
-import { DataGovAuSDK } from 'data-gov-au'
+import { DataGovAuSDK } from '@voxgig-sdk/data-gov-au'
 ```
 
 ### Entity state
@@ -435,11 +438,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const dataset = client.dataset
+await dataset.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// dataset.data() now returns the loaded dataset data
+// dataset.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

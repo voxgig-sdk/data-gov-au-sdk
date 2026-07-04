@@ -43,8 +43,7 @@ class MetadataEntityTest < Minitest::Test
     metadata_ref01_ent = client.Metadata(nil)
     metadata_ref01_match = {}
 
-    metadata_ref01_list_result, err = metadata_ref01_ent.list(metadata_ref01_match, nil)
-    assert_nil err
+    metadata_ref01_list_result = metadata_ref01_ent.list(metadata_ref01_match, nil)
     assert metadata_ref01_list_result.is_a?(Array)
 
   end

@@ -42,8 +42,7 @@ class DatasetEntityTest < Minitest::Test
     # LOAD
     dataset_ref01_ent = client.Dataset(nil)
     dataset_ref01_match_dt0 = {}
-    dataset_ref01_data_dt0_loaded, err = dataset_ref01_ent.load(dataset_ref01_match_dt0, nil)
-    assert_nil err
+    dataset_ref01_data_dt0_loaded = dataset_ref01_ent.load(dataset_ref01_match_dt0, nil)
     assert !dataset_ref01_data_dt0_loaded.nil?
 
   end

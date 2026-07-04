@@ -50,8 +50,7 @@ class TestMetadataEntity:
         metadata_ref01_ent = client.Metadata(None)
         metadata_ref01_match = {}
 
-        metadata_ref01_list_result, err = metadata_ref01_ent.list(metadata_ref01_match, None)
-        assert err is None
+        metadata_ref01_list_result = metadata_ref01_ent.list(metadata_ref01_match, None)
         assert isinstance(metadata_ref01_list_result, list)
 
 

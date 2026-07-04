@@ -245,16 +245,25 @@ func (sdk *DataGovAuSDK) Direct(fetchargs map[string]any) (map[string]any, error
 }
 
 
+// Dataset returns a Dataset entity bound to this client.
+// Idiomatic usage: client.Dataset(nil).List(nil, nil) or
+// client.Dataset(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *DataGovAuSDK) Dataset(data map[string]any) DataGovAuEntity {
 	return NewDatasetEntityFunc(sdk, data)
 }
 
 
+// Metadata returns a Metadata entity bound to this client.
+// Idiomatic usage: client.Metadata(nil).List(nil, nil) or
+// client.Metadata(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *DataGovAuSDK) Metadata(data map[string]any) DataGovAuEntity {
 	return NewMetadataEntityFunc(sdk, data)
 }
 
 
+// Organization returns a Organization entity bound to this client.
+// Idiomatic usage: client.Organization(nil).List(nil, nil) or
+// client.Organization(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *DataGovAuSDK) Organization(data map[string]any) DataGovAuEntity {
 	return NewOrganizationEntityFunc(sdk, data)
 }

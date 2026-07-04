@@ -49,8 +49,7 @@ class DatasetEntityTest extends TestCase
         // LOAD
         $dataset_ref01_ent = $client->Dataset(null);
         $dataset_ref01_match_dt0 = [];
-        [$dataset_ref01_data_dt0_loaded, $err] = $dataset_ref01_ent->load($dataset_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $dataset_ref01_data_dt0_loaded = $dataset_ref01_ent->load($dataset_ref01_match_dt0, null);
         $this->assertNotNull($dataset_ref01_data_dt0_loaded);
 
     }

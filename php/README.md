@@ -9,9 +9,10 @@ The PHP SDK for the DataGovAu API — an entity-oriented client using PHP conven
 
 
 ## Install
-```bash
-composer require voxgig-sdk/data-gov-au
-```
+This package is not yet published to Packagist. Install it from the
+GitHub release tag (`php/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/data-gov-au-sdk/releases](https://github.com/voxgig-sdk/data-gov-au-sdk/releases)
 
 
 ## Tutorial: your first API call
@@ -26,16 +27,19 @@ loading a specific record.
 require_once 'datagovau_sdk.php';
 
 $client = new DataGovAuSDK([
-    "apikey" => getenv("DATA-GOV-AU_APIKEY"),
+    "apikey" => getenv("DATA_GOV_AU_APIKEY"),
 ]);
 ```
 
 ### 3. Load a dataset
 
 ```php
-[$result, $err] = $client->Dataset()->load(["id" => "example_id"]);
-if ($err) { throw new \Exception($err); }
-print_r($result);
+try {
+    $result = $client->dataset()->load(["id" => "example_id"]);
+    print_r($result);
+} catch (\Exception $err) {
+    echo "Error: " . $err->getMessage();
+}
 ```
 
 
@@ -46,28 +50,31 @@ print_r($result);
 For endpoints not covered by entity methods:
 
 ```php
-[$result, $err] = $client->direct([
+// direct() is the raw-HTTP escape hatch: it returns a result array
+// (it does not throw). Branch on $result["ok"].
+$result = $client->direct([
     "path" => "/api/resource/{id}",
     "method" => "GET",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
+} else {
+    echo "Error: " . $result["err"]->getMessage();
 }
 ```
 
 ### Prepare a request without sending it
 
 ```php
-[$fetchdef, $err] = $client->prepare([
+// prepare() throws on error and returns the fetch definition.
+$fetchdef = $client->prepare([
     "path" => "/api/resource/{id}",
     "method" => "DELETE",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 echo $fetchdef["url"];
 echo $fetchdef["method"];
@@ -81,7 +88,7 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = DataGovAuSDK::test();
 
-[$result, $err] = $client->DataGovAu()->load(["id" => "test01"]);
+$result = $client->dataset()->load(["id" => "test01"]);
 // $result contains mock response data
 ```
 
@@ -115,8 +122,8 @@ $client = new DataGovAuSDK([
 Create a `.env.local` file at the project root:
 
 ```
-DATA-GOV-AU_TEST_LIVE=TRUE
-DATA-GOV-AU_APIKEY=<your-key>
+DATA_GOV_AU_TEST_LIVE=TRUE
+DATA_GOV_AU_APIKEY=<your-key>
 ```
 
 Then run:
@@ -187,8 +194,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `[$result, $err]`. The first value is an
-`array` with these keys:
+Entity operations return the bare result data (an `array` for single-entity
+ops, a `list` for `list`) and throw on error. Wrap calls in
+`try`/`catch` to handle failures.
+
+The `direct()` escape hatch never throws — it returns a result `array`
+you branch on via `$result["ok"]`:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -241,7 +252,7 @@ API path: `/action/organization_list`
 
 ### Dataset
 
-Create an instance: `const dataset = client.Dataset()`
+Create an instance: `const dataset = client.dataset`
 
 #### Operations
 
@@ -259,13 +270,13 @@ Create an instance: `const dataset = client.Dataset()`
 #### Example: Load
 
 ```ts
-const dataset = await client.Dataset().load({ id: 'dataset_id' })
+const dataset = await client.dataset.load({ id: 'dataset_id' })
 ```
 
 
 ### Metadata
 
-Create an instance: `const metadata = client.Metadata()`
+Create an instance: `const metadata = client.metadata`
 
 #### Operations
 
@@ -283,13 +294,13 @@ Create an instance: `const metadata = client.Metadata()`
 #### Example: List
 
 ```ts
-const metadatas = await client.Metadata().list()
+const metadatas = await client.metadata.list()
 ```
 
 
 ### Organization
 
-Create an instance: `const organization = client.Organization()`
+Create an instance: `const organization = client.organization`
 
 #### Operations
 
@@ -308,13 +319,13 @@ Create an instance: `const organization = client.Organization()`
 #### Example: Load
 
 ```ts
-const organization = await client.Organization().load({ id: 'organization_id' })
+const organization = await client.organization.load({ id: 'organization_id' })
 ```
 
 #### Example: List
 
 ```ts
-const organizations = await client.Organization().list()
+const organizations = await client.organization.list()
 ```
 
 
@@ -389,11 +400,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$moon = $client->Moon();
-[$result, $err] = $moon->load(["planet_id" => "earth", "id" => "luna"]);
+$dataset = $client->dataset();
+$dataset->load(["id" => "example_id"]);
 
-// $moon->dataGet() now returns the loaded moon data
-// $moon->matchGet() returns the last match criteria
+// $dataset->dataGet() now returns the loaded dataset data
+// $dataset->matchGet() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

@@ -50,14 +50,12 @@ class TestOrganizationEntity:
         organization_ref01_ent = client.Organization(None)
         organization_ref01_match = {}
 
-        organization_ref01_list_result, err = organization_ref01_ent.list(organization_ref01_match, None)
-        assert err is None
+        organization_ref01_list_result = organization_ref01_ent.list(organization_ref01_match, None)
         assert isinstance(organization_ref01_list_result, list)
 
         # LOAD
         organization_ref01_match_dt0 = {}
-        organization_ref01_data_dt0_loaded, err = organization_ref01_ent.load(organization_ref01_match_dt0, None)
-        assert err is None
+        organization_ref01_data_dt0_loaded = organization_ref01_ent.load(organization_ref01_match_dt0, None)
         assert organization_ref01_data_dt0_loaded is not None
 
 

@@ -50,8 +50,7 @@ class MetadataEntityTest extends TestCase
         $metadata_ref01_ent = $client->Metadata(null);
         $metadata_ref01_match = [];
 
-        [$metadata_ref01_list_result, $err] = $metadata_ref01_ent->list($metadata_ref01_match, null);
-        $this->assertNull($err);
+        $metadata_ref01_list_result = $metadata_ref01_ent->list($metadata_ref01_match, null);
         $this->assertIsArray($metadata_ref01_list_result);
 
     }
