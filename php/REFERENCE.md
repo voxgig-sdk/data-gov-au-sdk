@@ -94,7 +94,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## DatasetEntity
 
 ```php
-$dataset = $client->dataset();
+$dataset = $client->Dataset();
 ```
 
 ### Fields
@@ -111,7 +111,7 @@ $dataset = $client->dataset();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->dataset()->load(["id" => "dataset_id"]);
+$result = $client->Dataset()->load(["id" => "dataset_id"]);
 ```
 
 ### Common Methods
@@ -147,7 +147,7 @@ Return the entity name.
 ## MetadataEntity
 
 ```php
-$metadata = $client->metadata();
+$metadata = $client->Metadata();
 ```
 
 ### Fields
@@ -164,7 +164,7 @@ $metadata = $client->metadata();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->metadata()->list([]);
+$results = $client->Metadata()->list([]);
 ```
 
 ### Common Methods
@@ -200,7 +200,7 @@ Return the entity name.
 ## OrganizationEntity
 
 ```php
-$organization = $client->organization();
+$organization = $client->Organization();
 ```
 
 ### Fields
@@ -217,7 +217,7 @@ $organization = $client->organization();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->organization()->list([]);
+$results = $client->Organization()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -225,7 +225,7 @@ $results = $client->organization()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->organization()->load(["id" => "organization_id"]);
+$result = $client->Organization()->load(["id" => "organization_id"]);
 ```
 
 ### Common Methods

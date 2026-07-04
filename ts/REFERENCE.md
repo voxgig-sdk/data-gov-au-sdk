@@ -134,7 +134,7 @@ Alias for `DataGovAuSDK.test()`.
 ## DatasetEntity
 
 ```ts
-const dataset = client.dataset
+const dataset = client.Dataset()
 ```
 
 ### Fields
@@ -151,7 +151,7 @@ const dataset = client.dataset
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.dataset.load({ id: 'dataset_id' })
+const result = await client.Dataset().load({ id: 'dataset_id' })
 ```
 
 ### Common Methods
@@ -185,7 +185,7 @@ Return a copy of the entity options.
 ## MetadataEntity
 
 ```ts
-const metadata = client.metadata
+const metadata = client.Metadata()
 ```
 
 ### Fields
@@ -202,7 +202,7 @@ const metadata = client.metadata
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.metadata.list()
+const results = await client.Metadata().list()
 ```
 
 ### Common Methods
@@ -236,7 +236,7 @@ Return a copy of the entity options.
 ## OrganizationEntity
 
 ```ts
-const organization = client.organization
+const organization = client.Organization()
 ```
 
 ### Fields
@@ -253,7 +253,7 @@ const organization = client.organization
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.organization.list()
+const results = await client.Organization().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -261,7 +261,7 @@ const results = await client.organization.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.organization.load({ id: 'organization_id' })
+const result = await client.Organization().load({ id: 'organization_id' })
 ```
 
 ### Common Methods

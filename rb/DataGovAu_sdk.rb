@@ -208,39 +208,21 @@ class DataGovAuSDK
   end
 
 
-  # Idiomatic facade: client.dataset.list / client.dataset.load({ "id" => ... })
-  def dataset
-    require_relative 'entity/dataset_entity'
-    @dataset ||= DatasetEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.dataset instead.
+  # Canonical facade: client.Dataset.list / client.Dataset.load({ "id" => ... })
   def Dataset(data = nil)
     require_relative 'entity/dataset_entity'
     DatasetEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.metadata.list / client.metadata.load({ "id" => ... })
-  def metadata
-    require_relative 'entity/metadata_entity'
-    @metadata ||= MetadataEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.metadata instead.
+  # Canonical facade: client.Metadata.list / client.Metadata.load({ "id" => ... })
   def Metadata(data = nil)
     require_relative 'entity/metadata_entity'
     MetadataEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.organization.list / client.organization.load({ "id" => ... })
-  def organization
-    require_relative 'entity/organization_entity'
-    @organization ||= OrganizationEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.organization instead.
+  # Canonical facade: client.Organization.list / client.Organization.load({ "id" => ... })
   def Organization(data = nil)
     require_relative 'entity/organization_entity'
     OrganizationEntity.new(self, data)

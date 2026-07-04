@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:dataset():list() / client:dataset():load({ id = ... })
-function DataGovAuSDK:dataset(data)
+-- Idiomatic facade: client:Dataset():list() / client:Dataset():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function DataGovAuSDK:Dataset(data)
   local EntityMod = require("entity.dataset_entity")
   if data == nil then
     if self._dataset == nil then
@@ -256,15 +257,10 @@ function DataGovAuSDK:dataset(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:dataset() instead.
-function DataGovAuSDK:Dataset(data)
-  local EntityMod = require("entity.dataset_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:metadata():list() / client:metadata():load({ id = ... })
-function DataGovAuSDK:metadata(data)
+-- Idiomatic facade: client:Metadata():list() / client:Metadata():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function DataGovAuSDK:Metadata(data)
   local EntityMod = require("entity.metadata_entity")
   if data == nil then
     if self._metadata == nil then
@@ -275,15 +271,10 @@ function DataGovAuSDK:metadata(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:metadata() instead.
-function DataGovAuSDK:Metadata(data)
-  local EntityMod = require("entity.metadata_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:organization():list() / client:organization():load({ id = ... })
-function DataGovAuSDK:organization(data)
+-- Idiomatic facade: client:Organization():list() / client:Organization():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function DataGovAuSDK:Organization(data)
   local EntityMod = require("entity.organization_entity")
   if data == nil then
     if self._organization == nil then
@@ -291,12 +282,6 @@ function DataGovAuSDK:organization(data)
     end
     return self._organization
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:organization() instead.
-function DataGovAuSDK:Organization(data)
-  local EntityMod = require("entity.organization_entity")
   return EntityMod.new(self, data)
 end
 

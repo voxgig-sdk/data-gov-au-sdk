@@ -206,42 +206,21 @@ class DataGovAuSDK {
 
 
 
-  _dataset?: DatasetEntity
-
-  // Idiomatic facade: `client.dataset.list()` / `client.dataset.load({ id })`.
-  get dataset(): DatasetEntity {
-    return (this._dataset ??= new DatasetEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.dataset` instead. */
+  // Entity access: `client.Dataset().list()` / `client.Dataset().load({ id })`.
   Dataset(data?: any) {
     const self = this
     return new DatasetEntity(self,data)
   }
 
 
-  _metadata?: MetadataEntity
-
-  // Idiomatic facade: `client.metadata.list()` / `client.metadata.load({ id })`.
-  get metadata(): MetadataEntity {
-    return (this._metadata ??= new MetadataEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.metadata` instead. */
+  // Entity access: `client.Metadata().list()` / `client.Metadata().load({ id })`.
   Metadata(data?: any) {
     const self = this
     return new MetadataEntity(self,data)
   }
 
 
-  _organization?: OrganizationEntity
-
-  // Idiomatic facade: `client.organization.list()` / `client.organization.load({ id })`.
-  get organization(): OrganizationEntity {
-    return (this._organization ??= new OrganizationEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.organization` instead. */
+  // Entity access: `client.Organization().list()` / `client.Organization().load({ id })`.
   Organization(data?: any) {
     const self = this
     return new OrganizationEntity(self,data)

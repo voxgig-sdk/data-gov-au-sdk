@@ -28,9 +28,9 @@ const client = new DataGovAuSDK({
   apikey: process.env.DATA_GOV_AU_APIKEY,
 })
 
-// Load dataset data
-const dataset = await client.dataset.load({})
-console.log(dataset.data)
+// Load dataset data (returns a Dataset)
+const dataset = await client.Dataset().load()
+console.log(dataset)
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -91,8 +91,8 @@ client = DataGovAuSDK({
 })
 
 
-# Load a specific dataset
-dataset = client.dataset.load({"id": "example_id"})
+# Load a specific dataset (returns the record, raises on error)
+dataset = client.Dataset().load({"id": "example_id"})
 print(dataset)
 ```
 
@@ -107,8 +107,8 @@ $client = new DataGovAuSDK([
 ]);
 
 
-// Load a specific dataset
-$dataset = $client->dataset()->load(["id" => "example_id"]);
+// Load a specific dataset (returns the bare record; throws on error)
+$dataset = $client->Dataset()->load(["id" => "example_id"]);
 print_r($dataset);
 ```
 
@@ -136,8 +136,8 @@ client = DataGovAuSDK.new({
 })
 
 
-# Load a specific dataset
-dataset = client.dataset.load({ "id" => "example_id" })
+# Load a specific dataset (returns the bare record; raises on error)
+dataset = client.Dataset.load({ "id" => "example_id" })
 puts dataset
 ```
 
@@ -152,7 +152,7 @@ local client = sdk.new({
 
 
 -- Load a specific dataset
-local dataset, err = client:dataset():load({ id = "example_id" })
+local dataset, err = client:Dataset():load({ id = "example_id" })
 print(dataset)
 ```
 
@@ -165,22 +165,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = DataGovAuSDK.test()
-const result = await client.dataset.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const dataset = await client.Dataset().load({ id: 'test01' })
+// dataset is a bare Dataset populated with mock data
+console.log(dataset)
 ```
 
 ### Python
 
 ```python
 client = DataGovAuSDK.test()
-result = client.dataset.load({"id": "test01"})
+dataset = client.Dataset().load({"id": "test01"})
+print(dataset)
 ```
 
 ### PHP
 
 ```php
-$client = DataGovAuSDK::test();
-$result = $client->dataset()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = DataGovAuSDK::test([
+    "entity" => ["dataset" => ["test01" => ["id" => "test01"]]],
+]);
+$dataset = $client->Dataset()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -195,15 +200,18 @@ result, err := client.Dataset(nil).Load(
 ### Ruby
 
 ```ruby
-client = DataGovAuSDK.test
-result = client.dataset.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = DataGovAuSDK.test({
+  "entity" => { "dataset" => { "test01" => { "id" => "test01" } } },
+})
+dataset = client.Dataset.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:dataset():load({ id = "test01" })
+local result, err = client:Dataset():load({ id = "test01" })
 ```
 
 ## How it works
@@ -251,6 +259,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

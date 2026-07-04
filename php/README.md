@@ -35,9 +35,10 @@ $client = new DataGovAuSDK([
 
 ```php
 try {
-    $result = $client->dataset()->load(["id" => "example_id"]);
-    print_r($result);
-} catch (\Exception $err) {
+    // load() returns the bare Dataset record (throws on error).
+    $dataset = $client->Dataset()->load(["id" => "example_id"]);
+    print_r($dataset);
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -83,13 +84,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = DataGovAuSDK::test();
+$client = DataGovAuSDK::test([
+    "entity" => ["dataset" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->dataset()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$dataset = $client->Dataset()->load(["id" => "test01"]);
+print_r($dataset);
 ```
 
 ### Use a custom fetch function
@@ -172,7 +177,7 @@ Creates a test-mode client with mock transport. Both arguments may be `null`.
 | `direct` | `(array $fetchargs): array` | Build and send an HTTP request. |
 | `Dataset` | `($data): DatasetEntity` | Create a Dataset entity instance. |
 | `Metadata` | `($data): MetadataEntity` | Create a Metadata entity instance. |
-| `Organization` | `($data): OrganizationEntity` | Create a Organization entity instance. |
+| `Organization` | `($data): OrganizationEntity` | Create an Organization entity instance. |
 
 ### Entity interface
 
@@ -252,7 +257,7 @@ API path: `/action/organization_list`
 
 ### Dataset
 
-Create an instance: `const dataset = client.dataset`
+Create an instance: `$dataset = $client->Dataset();`
 
 #### Operations
 
@@ -269,14 +274,15 @@ Create an instance: `const dataset = client.dataset`
 
 #### Example: Load
 
-```ts
-const dataset = await client.dataset.load({ id: 'dataset_id' })
+```php
+// load() returns the bare Dataset record (throws on error).
+$dataset = $client->Dataset()->load(["id" => "dataset_id"]);
 ```
 
 
 ### Metadata
 
-Create an instance: `const metadata = client.metadata`
+Create an instance: `$metadata = $client->Metadata();`
 
 #### Operations
 
@@ -293,14 +299,15 @@ Create an instance: `const metadata = client.metadata`
 
 #### Example: List
 
-```ts
-const metadatas = await client.metadata.list()
+```php
+// list() returns an array of Metadata records (throws on error).
+$metadatas = $client->Metadata()->list();
 ```
 
 
 ### Organization
 
-Create an instance: `const organization = client.organization`
+Create an instance: `$organization = $client->Organization();`
 
 #### Operations
 
@@ -318,14 +325,16 @@ Create an instance: `const organization = client.organization`
 
 #### Example: Load
 
-```ts
-const organization = await client.organization.load({ id: 'organization_id' })
+```php
+// load() returns the bare Organization record (throws on error).
+$organization = $client->Organization()->load(["id" => "organization_id"]);
 ```
 
 #### Example: List
 
-```ts
-const organizations = await client.organization.list()
+```php
+// list() returns an array of Organization records (throws on error).
+$organizations = $client->Organization()->list();
 ```
 
 
@@ -400,7 +409,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$dataset = $client->dataset();
+$dataset = $client->Dataset();
 $dataset->load(["id" => "example_id"]);
 
 // $dataset->dataGet() now returns the loaded dataset data

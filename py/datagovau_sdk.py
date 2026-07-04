@@ -220,57 +220,27 @@ class DataGovAuSDK:
         }
 
 
-    @property
-    def dataset(self):
-        """Idiomatic facade: client.dataset.list() / client.dataset.load({"id": ...})."""
-        from entity.dataset_entity import DatasetEntity
-        cached = getattr(self, "_dataset", None)
-        if cached is None:
-            cached = DatasetEntity(self, None)
-            self._dataset = cached
-        return cached
-
-    def Dataset(self, data=None):
-        # Deprecated: use client.dataset instead.
+    def Dataset(self, data=None) -> "DatasetEntity":
+        """Entity factory: client.Dataset().list({}) / client.Dataset().load({"id": ...})."""
         from entity.dataset_entity import DatasetEntity
         return DatasetEntity(self, data)
 
 
-    @property
-    def metadata(self):
-        """Idiomatic facade: client.metadata.list() / client.metadata.load({"id": ...})."""
-        from entity.metadata_entity import MetadataEntity
-        cached = getattr(self, "_metadata", None)
-        if cached is None:
-            cached = MetadataEntity(self, None)
-            self._metadata = cached
-        return cached
-
-    def Metadata(self, data=None):
-        # Deprecated: use client.metadata instead.
+    def Metadata(self, data=None) -> "MetadataEntity":
+        """Entity factory: client.Metadata().list({}) / client.Metadata().load({"id": ...})."""
         from entity.metadata_entity import MetadataEntity
         return MetadataEntity(self, data)
 
 
-    @property
-    def organization(self):
-        """Idiomatic facade: client.organization.list() / client.organization.load({"id": ...})."""
-        from entity.organization_entity import OrganizationEntity
-        cached = getattr(self, "_organization", None)
-        if cached is None:
-            cached = OrganizationEntity(self, None)
-            self._organization = cached
-        return cached
-
-    def Organization(self, data=None):
-        # Deprecated: use client.organization instead.
+    def Organization(self, data=None) -> "OrganizationEntity":
+        """Entity factory: client.Organization().list({}) / client.Organization().load({"id": ...})."""
         from entity.organization_entity import OrganizationEntity
         return OrganizationEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "DataGovAuSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -290,3 +260,11 @@ class DataGovAuSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.dataset_entity import DatasetEntity
+    from entity.metadata_entity import MetadataEntity
+    from entity.organization_entity import OrganizationEntity

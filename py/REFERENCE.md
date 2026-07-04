@@ -89,7 +89,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## DatasetEntity
 
 ```python
-dataset = client.dataset
+dataset = client.Dataset()
 ```
 
 ### Fields
@@ -106,7 +106,7 @@ dataset = client.dataset
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.dataset.load({"id": "dataset_id"})
+result = client.Dataset().load({"id": "dataset_id"})
 ```
 
 ### Common Methods
@@ -141,7 +141,7 @@ Return the entity name.
 ## MetadataEntity
 
 ```python
-metadata = client.metadata
+metadata = client.Metadata()
 ```
 
 ### Fields
@@ -158,7 +158,9 @@ metadata = client.metadata
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.metadata.list({})
+results = client.Metadata().list({})
+for metadata in results:
+    print(metadata)
 ```
 
 ### Common Methods
@@ -193,7 +195,7 @@ Return the entity name.
 ## OrganizationEntity
 
 ```python
-organization = client.organization
+organization = client.Organization()
 ```
 
 ### Fields
@@ -210,7 +212,9 @@ organization = client.organization
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.organization.list({})
+results = client.Organization().list({})
+for organization in results:
+    print(organization)
 ```
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -218,7 +222,7 @@ results = client.organization.list({})
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.organization.load({"id": "organization_id"})
+result = client.Organization().load({"id": "organization_id"})
 ```
 
 ### Common Methods

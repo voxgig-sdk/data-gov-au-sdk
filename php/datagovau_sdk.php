@@ -233,10 +233,10 @@ class DataGovAuSDK
 
     private $_dataset = null;
 
-    // Idiomatic facade: $client->dataset()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Dataset() (PHP method
-    // names are case-insensitive).
-    public function dataset($data = null)
+    // Canonical facade: $client->Dataset()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->dataset()
+    // resolves here too.
+    public function Dataset($data = null)
     {
         require_once __DIR__ . '/entity/dataset_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class DataGovAuSDK
 
     private $_metadata = null;
 
-    // Idiomatic facade: $client->metadata()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Metadata() (PHP method
-    // names are case-insensitive).
-    public function metadata($data = null)
+    // Canonical facade: $client->Metadata()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->metadata()
+    // resolves here too.
+    public function Metadata($data = null)
     {
         require_once __DIR__ . '/entity/metadata_entity.php';
         if ($data === null) {
@@ -269,10 +269,10 @@ class DataGovAuSDK
 
     private $_organization = null;
 
-    // Idiomatic facade: $client->organization()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Organization() (PHP method
-    // names are case-insensitive).
-    public function organization($data = null)
+    // Canonical facade: $client->Organization()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->organization()
+    // resolves here too.
+    public function Organization($data = null)
     {
         require_once __DIR__ . '/entity/organization_entity.php';
         if ($data === null) {

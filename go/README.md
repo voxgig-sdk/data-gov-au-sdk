@@ -30,7 +30,12 @@ go mod edit -replace github.com/voxgig-sdk/data-gov-au-sdk/go=../data-gov-au-sdk
 This tutorial walks through creating a client, listing entities, and
 loading a specific record.
 
-### 1. Create a client
+### Quickstart
+
+A complete program: create a client, then call the entity operations.
+Each operation returns `(value, error)` — the value is the data itself
+(there is no `{ok, data}` wrapper), so check `err` and use the value
+directly.
 
 ```go
 package main
@@ -38,31 +43,20 @@ package main
 import (
     "fmt"
     "os"
-
     sdk "github.com/voxgig-sdk/data-gov-au-sdk/go"
-    "github.com/voxgig-sdk/data-gov-au-sdk/go/core"
 )
 
 func main() {
     client := sdk.NewDataGovAuSDK(map[string]any{
         "apikey": os.Getenv("DATA_GOV_AU_APIKEY"),
     })
-```
 
-### 3. Load a dataset
-
-```go
-    result, err = client.Dataset(nil).Load(
-        map[string]any{"id": "example_id"}, nil,
-    )
+    // Load a single dataset — the value is the loaded record.
+    dataset, err := client.Dataset(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }
-
-    rm = core.ToMapAny(result)
-    if rm["ok"] == true {
-        fmt.Println(rm["data"])
-    }
+    fmt.Println(dataset)
 }
 ```
 
@@ -113,10 +107,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-result, err := client.Dataset(nil).Load(
+dataset, err := client.Dataset(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
-// result contains mock response data
+if err != nil {
+    panic(err)
+}
+fmt.Println(dataset) // the loaded mock data
 ```
 
 ### Use a custom fetch function
@@ -197,7 +194,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `Direct` | `(fetchargs map[string]any) (map[string]any, error)` | Build and send an HTTP request. |
 | `Dataset` | `(data map[string]any) DataGovAuEntity` | Create a Dataset entity instance. |
 | `Metadata` | `(data map[string]any) DataGovAuEntity` | Create a Metadata entity instance. |
-| `Organization` | `(data map[string]any) DataGovAuEntity` | Create a Organization entity instance. |
+| `Organization` | `(data map[string]any) DataGovAuEntity` | Create an Organization entity instance. |
 
 ### Entity interface (DataGovAuEntity)
 
@@ -217,17 +214,24 @@ All entities implement the `DataGovAuEntity` interface.
 
 ### Result shape
 
-Entity operations return `(any, error)`. The `any` value is a
-`map[string]any` with these keys:
+Entity operations return `(value, error)`. The `value` is the
+operation's data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `"ok"` | `bool` | `true` if the HTTP status is 2xx. |
-| `"status"` | `int` | HTTP status code. |
-| `"headers"` | `map[string]any` | Response headers. |
-| `"data"` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `Load` / `Create` / `Update` / `Remove` | the entity record (`map[string]any`) |
+| `List` | a `[]any` of entity records |
 
-On error, `"ok"` is `false` and `"err"` contains the error value.
+Check `err` first, then use the value directly (or the typed
+`...Typed` variants, which return the entity's model struct and a typed
+slice):
+
+    dataset, err := client.Dataset(nil).Load(map[string]any{"id": "example_id"}, nil)
+    if err != nil { /* handle */ }
+    // dataset is the loaded record
+
+Only `Direct()` returns a response envelope — a `map[string]any` with
+`"ok"`, `"status"`, `"headers"`, and `"data"` keys.
 
 ### Entities
 
@@ -289,7 +293,11 @@ Create an instance: `dataset := client.Dataset(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Dataset(nil).Load(map[string]any{"id": "dataset_id"}, nil)
+dataset, err := client.Dataset(nil).Load(map[string]any{"id": "dataset_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(dataset) // the loaded record
 ```
 
 
@@ -313,7 +321,11 @@ Create an instance: `metadata := client.Metadata(nil)`
 #### Example: List
 
 ```go
-results, err := client.Metadata(nil).List(nil, nil)
+metadatas, err := client.Metadata(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(metadatas) // the array of records
 ```
 
 
@@ -338,13 +350,21 @@ Create an instance: `organization := client.Organization(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Organization(nil).Load(map[string]any{"id": "organization_id"}, nil)
+organization, err := client.Organization(nil).Load(map[string]any{"id": "organization_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(organization) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-results, err := client.Organization(nil).List(nil, nil)
+organizations, err := client.Organization(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(organizations) // the array of records
 ```
 
 

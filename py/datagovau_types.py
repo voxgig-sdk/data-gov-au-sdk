@@ -4,51 +4,48 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class Dataset:
-    result: Optional[dict] = None
-    success: Optional[bool] = None
+class Dataset(TypedDict, total=False):
+    result: dict
+    success: bool
 
 
-@dataclass
-class DatasetLoadMatch:
-    result: Optional[dict] = None
-    success: Optional[bool] = None
+class DatasetLoadMatch(TypedDict, total=False):
+    result: dict
+    success: bool
 
 
-@dataclass
-class Metadata:
-    result: Optional[list] = None
-    success: Optional[bool] = None
+class Metadata(TypedDict, total=False):
+    result: list
+    success: bool
 
 
-@dataclass
-class MetadataListMatch:
-    result: Optional[list] = None
-    success: Optional[bool] = None
+class MetadataListMatch(TypedDict, total=False):
+    result: list
+    success: bool
 
 
-@dataclass
-class Organization:
-    result: Optional[dict] = None
-    success: Optional[bool] = None
+class Organization(TypedDict, total=False):
+    result: dict
+    success: bool
 
 
-@dataclass
-class OrganizationLoadMatch:
-    result: Optional[dict] = None
-    success: Optional[bool] = None
+class OrganizationLoadMatch(TypedDict, total=False):
+    result: dict
+    success: bool
 
 
-@dataclass
-class OrganizationListMatch:
-    result: Optional[dict] = None
-    success: Optional[bool] = None
-
+class OrganizationListMatch(TypedDict, total=False):
+    result: dict
+    success: bool

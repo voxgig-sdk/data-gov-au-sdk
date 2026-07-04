@@ -95,7 +95,7 @@ same parameters as `direct()`. Raises on error.
 ## DatasetEntity
 
 ```ruby
-dataset = client.dataset
+dataset = client.Dataset
 ```
 
 ### Fields
@@ -112,7 +112,7 @@ dataset = client.dataset
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.dataset.load({ "id" => "dataset_id" })
+result = client.Dataset.load({ "id" => "dataset_id" })
 ```
 
 ### Common Methods
@@ -148,7 +148,7 @@ Return the entity name.
 ## MetadataEntity
 
 ```ruby
-metadata = client.metadata
+metadata = client.Metadata
 ```
 
 ### Fields
@@ -165,7 +165,7 @@ metadata = client.metadata
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.metadata.list(nil)
+results = client.Metadata.list(nil)
 ```
 
 ### Common Methods
@@ -201,7 +201,7 @@ Return the entity name.
 ## OrganizationEntity
 
 ```ruby
-organization = client.organization
+organization = client.Organization
 ```
 
 ### Fields
@@ -218,7 +218,7 @@ organization = client.organization
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.organization.list(nil)
+results = client.Organization.list(nil)
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -226,7 +226,7 @@ results = client.organization.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.organization.load({ "id" => "organization_id" })
+result = client.Organization.load({ "id" => "organization_id" })
 ```
 
 ### Common Methods

@@ -92,7 +92,7 @@ same parameters as `direct()`.
 ## DatasetEntity
 
 ```lua
-local dataset = client:dataset(nil)
+local dataset = client:Dataset(nil)
 ```
 
 ### Fields
@@ -109,7 +109,7 @@ local dataset = client:dataset(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:dataset():load({ id = "dataset_id" })
+local result, err = client:Dataset():load({ id = "dataset_id" })
 ```
 
 ### Common Methods
@@ -145,7 +145,7 @@ Return the entity name.
 ## MetadataEntity
 
 ```lua
-local metadata = client:metadata(nil)
+local metadata = client:Metadata(nil)
 ```
 
 ### Fields
@@ -162,7 +162,7 @@ local metadata = client:metadata(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:metadata():list()
+local results, err = client:Metadata():list()
 ```
 
 ### Common Methods
@@ -198,7 +198,7 @@ Return the entity name.
 ## OrganizationEntity
 
 ```lua
-local organization = client:organization(nil)
+local organization = client:Organization(nil)
 ```
 
 ### Fields
@@ -215,7 +215,7 @@ local organization = client:organization(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:organization():list()
+local results, err = client:Organization():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -223,7 +223,7 @@ local results, err = client:organization():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:organization():load({ id = "organization_id" })
+local result, err = client:Organization():load({ id = "organization_id" })
 ```
 
 ### Common Methods

@@ -34,8 +34,9 @@ client = DataGovAuSDK.new({
 
 ```ruby
 begin
-  result = client.dataset.load({ "id" => "example_id" })
-  puts result
+  # load returns the bare Dataset record (raises on error).
+  dataset = client.Dataset.load({ "id" => "example_id" })
+  puts dataset
 rescue => err
   warn "load failed: #{err}"
 end
@@ -82,13 +83,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = DataGovAuSDK.test
+client = DataGovAuSDK.test({
+  "entity" => { "dataset" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.dataset.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+dataset = client.Dataset.load({ "id" => "test01" })
+puts dataset
 ```
 
 ### Use a custom fetch function
@@ -168,7 +173,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `direct` | `(fetchargs) -> Hash` | Build and send an HTTP request. Returns a result hash (`result["ok"]`); does not raise. |
 | `Dataset` | `(data) -> DatasetEntity` | Create a Dataset entity instance. |
 | `Metadata` | `(data) -> MetadataEntity` | Create a Metadata entity instance. |
-| `Organization` | `(data) -> OrganizationEntity` | Create a Organization entity instance. |
+| `Organization` | `(data) -> OrganizationEntity` | Create an Organization entity instance. |
 
 ### Entity interface
 
@@ -247,7 +252,7 @@ API path: `/action/organization_list`
 
 ### Dataset
 
-Create an instance: `const dataset = client.dataset`
+Create an instance: `dataset = client.Dataset`
 
 #### Operations
 
@@ -264,14 +269,15 @@ Create an instance: `const dataset = client.dataset`
 
 #### Example: Load
 
-```ts
-const dataset = await client.dataset.load({ id: 'dataset_id' })
+```ruby
+# load returns the bare Dataset record (raises on error).
+dataset = client.Dataset.load({ "id" => "dataset_id" })
 ```
 
 
 ### Metadata
 
-Create an instance: `const metadata = client.metadata`
+Create an instance: `metadata = client.Metadata`
 
 #### Operations
 
@@ -288,14 +294,15 @@ Create an instance: `const metadata = client.metadata`
 
 #### Example: List
 
-```ts
-const metadatas = await client.metadata.list()
+```ruby
+# list returns an Array of Metadata records (raises on error).
+metadatas = client.Metadata.list
 ```
 
 
 ### Organization
 
-Create an instance: `const organization = client.organization`
+Create an instance: `organization = client.Organization`
 
 #### Operations
 
@@ -313,14 +320,16 @@ Create an instance: `const organization = client.organization`
 
 #### Example: Load
 
-```ts
-const organization = await client.organization.load({ id: 'organization_id' })
+```ruby
+# load returns the bare Organization record (raises on error).
+organization = client.Organization.load({ "id" => "organization_id" })
 ```
 
 #### Example: List
 
-```ts
-const organizations = await client.organization.list()
+```ruby
+# list returns an Array of Organization records (raises on error).
+organizations = client.Organization.list
 ```
 
 
@@ -395,7 +404,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-dataset = client.dataset
+dataset = client.Dataset
 dataset.load({ "id" => "example_id" })
 
 # dataset.data_get now returns the loaded dataset data
