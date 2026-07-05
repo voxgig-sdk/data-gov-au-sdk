@@ -19,7 +19,7 @@ class Dataset
     public ?bool $success = null;
 }
 
-/** Match filter for Dataset#load (any subset of Dataset fields). */
+/** Request payload for Dataset#load. */
 class DatasetLoadMatch
 {
     public ?array $result = null;
@@ -33,7 +33,7 @@ class Metadata
     public ?bool $success = null;
 }
 
-/** Match filter for Metadata#list (any subset of Metadata fields). */
+/** Request payload for Metadata#list. */
 class MetadataListMatch
 {
     public ?array $result = null;
@@ -47,14 +47,14 @@ class Organization
     public ?bool $success = null;
 }
 
-/** Match filter for Organization#load (any subset of Organization fields). */
+/** Request payload for Organization#load. */
 class OrganizationLoadMatch
 {
     public ?array $result = null;
     public ?bool $success = null;
 }
 
-/** Match filter for Organization#list (any subset of Organization fields). */
+/** Request payload for Organization#list. */
 class OrganizationListMatch
 {
     public ?array $result = null;

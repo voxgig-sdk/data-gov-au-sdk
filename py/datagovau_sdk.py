@@ -221,19 +221,19 @@ class DataGovAuSDK:
 
 
     def Dataset(self, data=None) -> "DatasetEntity":
-        """Entity factory: client.Dataset().list({}) / client.Dataset().load({"id": ...})."""
+        """Entity factory: client.Dataset().list() / client.Dataset().load({"id": ...})."""
         from entity.dataset_entity import DatasetEntity
         return DatasetEntity(self, data)
 
 
     def Metadata(self, data=None) -> "MetadataEntity":
-        """Entity factory: client.Metadata().list({}) / client.Metadata().load({"id": ...})."""
+        """Entity factory: client.Metadata().list() / client.Metadata().load({"id": ...})."""
         from entity.metadata_entity import MetadataEntity
         return MetadataEntity(self, data)
 
 
     def Organization(self, data=None) -> "OrganizationEntity":
-        """Entity factory: client.Organization().list({}) / client.Organization().load({"id": ...})."""
+        """Entity factory: client.Organization().list() / client.Organization().load({"id": ...})."""
         from entity.organization_entity import OrganizationEntity
         return OrganizationEntity(self, data)
 

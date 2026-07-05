@@ -99,8 +99,8 @@ local dataset = client:Dataset(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `result` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `result` | `table` | No |  |
+| `success` | `boolean` | No |  |
 
 ### Operations
 
@@ -109,7 +109,7 @@ local dataset = client:Dataset(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Dataset():load({ id = "dataset_id" })
+local result, err = client:Dataset():load()
 ```
 
 ### Common Methods
@@ -152,8 +152,8 @@ local metadata = client:Metadata(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `result` | ``$ARRAY`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `result` | `table` | No |  |
+| `success` | `boolean` | No |  |
 
 ### Operations
 
@@ -205,8 +205,8 @@ local organization = client:Organization(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `result` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `result` | `table` | No |  |
+| `success` | `boolean` | No |  |
 
 ### Operations
 
@@ -223,7 +223,7 @@ local results, err = client:Organization():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Organization():load({ id = "organization_id" })
+local result, err = client:Organization():load()
 ```
 
 ### Common Methods

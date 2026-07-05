@@ -141,8 +141,8 @@ const dataset = client.Dataset()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `result` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `result` | `Record<string, any>` | No |  |
+| `success` | `boolean` | No |  |
 
 ### Operations
 
@@ -151,7 +151,7 @@ const dataset = client.Dataset()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Dataset().load({ id: 'dataset_id' })
+const result = await client.Dataset().load()
 ```
 
 ### Common Methods
@@ -192,8 +192,8 @@ const metadata = client.Metadata()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `result` | ``$ARRAY`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `result` | `any[]` | No |  |
+| `success` | `boolean` | No |  |
 
 ### Operations
 
@@ -243,8 +243,8 @@ const organization = client.Organization()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `result` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `result` | `Record<string, any>` | No |  |
+| `success` | `boolean` | No |  |
 
 ### Operations
 
@@ -261,7 +261,7 @@ const results = await client.Organization().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Organization().load({ id: 'organization_id' })
+const result = await client.Organization().load()
 ```
 
 ### Common Methods

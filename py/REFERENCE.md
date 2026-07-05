@@ -8,7 +8,7 @@ Complete API reference for the DataGovAu Python SDK.
 ### Constructor
 
 ```python
-from data-gov-au_sdk import DataGovAuSDK
+from datagovau_sdk import DataGovAuSDK
 
 client = DataGovAuSDK(options)
 ```
@@ -96,8 +96,8 @@ dataset = client.Dataset()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `result` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `result` | `dict` | No |  |
+| `success` | `bool` | No |  |
 
 ### Operations
 
@@ -106,7 +106,7 @@ dataset = client.Dataset()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Dataset().load({"id": "dataset_id"})
+result = client.Dataset().load()
 ```
 
 ### Common Methods
@@ -148,17 +148,17 @@ metadata = client.Metadata()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `result` | ``$ARRAY`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `result` | `list` | No |  |
+| `success` | `bool` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Metadata().list({})
+results = client.Metadata().list()
 for metadata in results:
     print(metadata)
 ```
@@ -202,17 +202,17 @@ organization = client.Organization()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `result` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `result` | `dict` | No |  |
+| `success` | `bool` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Organization().list({})
+results = client.Organization().list()
 for organization in results:
     print(organization)
 ```
@@ -222,7 +222,7 @@ for organization in results:
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Organization().load({"id": "organization_id"})
+result = client.Organization().load()
 ```
 
 ### Common Methods

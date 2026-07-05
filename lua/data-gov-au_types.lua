@@ -11,20 +11,28 @@
 ---@field success? boolean
 
 ---@class DatasetLoadMatch
+---@field result? table
+---@field success? boolean
 
 ---@class Metadata
 ---@field result? table
 ---@field success? boolean
 
 ---@class MetadataListMatch
+---@field result? table
+---@field success? boolean
 
 ---@class Organization
 ---@field result? table
 ---@field success? boolean
 
 ---@class OrganizationLoadMatch
+---@field result? table
+---@field success? boolean
 
 ---@class OrganizationListMatch
+---@field result? table
+---@field success? boolean
 
 local M = {}
 

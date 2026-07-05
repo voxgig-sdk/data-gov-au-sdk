@@ -8,7 +8,7 @@ Complete API reference for the DataGovAu Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'data-gov-au_sdk'
+require_relative 'DataGovAu_sdk'
 
 client = DataGovAuSDK.new(options)
 ```
@@ -102,8 +102,8 @@ dataset = client.Dataset
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `result` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `result` | `Hash` | No |  |
+| `success` | `Boolean` | No |  |
 
 ### Operations
 
@@ -112,7 +112,7 @@ dataset = client.Dataset
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Dataset.load({ "id" => "dataset_id" })
+result = client.Dataset.load()
 ```
 
 ### Common Methods
@@ -155,17 +155,17 @@ metadata = client.Metadata
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `result` | ``$ARRAY`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `result` | `Array` | No |  |
+| `success` | `Boolean` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Metadata.list(nil)
+results = client.Metadata.list
 ```
 
 ### Common Methods
@@ -208,17 +208,17 @@ organization = client.Organization
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `result` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `result` | `Hash` | No |  |
+| `success` | `Boolean` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Organization.list(nil)
+results = client.Organization.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -226,7 +226,7 @@ results = client.Organization.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Organization.load({ "id" => "organization_id" })
+result = client.Organization.load()
 ```
 
 ### Common Methods

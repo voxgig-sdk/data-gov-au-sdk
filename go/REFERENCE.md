@@ -106,8 +106,8 @@ dataset := client.Dataset(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `result` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `result` | `map[string]any` | No |  |
+| `success` | `bool` | No |  |
 
 ### Operations
 
@@ -116,7 +116,7 @@ dataset := client.Dataset(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Dataset(nil).Load(map[string]any{"id": "dataset_id"}, nil)
+result, err := client.Dataset(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -153,8 +153,8 @@ metadata := client.Metadata(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `result` | ``$ARRAY`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `result` | `[]any` | No |  |
+| `success` | `bool` | No |  |
 
 ### Operations
 
@@ -200,8 +200,8 @@ organization := client.Organization(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `result` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `result` | `map[string]any` | No |  |
+| `success` | `bool` | No |  |
 
 ### Operations
 
@@ -218,7 +218,7 @@ results, err := client.Organization(nil).List(nil, nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Organization(nil).Load(map[string]any{"id": "organization_id"}, nil)
+result, err := client.Organization(nil).Load(nil, nil)
 ```
 
 ### Common Methods

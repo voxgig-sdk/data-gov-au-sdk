@@ -21,7 +21,7 @@ Dataset = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Dataset#load (any subset of Dataset fields).
+# Request payload for Dataset#load.
 #
 # @!attribute [rw] result
 #   @return [Hash, nil]
@@ -47,7 +47,7 @@ Metadata = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Metadata#list (any subset of Metadata fields).
+# Request payload for Metadata#list.
 #
 # @!attribute [rw] result
 #   @return [Array, nil]
@@ -73,7 +73,7 @@ Organization = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Organization#load (any subset of Organization fields).
+# Request payload for Organization#load.
 #
 # @!attribute [rw] result
 #   @return [Hash, nil]
@@ -86,7 +86,7 @@ OrganizationLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Organization#list (any subset of Organization fields).
+# Request payload for Organization#list.
 #
 # @!attribute [rw] result
 #   @return [Hash, nil]

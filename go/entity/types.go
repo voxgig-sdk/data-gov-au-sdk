@@ -14,8 +14,7 @@ type Dataset struct {
 	Success *bool `json:"success,omitempty"`
 }
 
-// DatasetLoadMatch mirrors the dataset fields as an all-optional match
-// filter (Go analog of Partial<Dataset>).
+// DatasetLoadMatch is the typed request payload for Dataset.LoadTyped.
 type DatasetLoadMatch struct {
 	Result *map[string]any `json:"result,omitempty"`
 	Success *bool `json:"success,omitempty"`
@@ -27,8 +26,7 @@ type Metadata struct {
 	Success *bool `json:"success,omitempty"`
 }
 
-// MetadataListMatch mirrors the metadata fields as an all-optional match
-// filter (Go analog of Partial<Metadata>).
+// MetadataListMatch is the typed request payload for Metadata.ListTyped.
 type MetadataListMatch struct {
 	Result *[]any `json:"result,omitempty"`
 	Success *bool `json:"success,omitempty"`
@@ -40,15 +38,13 @@ type Organization struct {
 	Success *bool `json:"success,omitempty"`
 }
 
-// OrganizationLoadMatch mirrors the organization fields as an all-optional match
-// filter (Go analog of Partial<Organization>).
+// OrganizationLoadMatch is the typed request payload for Organization.LoadTyped.
 type OrganizationLoadMatch struct {
 	Result *map[string]any `json:"result,omitempty"`
 	Success *bool `json:"success,omitempty"`
 }
 
-// OrganizationListMatch mirrors the organization fields as an all-optional match
-// filter (Go analog of Partial<Organization>).
+// OrganizationListMatch is the typed request payload for Organization.ListTyped.
 type OrganizationListMatch struct {
 	Result *map[string]any `json:"result,omitempty"`
 	Success *bool `json:"success,omitempty"`

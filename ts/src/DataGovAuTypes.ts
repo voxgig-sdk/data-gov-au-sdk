@@ -10,21 +10,33 @@ export interface Dataset {
   success?: boolean
 }
 
-export type DatasetLoadMatch = Partial<Dataset>
+export interface DatasetLoadMatch {
+  result?: Record<string, any>
+  success?: boolean
+}
 
 export interface Metadata {
   result?: any[]
   success?: boolean
 }
 
-export type MetadataListMatch = Partial<Metadata>
+export interface MetadataListMatch {
+  result?: any[]
+  success?: boolean
+}
 
 export interface Organization {
   result?: Record<string, any>
   success?: boolean
 }
 
-export type OrganizationLoadMatch = Partial<Organization>
+export interface OrganizationLoadMatch {
+  result?: Record<string, any>
+  success?: boolean
+}
 
-export type OrganizationListMatch = Partial<Organization>
+export interface OrganizationListMatch {
+  result?: Record<string, any>
+  success?: boolean
+}
 
