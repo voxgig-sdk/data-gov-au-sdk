@@ -12,15 +12,22 @@ main: {
         name: "CC BY 4.0"
         url: "https://creativecommons.org/licenses/by/4.0/"
       }
+      security: {
+        in: "header"
+        name: "X-CKAN-API-Key"
+        prefix: ""
+        scheme: "ApiKeyAuth"
+        type: "apiKey"
+      }
       servers: [
         {
           description: "Production CKAN API server"
           url: "https://data.gov.au/data/api/3"
         }
       ]
+      summary: "The Data.gov.au API provides programmatic access to datasets published by the Australian government."
       title: "Data.gov.au API"
       version: "1.0.0"
+      website: "https://docs.ckan.org/en/latest/api/"
     }
   }
-}
-

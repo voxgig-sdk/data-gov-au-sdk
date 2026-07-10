@@ -100,6 +100,7 @@ same parameters as `Direct()`.
 
 ```go
 dataset := client.Dataset(nil)
+fmt.Println(dataset.GetName()) // "dataset"
 ```
 
 ### Fields
@@ -117,6 +118,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Dataset(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -147,6 +152,7 @@ Return the entity name.
 
 ```go
 metadata := client.Metadata(nil)
+fmt.Println(metadata.GetName()) // "metadata"
 ```
 
 ### Fields
@@ -164,6 +170,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Metadata(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -194,6 +204,7 @@ Return the entity name.
 
 ```go
 organization := client.Organization(nil)
+fmt.Println(organization.GetName()) // "organization"
 ```
 
 ### Fields
@@ -211,6 +222,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Organization(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
@@ -219,6 +234,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Organization(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods

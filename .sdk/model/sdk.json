@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -582,14 +579,24 @@
           "name": "CC BY 4.0",
           "url": "https://creativecommons.org/licenses/by/4.0/"
         },
+        "meta_source": "https://www.freepublicapis.com",
+        "security": {
+          "in": "header",
+          "name": "X-CKAN-API-Key",
+          "prefix": "",
+          "scheme": "ApiKeyAuth",
+          "type": "apiKey"
+        },
         "servers": [
           {
             "description": "Production CKAN API server",
             "url": "https://data.gov.au/data/api/3"
           }
         ],
+        "summary": "The Data.gov.au API provides programmatic access to datasets published by the Australian government.",
         "title": "Data.gov.au API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "website": "https://docs.ckan.org/en/latest/api/"
       },
       "option": {},
       "target": {
@@ -642,6 +649,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -692,6 +702,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
