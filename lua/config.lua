@@ -1,4 +1,4 @@
--- ProjectName SDK configuration
+-- DataGovAu SDK configuration
 
 local function make_config()
   return {

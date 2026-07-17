@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- DataGovAu SDK exists test
 
 local sdk = require("data-gov-au_sdk")
 
