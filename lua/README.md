@@ -38,7 +38,7 @@ local client = sdk.new({
 ### 3. Load a dataset
 
 ```lua
-local dataset, err = client:Dataset():load()
+local dataset, err = client:Dataset():load({ id = "example_id" })
 if err then error(err) end
 print(dataset)
 ```
@@ -50,7 +50,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local dataset, err = client:Dataset():load()
+local organizations, err = client:Organization():list()
 if err then error(err) end
 ```
 
@@ -108,7 +108,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Dataset():load()
+local result, err = client:Organization():list()
 -- result is the returned data; err is set on failure
 ```
 
@@ -220,7 +220,7 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local dataset, err = client:Dataset():load()
+    local dataset, err = client:Dataset():load({ id = "example_id" })
     if err then error(err) end
     -- dataset is the loaded record
 
@@ -233,8 +233,25 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `result` |  |
-| `success` |  |
+| `author` |  |
+| `author_email` |  |
+| `count` |  |
+| `facets` |  |
+| `id` |  |
+| `license_id` |  |
+| `license_title` |  |
+| `maintainer` |  |
+| `maintainer_email` |  |
+| `metadata_created` |  |
+| `metadata_modified` |  |
+| `name` |  |
+| `notes` |  |
+| `organization` |  |
+| `resources` |  |
+| `results` |  |
+| `search_facets` |  |
+| `tags` |  |
+| `title` |  |
 
 Operations: Load.
 
@@ -255,8 +272,16 @@ API path: `/action/tag_list`
 
 | Field | Description |
 | --- | --- |
+| `created` |  |
+| `description` |  |
+| `id` |  |
+| `image_url` |  |
+| `name` |  |
+| `package_count` |  |
+| `packages` |  |
 | `result` |  |
 | `success` |  |
+| `title` |  |
 
 Operations: List, Load.
 
@@ -281,13 +306,30 @@ Create an instance: `local dataset = client:Dataset(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `result` | `table` |  |
-| `success` | `boolean` |  |
+| `author` | `string` |  |
+| `author_email` | `string` |  |
+| `count` | `number` |  |
+| `facets` | `table` |  |
+| `id` | `string` |  |
+| `license_id` | `string` |  |
+| `license_title` | `string` |  |
+| `maintainer` | `string` |  |
+| `maintainer_email` | `string` |  |
+| `metadata_created` | `string` |  |
+| `metadata_modified` | `string` |  |
+| `name` | `string` |  |
+| `notes` | `string` |  |
+| `organization` | `table` |  |
+| `resources` | `table` |  |
+| `results` | `table` |  |
+| `search_facets` | `table` |  |
+| `tags` | `table` |  |
+| `title` | `string` |  |
 
 #### Example: Load
 
 ```lua
-local dataset, err = client:Dataset():load()
+local dataset, err = client:Dataset():load({ id = "dataset_id" })
 ```
 
 
@@ -330,13 +372,21 @@ Create an instance: `local organization = client:Organization(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `created` | `string` |  |
+| `description` | `string` |  |
+| `id` | `string` |  |
+| `image_url` | `string` |  |
+| `name` | `string` |  |
+| `package_count` | `number` |  |
+| `packages` | `table` |  |
 | `result` | `table` |  |
 | `success` | `boolean` |  |
+| `title` | `string` |  |
 
 #### Example: Load
 
 ```lua
-local organization, err = client:Organization():load()
+local organization, err = client:Organization():load({ id = "organization_id" })
 ```
 
 #### Example: List
@@ -418,15 +468,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local dataset = client:Dataset()
-dataset:load()
+local organization = client:Organization()
+organization:list()
 
--- dataset:data_get() now returns the dataset data from the last load
--- dataset:match_get() returns the last match criteria
+-- organization:data_get() now returns the organization data from the last list
+-- organization:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

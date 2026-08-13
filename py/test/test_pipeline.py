@@ -16,11 +16,11 @@
 import pytest
 
 from datagovau_sdk import DataGovAuSDK
-from core.error import DataGovAuError
-from core.result import DataGovAuResult
-from core.response import DataGovAuResponse
-from core.spec import DataGovAuSpec
-from feature.base_feature import DataGovAuBaseFeature
+from datagovau_sdk.core.error import DataGovAuError
+from datagovau_sdk.core.result import DataGovAuResult
+from datagovau_sdk.core.response import DataGovAuResponse
+from datagovau_sdk.core.spec import DataGovAuSpec
+from datagovau_sdk.feature.base_feature import DataGovAuBaseFeature
 
 
 def _client():

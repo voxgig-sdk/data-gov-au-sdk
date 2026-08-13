@@ -6,16 +6,106 @@ main: kit: entity: dataset: {
 
   fields: [
     {
-      name: "result"
+      name: "author"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "author_email"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "count"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "facets"
       req: false
       type: "`$OBJECT`"
     }
     {
-      name: "success"
+      name: "id"
       req: false
-      type: "`$BOOLEAN`"
+      type: "`$STRING`"
+    }
+    {
+      name: "license_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "license_title"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "maintainer"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "maintainer_email"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "metadata_created"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "metadata_modified"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "notes"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "organization"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "resources"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "results"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "search_facets"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "tags"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "title"
+      req: false
+      type: "`$STRING`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "dataset"
   op: {
@@ -101,7 +191,7 @@ main: kit: entity: dataset: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.result`"
           }
         }
         {
@@ -138,7 +228,7 @@ main: kit: entity: dataset: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.result`"
           }
         }
       ]

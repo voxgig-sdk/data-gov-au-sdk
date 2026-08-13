@@ -41,11 +41,11 @@ client = DataGovAuSDK({
 
 ### 3. Load a dataset
 
-`load()` returns the bare record (a `dict`) and raises on error.
+`load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
-    dataset = client.Dataset().load()
+    dataset = client.Dataset().load({"id": "example_id"})
     print(dataset)
 except Exception as err:
     print(f"load failed: {err}")
@@ -58,10 +58,10 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    dataset = client.Dataset().load()
-    print(dataset)
+    organizations = client.Organization().list()
+    print(organizations)
 except Exception as err:
-    print(f"load failed: {err}")
+    print(f"list failed: {err}")
 ```
 
 `direct()` does **not** raise — it returns the result envelope. Branch
@@ -125,9 +125,10 @@ Create a mock client for unit testing — no server required:
 ```python
 client = DataGovAuSDK.test()
 
-# Entity ops return the bare record and raise on error.
-dataset = client.Dataset().load()
-# dataset contains the mock response record
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
+organization = client.Organization().list()
+# organization contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -226,7 +227,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -248,8 +249,25 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `result` |  |
-| `success` |  |
+| `author` |  |
+| `author_email` |  |
+| `count` |  |
+| `facets` |  |
+| `id` |  |
+| `license_id` |  |
+| `license_title` |  |
+| `maintainer` |  |
+| `maintainer_email` |  |
+| `metadata_created` |  |
+| `metadata_modified` |  |
+| `name` |  |
+| `notes` |  |
+| `organization` |  |
+| `resources` |  |
+| `results` |  |
+| `search_facets` |  |
+| `tags` |  |
+| `title` |  |
 
 Operations: Load.
 
@@ -270,8 +288,16 @@ API path: `/action/tag_list`
 
 | Field | Description |
 | --- | --- |
+| `created` |  |
+| `description` |  |
+| `id` |  |
+| `image_url` |  |
+| `name` |  |
+| `package_count` |  |
+| `packages` |  |
 | `result` |  |
 | `success` |  |
+| `title` |  |
 
 Operations: List, Load.
 
@@ -296,13 +322,30 @@ Create an instance: `dataset = client.Dataset()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `result` | `dict` |  |
-| `success` | `bool` |  |
+| `author` | `str` |  |
+| `author_email` | `str` |  |
+| `count` | `int` |  |
+| `facets` | `dict` |  |
+| `id` | `str` |  |
+| `license_id` | `str` |  |
+| `license_title` | `str` |  |
+| `maintainer` | `str` |  |
+| `maintainer_email` | `str` |  |
+| `metadata_created` | `str` |  |
+| `metadata_modified` | `str` |  |
+| `name` | `str` |  |
+| `notes` | `str` |  |
+| `organization` | `dict` |  |
+| `resources` | `list` |  |
+| `results` | `list` |  |
+| `search_facets` | `dict` |  |
+| `tags` | `list` |  |
+| `title` | `str` |  |
 
 #### Example: Load
 
 ```python
-dataset = client.Dataset().load()
+dataset = client.Dataset().load({"id": "dataset_id"})
 ```
 
 
@@ -345,13 +388,21 @@ Create an instance: `organization = client.Organization()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `result` | `dict` |  |
+| `created` | `str` |  |
+| `description` | `str` |  |
+| `id` | `str` |  |
+| `image_url` | `str` |  |
+| `name` | `str` |  |
+| `package_count` | `int` |  |
+| `packages` | `list` |  |
+| `result` | `list` |  |
 | `success` | `bool` |  |
+| `title` | `str` |  |
 
 #### Example: Load
 
 ```python
-organization = client.Organization().load()
+organization = client.Organization().load({"id": "organization_id"})
 ```
 
 #### Example: List
@@ -432,15 +483,15 @@ Import entity or utility modules directly only when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-dataset = client.Dataset()
-dataset.load()
+organization = client.Organization()
+organization.list()
 
-# dataset.data_get() now returns the dataset data from the last load
-# dataset.match_get() returns the last match criteria
+# organization.data_get() now returns the organization data from the last list
+# organization.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

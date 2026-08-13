@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import DataGovAuControl
-from core.error import DataGovAuError
-from core.result import DataGovAuResult
-from core.spec import DataGovAuSpec
+from projectname_sdk.config import make_config
+from projectname_sdk.features import _make_feature
+from projectname_sdk.core.control import DataGovAuControl
+from projectname_sdk.core.error import DataGovAuError
+from projectname_sdk.core.result import DataGovAuResult
+from projectname_sdk.core.spec import DataGovAuSpec
 
 
 # True when this SDK was generated with the named feature.

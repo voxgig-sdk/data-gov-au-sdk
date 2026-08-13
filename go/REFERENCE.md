@@ -107,8 +107,25 @@ fmt.Println(dataset.GetName()) // "dataset"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `result` | `map[string]any` | No |  |
-| `success` | `bool` | No |  |
+| `author` | `string` | No |  |
+| `author_email` | `string` | No |  |
+| `count` | `int` | No |  |
+| `facets` | `map[string]any` | No |  |
+| `id` | `string` | No |  |
+| `license_id` | `string` | No |  |
+| `license_title` | `string` | No |  |
+| `maintainer` | `string` | No |  |
+| `maintainer_email` | `string` | No |  |
+| `metadata_created` | `string` | No |  |
+| `metadata_modified` | `string` | No |  |
+| `name` | `string` | No |  |
+| `notes` | `string` | No |  |
+| `organization` | `map[string]any` | No |  |
+| `resources` | `[]any` | No |  |
+| `results` | `[]any` | No |  |
+| `search_facets` | `map[string]any` | No |  |
+| `tags` | `[]any` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
@@ -117,7 +134,7 @@ fmt.Println(dataset.GetName()) // "dataset"
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Dataset(nil).Load(nil, nil)
+result, err := client.Dataset(nil).Load(map[string]any{"id": "dataset_id"}, nil)
 if err != nil {
     panic(err)
 }
@@ -211,8 +228,16 @@ fmt.Println(organization.GetName()) // "organization"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `result` | `map[string]any` | No |  |
+| `created` | `string` | No |  |
+| `description` | `string` | No |  |
+| `id` | `string` | No |  |
+| `image_url` | `string` | No |  |
+| `name` | `string` | No |  |
+| `package_count` | `int` | No |  |
+| `packages` | `[]any` | No |  |
+| `result` | `[]any` | No |  |
 | `success` | `bool` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
@@ -233,7 +258,7 @@ fmt.Println(results)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Organization(nil).Load(nil, nil)
+result, err := client.Organization(nil).Load(map[string]any{"id": "organization_id"}, nil)
 if err != nil {
     panic(err)
 }

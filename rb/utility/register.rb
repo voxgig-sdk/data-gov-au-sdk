@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ DataGovAuUtility.registrar = ->(u) {
   u.prepare_params = DataGovAuUtilities::PrepareParams
   u.prepare_path = DataGovAuUtilities::PreparePath
   u.prepare_query = DataGovAuUtilities::PrepareQuery
+  u.graphql_body = DataGovAuUtilities::GraphqlBody
+  u.graphql_errors = DataGovAuUtilities::GraphqlErrors
   u.result_basic = DataGovAuUtilities::ResultBasic
   u.result_body = DataGovAuUtilities::ResultBody
   u.result_headers = DataGovAuUtilities::ResultHeaders

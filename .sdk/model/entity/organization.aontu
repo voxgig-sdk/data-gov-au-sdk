@@ -6,16 +6,61 @@ main: kit: entity: organization: {
 
   fields: [
     {
+      name: "created"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "description"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "image_url"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "package_count"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "packages"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
       name: "result"
       req: false
-      type: "`$OBJECT`"
+      type: "`$ARRAY`"
     }
     {
       name: "success"
       req: false
       type: "`$BOOLEAN`"
     }
+    {
+      name: "title"
+      req: false
+      type: "`$STRING`"
+    }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "organization"
   op: {
@@ -65,7 +110,7 @@ main: kit: entity: organization: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.result`"
           }
         }
       ]
@@ -107,7 +152,7 @@ main: kit: entity: organization: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.result`"
           }
         }
       ]

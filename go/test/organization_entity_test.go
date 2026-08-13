@@ -92,7 +92,7 @@ func TestOrganizationEntity(t *testing.T) {
 		// The basic flow consumes synthetic IDs from the fixture. In live mode
 		// without an *_ENTID env override, those IDs hit the live API and 4xx.
 		if setup.syntheticOnly {
-			t.Skip("live entity test uses synthetic IDs from fixture — set DATAGOVAU_TEST_ORGANIZATION_ENTID JSON to run live")
+			t.Skip("live entity test uses synthetic IDs from fixture — set DATA_GOV_AU_TEST_ORGANIZATION_ENTID JSON to run live")
 			return
 		}
 		client := setup.client
@@ -121,13 +121,19 @@ func TestOrganizationEntity(t *testing.T) {
 		}
 
 		// LOAD
-		organizationRef01MatchDt0 := map[string]any{}
+		organizationRef01MatchDt0 := map[string]any{
+			"id": organizationRef01Data["id"],
+		}
 		organizationRef01DataDt0Loaded, err := organizationRef01Ent.Load(organizationRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if organizationRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		organizationRef01DataDt0LoadResult := core.ToMapAny(entityData(organizationRef01DataDt0Loaded))
+		if organizationRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if organizationRef01DataDt0LoadResult["id"] != organizationRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})
@@ -170,38 +176,38 @@ func organizationBasicSetup(extra map[string]any) *entityTestSetup {
 	// Detect ENTID env override before envOverride consumes it. When live
 	// mode is on without a real override, the basic test runs against synthetic
 	// IDs from the fixture and 4xx's. Surface this so the test can skip.
-	entidEnvRaw := os.Getenv("DATAGOVAU_TEST_ORGANIZATION_ENTID")
+	entidEnvRaw := os.Getenv("DATA_GOV_AU_TEST_ORGANIZATION_ENTID")
 	idmapOverridden := entidEnvRaw != "" && strings.HasPrefix(strings.TrimSpace(entidEnvRaw), "{")
 
 	env := envOverride(map[string]any{
-		"DATAGOVAU_TEST_ORGANIZATION_ENTID": idmap,
-		"DATAGOVAU_TEST_LIVE":      "FALSE",
-		"DATAGOVAU_TEST_EXPLAIN":   "FALSE",
-		"DATAGOVAU_APIKEY":         "NONE",
+		"DATA_GOV_AU_TEST_ORGANIZATION_ENTID": idmap,
+		"DATA_GOV_AU_TEST_LIVE":      "FALSE",
+		"DATA_GOV_AU_TEST_EXPLAIN":   "FALSE",
+		"DATA_GOV_AU_APIKEY":         "NONE",
 	})
 
-	idmapResolved := core.ToMapAny(env["DATAGOVAU_TEST_ORGANIZATION_ENTID"])
+	idmapResolved := core.ToMapAny(env["DATA_GOV_AU_TEST_ORGANIZATION_ENTID"])
 	if idmapResolved == nil {
 		idmapResolved = core.ToMapAny(idmap)
 	}
 
-	if env["DATAGOVAU_TEST_LIVE"] == "TRUE" {
+	if env["DATA_GOV_AU_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["DATAGOVAU_APIKEY"],
+				"apikey": env["DATA_GOV_AU_APIKEY"],
 			},
 			extra,
 		})
 		client = sdk.NewDataGovAuSDK(core.ToMapAny(mergedOpts))
 	}
 
-	live := env["DATAGOVAU_TEST_LIVE"] == "TRUE"
+	live := env["DATA_GOV_AU_TEST_LIVE"] == "TRUE"
 	return &entityTestSetup{
 		client:        client,
 		data:          entityData,
 		idmap:         idmapResolved,
 		env:           env,
-		explain:       env["DATAGOVAU_TEST_EXPLAIN"] == "TRUE",
+		explain:       env["DATA_GOV_AU_TEST_EXPLAIN"] == "TRUE",
 		live:          live,
 		syntheticOnly: live && !idmapOverridden,
 		now:           time.Now().UnixMilli(),

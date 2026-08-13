@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from datagovau_sdk.utility.voxgig_struct import voxgig_struct as vs
 from datagovau_sdk import DataGovAuSDK
-from core import helpers
+from datagovau_sdk.core import helpers
 from test import runner
 
 
@@ -58,16 +58,16 @@ def _metadata_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "DATAGOVAU_TEST_METADATA_ENTID": {},
-        "DATAGOVAU_TEST_LIVE": "FALSE",
-        "DATAGOVAU_APIKEY": "NONE",
+        "DATA_GOV_AU_TEST_METADATA_ENTID": {},
+        "DATA_GOV_AU_TEST_LIVE": "FALSE",
+        "DATA_GOV_AU_APIKEY": "NONE",
     })
 
-    live = env.get("DATAGOVAU_TEST_LIVE") == "TRUE"
+    live = env.get("DATA_GOV_AU_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("DATAGOVAU_APIKEY"),
+            "apikey": env.get("DATA_GOV_AU_APIKEY"),
         }
         client = DataGovAuSDK(merged_opts)
         return {

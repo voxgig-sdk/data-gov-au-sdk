@@ -7,12 +7,46 @@
 -- edit by hand.
 
 ---@class Dataset
----@field result? table
----@field success? boolean
+---@field author? string
+---@field author_email? string
+---@field count? number
+---@field facets? table
+---@field id? string
+---@field license_id? string
+---@field license_title? string
+---@field maintainer? string
+---@field maintainer_email? string
+---@field metadata_created? string
+---@field metadata_modified? string
+---@field name? string
+---@field notes? string
+---@field organization? table
+---@field resources? table
+---@field results? table
+---@field search_facets? table
+---@field tags? table
+---@field title? string
 
 ---@class DatasetLoadMatch
----@field result? table
----@field success? boolean
+---@field author? string
+---@field author_email? string
+---@field count? number
+---@field facets? table
+---@field id string
+---@field license_id? string
+---@field license_title? string
+---@field maintainer? string
+---@field maintainer_email? string
+---@field metadata_created? string
+---@field metadata_modified? string
+---@field name? string
+---@field notes? string
+---@field organization? table
+---@field resources? table
+---@field results? table
+---@field search_facets? table
+---@field tags? table
+---@field title? string
 
 ---@class Metadata
 ---@field result? table
@@ -23,16 +57,40 @@
 ---@field success? boolean
 
 ---@class Organization
+---@field created? string
+---@field description? string
+---@field id? string
+---@field image_url? string
+---@field name? string
+---@field package_count? number
+---@field packages? table
 ---@field result? table
 ---@field success? boolean
+---@field title? string
 
 ---@class OrganizationLoadMatch
+---@field created? string
+---@field description? string
+---@field id string
+---@field image_url? string
+---@field name? string
+---@field package_count? number
+---@field packages? table
 ---@field result? table
 ---@field success? boolean
+---@field title? string
 
 ---@class OrganizationListMatch
+---@field created? string
+---@field description? string
+---@field id? string
+---@field image_url? string
+---@field name? string
+---@field package_count? number
+---@field packages? table
 ---@field result? table
 ---@field success? boolean
+---@field title? string
 
 local M = {}
 

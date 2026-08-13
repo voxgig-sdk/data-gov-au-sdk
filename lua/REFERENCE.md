@@ -99,8 +99,25 @@ local dataset = client:Dataset(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `result` | `table` | No |  |
-| `success` | `boolean` | No |  |
+| `author` | `string` | No |  |
+| `author_email` | `string` | No |  |
+| `count` | `number` | No |  |
+| `facets` | `table` | No |  |
+| `id` | `string` | No |  |
+| `license_id` | `string` | No |  |
+| `license_title` | `string` | No |  |
+| `maintainer` | `string` | No |  |
+| `maintainer_email` | `string` | No |  |
+| `metadata_created` | `string` | No |  |
+| `metadata_modified` | `string` | No |  |
+| `name` | `string` | No |  |
+| `notes` | `string` | No |  |
+| `organization` | `table` | No |  |
+| `resources` | `table` | No |  |
+| `results` | `table` | No |  |
+| `search_facets` | `table` | No |  |
+| `tags` | `table` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
@@ -109,7 +126,7 @@ local dataset = client:Dataset(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Dataset():load()
+local result, err = client:Dataset():load({ id = "dataset_id" })
 ```
 
 ### Common Methods
@@ -205,8 +222,16 @@ local organization = client:Organization(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `created` | `string` | No |  |
+| `description` | `string` | No |  |
+| `id` | `string` | No |  |
+| `image_url` | `string` | No |  |
+| `name` | `string` | No |  |
+| `package_count` | `number` | No |  |
+| `packages` | `table` | No |  |
 | `result` | `table` | No |  |
 | `success` | `boolean` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
@@ -223,7 +248,7 @@ local results, err = client:Organization():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Organization():load()
+local result, err = client:Organization():load({ id = "organization_id" })
 ```
 
 ### Common Methods

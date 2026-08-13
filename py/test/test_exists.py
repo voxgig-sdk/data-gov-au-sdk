@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# DataGovAu SDK exists test
 
 import pytest
 from datagovau_sdk import DataGovAuSDK

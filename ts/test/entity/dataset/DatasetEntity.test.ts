@@ -26,8 +26,8 @@ import {
 describe('DatasetEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when DATAGOVAU_TEST_LIVE=TRUE.
-  afterEach(liveDelay('DATAGOVAU_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when DATA_GOV_AU_TEST_LIVE=TRUE.
+  afterEach(liveDelay('DATA_GOV_AU_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = DataGovAuSDK.test()
@@ -62,8 +62,9 @@ describe('DatasetEntity', async () => {
     // LOAD
     const dataset_ref01_ent = client.Dataset()
     const dataset_ref01_match_dt0: any = {}
-    const dataset_ref01_data_dt0 = await dataset_ref01_ent.load(dataset_ref01_match_dt0)
-    assert(null != dataset_ref01_data_dt0)
+    dataset_ref01_match_dt0.id = dataset_ref01_data.id
+    const dataset_ref01_data_dt0 = (await dataset_ref01_ent.load(dataset_ref01_match_dt0)).data()
+    assert(dataset_ref01_data_dt0.id === dataset_ref01_data.id)
 
 
   })

@@ -37,8 +37,8 @@ $client = new DataGovAuSDK([
 
 ```php
 try {
-    // load() returns the bare Dataset record (throws on error).
-    $dataset = $client->Dataset()->load();
+    // load() returns the ENTITY — call data_get() for the Dataset record (throws on error).
+    $dataset = $client->Dataset()->load(["id" => "example_id"]);
     print_r($dataset);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -53,7 +53,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $dataset = $client->Dataset()->load();
+    $organizations = $client->Organization()->list();
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -120,14 +120,18 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = DataGovAuSDK::test();
+$client = DataGovAuSDK::test([
+    "entity" => ["organization" => ["test01" => ["id" => "test01"]]],
+]);
 
-// Entity ops return the bare mock record (throws on error).
-$dataset = $client->Dataset()->load();
-print_r($dataset);
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
+$organization = $client->Organization()->list();
+print_r($organization);
 ```
 
 ### Use a custom fetch function
@@ -229,7 +233,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -251,8 +255,25 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `result` |  |
-| `success` |  |
+| `author` |  |
+| `author_email` |  |
+| `count` |  |
+| `facets` |  |
+| `id` |  |
+| `license_id` |  |
+| `license_title` |  |
+| `maintainer` |  |
+| `maintainer_email` |  |
+| `metadata_created` |  |
+| `metadata_modified` |  |
+| `name` |  |
+| `notes` |  |
+| `organization` |  |
+| `resources` |  |
+| `results` |  |
+| `search_facets` |  |
+| `tags` |  |
+| `title` |  |
 
 Operations: Load.
 
@@ -273,8 +294,16 @@ API path: `/action/tag_list`
 
 | Field | Description |
 | --- | --- |
+| `created` |  |
+| `description` |  |
+| `id` |  |
+| `image_url` |  |
+| `name` |  |
+| `package_count` |  |
+| `packages` |  |
 | `result` |  |
 | `success` |  |
+| `title` |  |
 
 Operations: List, Load.
 
@@ -299,14 +328,31 @@ Create an instance: `$dataset = $client->Dataset();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `result` | `array` |  |
-| `success` | `bool` |  |
+| `author` | `string` |  |
+| `author_email` | `string` |  |
+| `count` | `int` |  |
+| `facets` | `array` |  |
+| `id` | `string` |  |
+| `license_id` | `string` |  |
+| `license_title` | `string` |  |
+| `maintainer` | `string` |  |
+| `maintainer_email` | `string` |  |
+| `metadata_created` | `string` |  |
+| `metadata_modified` | `string` |  |
+| `name` | `string` |  |
+| `notes` | `string` |  |
+| `organization` | `array` |  |
+| `resources` | `array` |  |
+| `results` | `array` |  |
+| `search_facets` | `array` |  |
+| `tags` | `array` |  |
+| `title` | `string` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Dataset record (throws on error).
-$dataset = $client->Dataset()->load();
+// load() returns the ENTITY — call data_get() for the Dataset record (throws on error).
+$dataset = $client->Dataset()->load(["id" => "dataset_id"]);
 ```
 
 
@@ -350,14 +396,22 @@ Create an instance: `$organization = $client->Organization();`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `created` | `string` |  |
+| `description` | `string` |  |
+| `id` | `string` |  |
+| `image_url` | `string` |  |
+| `name` | `string` |  |
+| `package_count` | `int` |  |
+| `packages` | `array` |  |
 | `result` | `array` |  |
 | `success` | `bool` |  |
+| `title` | `string` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Organization record (throws on error).
-$organization = $client->Organization()->load();
+// load() returns the ENTITY — call data_get() for the Organization record (throws on error).
+$organization = $client->Organization()->load(["id" => "organization_id"]);
 ```
 
 #### Example: List
@@ -440,15 +494,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$dataset = $client->Dataset();
-$dataset->load();
+$organization = $client->Organization();
+$organization->list();
 
-// $dataset->data_get() now returns the dataset data from the last load
-// $dataset->match_get() returns the last match criteria
+// $organization->data_get() now returns the organization data from the last list
+// $organization->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

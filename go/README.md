@@ -54,7 +54,7 @@ func main() {
     })
 
     // Load a single dataset — the value is the loaded record.
-    dataset, err := client.Dataset(nil).Load(nil, nil)
+    dataset, err := client.Dataset(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }
@@ -69,12 +69,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-dataset, err := client.Dataset(nil).Load(nil, nil)
+organizations, err := client.Organization(nil).List(nil, nil)
 if err != nil {
     // handle err
     return
 }
-_ = dataset
+_ = organizations
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -138,13 +138,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-dataset, err := client.Dataset(nil).Load(
+organization, err := client.Organization(nil).List(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(dataset) // the returned mock data
+fmt.Println(organization) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -254,7 +254,7 @@ Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    dataset, err := client.Dataset(nil).Load(nil, nil)
+    dataset, err := client.Dataset(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil { /* handle */ }
     // dataset is the returned record
 
@@ -267,8 +267,25 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"result"` |  |
-| `"success"` |  |
+| `"author"` |  |
+| `"author_email"` |  |
+| `"count"` |  |
+| `"facets"` |  |
+| `"id"` |  |
+| `"license_id"` |  |
+| `"license_title"` |  |
+| `"maintainer"` |  |
+| `"maintainer_email"` |  |
+| `"metadata_created"` |  |
+| `"metadata_modified"` |  |
+| `"name"` |  |
+| `"notes"` |  |
+| `"organization"` |  |
+| `"resources"` |  |
+| `"results"` |  |
+| `"search_facets"` |  |
+| `"tags"` |  |
+| `"title"` |  |
 
 Operations: Load.
 
@@ -289,8 +306,16 @@ API path: `/action/tag_list`
 
 | Field | Description |
 | --- | --- |
+| `"created"` |  |
+| `"description"` |  |
+| `"id"` |  |
+| `"image_url"` |  |
+| `"name"` |  |
+| `"package_count"` |  |
+| `"packages"` |  |
 | `"result"` |  |
 | `"success"` |  |
+| `"title"` |  |
 
 Operations: List, Load.
 
@@ -315,13 +340,30 @@ Create an instance: `dataset := client.Dataset(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `result` | `map[string]any` |  |
-| `success` | `bool` |  |
+| `author` | `string` |  |
+| `author_email` | `string` |  |
+| `count` | `int` |  |
+| `facets` | `map[string]any` |  |
+| `id` | `string` |  |
+| `license_id` | `string` |  |
+| `license_title` | `string` |  |
+| `maintainer` | `string` |  |
+| `maintainer_email` | `string` |  |
+| `metadata_created` | `string` |  |
+| `metadata_modified` | `string` |  |
+| `name` | `string` |  |
+| `notes` | `string` |  |
+| `organization` | `map[string]any` |  |
+| `resources` | `[]any` |  |
+| `results` | `[]any` |  |
+| `search_facets` | `map[string]any` |  |
+| `tags` | `[]any` |  |
+| `title` | `string` |  |
 
 #### Example: Load
 
 ```go
-dataset, err := client.Dataset(nil).Load(nil, nil)
+dataset, err := client.Dataset(nil).Load(map[string]any{"id": "dataset_id"}, nil)
 if err != nil {
     panic(err)
 }
@@ -372,13 +414,21 @@ Create an instance: `organization := client.Organization(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `result` | `map[string]any` |  |
+| `created` | `string` |  |
+| `description` | `string` |  |
+| `id` | `string` |  |
+| `image_url` | `string` |  |
+| `name` | `string` |  |
+| `package_count` | `int` |  |
+| `packages` | `[]any` |  |
+| `result` | `[]any` |  |
 | `success` | `bool` |  |
+| `title` | `string` |  |
 
 #### Example: Load
 
 ```go
-organization, err := client.Organization(nil).Load(nil, nil)
+organization, err := client.Organization(nil).Load(map[string]any{"id": "organization_id"}, nil)
 if err != nil {
     panic(err)
 }
@@ -465,15 +515,15 @@ like `core.ToMapAny`.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `Load`, the entity
+Entity instances are stateful. After a successful `List`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-dataset := client.Dataset(nil)
-dataset.Load(nil, nil)
+organization := client.Organization(nil)
+organization.List(nil, nil)
 
-// dataset.Data() now returns the dataset data from the last load
-// dataset.Match() returns the last match criteria
+// organization.Data() now returns the organization data from the last list
+// organization.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

@@ -2,27 +2,55 @@
   "existing": {
     "organization": {
       "ORGANIZATION00": {
-        "result": {},
-        "success": false,
-        "id": "ORGANIZATION00"
+        "created": "s64",
+        "description": "s65",
+        "id": "ORGANIZATION00",
+        "image_url": "s67",
+        "name": "s68",
+        "package_count": "s69",
+        "packages": [],
+        "result": [],
+        "success": true,
+        "title": "s6d"
       },
       "ORGANIZATION01": {
-        "result": {},
-        "success": false,
-        "id": "ORGANIZATION01"
+        "created": "sc8",
+        "description": "sc9",
+        "id": "ORGANIZATION01",
+        "image_url": "scb",
+        "name": "scc",
+        "package_count": "scd",
+        "packages": [],
+        "result": [],
+        "success": true,
+        "title": "sd1"
       },
       "ORGANIZATION02": {
-        "result": {},
-        "success": false,
-        "id": "ORGANIZATION02"
+        "created": "s12c",
+        "description": "s12d",
+        "id": "ORGANIZATION02",
+        "image_url": "s12f",
+        "name": "s130",
+        "package_count": "s131",
+        "packages": [],
+        "result": [],
+        "success": true,
+        "title": "s135"
       }
     }
   },
   "new": {
     "organization": {
       "organization_ref01": {
-        "result": {},
-        "success": false
+        "created": "s190",
+        "description": "s191",
+        "image_url": "s193",
+        "name": "s194",
+        "package_count": "s195",
+        "packages": [],
+        "result": [],
+        "success": true,
+        "title": "s199"
       }
     }
   }

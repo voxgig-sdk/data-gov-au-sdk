@@ -41,7 +41,7 @@ const client = new DataGovAuSDK({
 
 ```ts
 try {
-  const dataset = await client.Dataset().load()
+  const dataset = await client.Dataset().load({ id: 'example_id' })
   console.log(dataset)
 } catch (err) {
   console.error('load failed:', err)
@@ -55,10 +55,10 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const dataset = await client.Dataset().load()
-  console.log(dataset)
+  const organizations = await client.Organization().list()
+  console.log(organizations)
 } catch (err) {
-  console.error('load failed:', err)
+  console.error('list failed:', err)
 }
 ```
 
@@ -122,9 +122,10 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = DataGovAuSDK.test()
 
-const dataset = await client.Dataset().load()
-// dataset is a bare entity populated with mock response data
-console.log(dataset)
+const organization = await client.Organization().list()
+// organization is the entity, populated with mock response data
+// — call organization.data() for the record itself
+console.log(organization)
 ```
 
 You can also use the instance method:
@@ -139,14 +140,14 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Dataset()
+const entity = client.Organization()
 
 // First call runs the operation and stores its result
-await entity.load()
+await entity.list()
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
-console.log(data)
+console.log(data.id)
 ```
 
 ### Add custom middleware
@@ -295,8 +296,25 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `result` |  |
-| `success` |  |
+| `author` |  |
+| `author_email` |  |
+| `count` |  |
+| `facets` |  |
+| `id` |  |
+| `license_id` |  |
+| `license_title` |  |
+| `maintainer` |  |
+| `maintainer_email` |  |
+| `metadata_created` |  |
+| `metadata_modified` |  |
+| `name` |  |
+| `notes` |  |
+| `organization` |  |
+| `resources` |  |
+| `results` |  |
+| `search_facets` |  |
+| `tags` |  |
+| `title` |  |
 
 Operations: load.
 
@@ -317,8 +335,16 @@ API path: `/action/tag_list`
 
 | Field | Description |
 | --- | --- |
+| `created` |  |
+| `description` |  |
+| `id` |  |
+| `image_url` |  |
+| `name` |  |
+| `package_count` |  |
+| `packages` |  |
 | `result` |  |
 | `success` |  |
+| `title` |  |
 
 Operations: list, load.
 
@@ -343,13 +369,30 @@ Create an instance: `const dataset = client.Dataset()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `result` | `Record<string, any>` |  |
-| `success` | `boolean` |  |
+| `author` | `string` |  |
+| `author_email` | `string` |  |
+| `count` | `number` |  |
+| `facets` | `Record<string, any>` |  |
+| `id` | `string` |  |
+| `license_id` | `string` |  |
+| `license_title` | `string` |  |
+| `maintainer` | `string` |  |
+| `maintainer_email` | `string` |  |
+| `metadata_created` | `string` |  |
+| `metadata_modified` | `string` |  |
+| `name` | `string` |  |
+| `notes` | `string` |  |
+| `organization` | `Record<string, any>` |  |
+| `resources` | `any[]` |  |
+| `results` | `any[]` |  |
+| `search_facets` | `Record<string, any>` |  |
+| `tags` | `any[]` |  |
+| `title` | `string` |  |
 
 #### Example: Load
 
 ```ts
-const dataset = await client.Dataset().load()
+const dataset = await client.Dataset().load({ id: 'dataset_id' })
 ```
 
 
@@ -392,13 +435,21 @@ Create an instance: `const organization = client.Organization()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `result` | `Record<string, any>` |  |
+| `created` | `string` |  |
+| `description` | `string` |  |
+| `id` | `string` |  |
+| `image_url` | `string` |  |
+| `name` | `string` |  |
+| `package_count` | `number` |  |
+| `packages` | `any[]` |  |
+| `result` | `any[]` |  |
 | `success` | `boolean` |  |
+| `title` | `string` |  |
 
 #### Example: Load
 
 ```ts
-const organization = await client.Organization().load()
+const organization = await client.Organization().load({ id: 'organization_id' })
 ```
 
 #### Example: List
@@ -472,16 +523,16 @@ import { DataGovAuSDK } from '@voxgig-sdk/data-gov-au'
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const dataset = client.Dataset()
-await dataset.load()
+const organization = client.Organization()
+await organization.list()
 
-// dataset.data() now returns the dataset data from the last `load`
-// dataset.match() returns the last match criteria
+// organization.data() now returns the organization data from the last `list`
+// organization.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

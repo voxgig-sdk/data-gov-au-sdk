@@ -102,8 +102,25 @@ dataset = client.Dataset
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `result` | `Hash` | No |  |
-| `success` | `Boolean` | No |  |
+| `author` | `String` | No |  |
+| `author_email` | `String` | No |  |
+| `count` | `Integer` | No |  |
+| `facets` | `Hash` | No |  |
+| `id` | `String` | No |  |
+| `license_id` | `String` | No |  |
+| `license_title` | `String` | No |  |
+| `maintainer` | `String` | No |  |
+| `maintainer_email` | `String` | No |  |
+| `metadata_created` | `String` | No |  |
+| `metadata_modified` | `String` | No |  |
+| `name` | `String` | No |  |
+| `notes` | `String` | No |  |
+| `organization` | `Hash` | No |  |
+| `resources` | `Array` | No |  |
+| `results` | `Array` | No |  |
+| `search_facets` | `Hash` | No |  |
+| `tags` | `Array` | No |  |
+| `title` | `String` | No |  |
 
 ### Operations
 
@@ -112,7 +129,7 @@ dataset = client.Dataset
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Dataset.load()
+result = client.Dataset.load({ "id" => "dataset_id" })
 ```
 
 ### Common Methods
@@ -208,8 +225,16 @@ organization = client.Organization
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `result` | `Hash` | No |  |
+| `created` | `String` | No |  |
+| `description` | `String` | No |  |
+| `id` | `String` | No |  |
+| `image_url` | `String` | No |  |
+| `name` | `String` | No |  |
+| `package_count` | `Integer` | No |  |
+| `packages` | `Array` | No |  |
+| `result` | `Array` | No |  |
 | `success` | `Boolean` | No |  |
+| `title` | `String` | No |  |
 
 ### Operations
 
@@ -226,7 +251,7 @@ results = client.Organization.list
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Organization.load()
+result = client.Organization.load({ "id" => "organization_id" })
 ```
 
 ### Common Methods

@@ -141,8 +141,25 @@ const dataset = client.Dataset()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `result` | `Record<string, any>` | No |  |
-| `success` | `boolean` | No |  |
+| `author` | `string` | No |  |
+| `author_email` | `string` | No |  |
+| `count` | `number` | No |  |
+| `facets` | `Record<string, any>` | No |  |
+| `id` | `string` | No |  |
+| `license_id` | `string` | No |  |
+| `license_title` | `string` | No |  |
+| `maintainer` | `string` | No |  |
+| `maintainer_email` | `string` | No |  |
+| `metadata_created` | `string` | No |  |
+| `metadata_modified` | `string` | No |  |
+| `name` | `string` | No |  |
+| `notes` | `string` | No |  |
+| `organization` | `Record<string, any>` | No |  |
+| `resources` | `any[]` | No |  |
+| `results` | `any[]` | No |  |
+| `search_facets` | `Record<string, any>` | No |  |
+| `tags` | `any[]` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
@@ -151,7 +168,7 @@ const dataset = client.Dataset()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Dataset().load()
+const result = await client.Dataset().load({ id: 'dataset_id' })
 ```
 
 ### Common Methods
@@ -243,8 +260,16 @@ const organization = client.Organization()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `result` | `Record<string, any>` | No |  |
+| `created` | `string` | No |  |
+| `description` | `string` | No |  |
+| `id` | `string` | No |  |
+| `image_url` | `string` | No |  |
+| `name` | `string` | No |  |
+| `package_count` | `number` | No |  |
+| `packages` | `any[]` | No |  |
+| `result` | `any[]` | No |  |
 | `success` | `boolean` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
@@ -261,7 +286,7 @@ const results = await client.Organization().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Organization().load()
+const result = await client.Organization().load({ id: 'organization_id' })
 ```
 
 ### Common Methods

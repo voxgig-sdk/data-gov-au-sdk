@@ -101,8 +101,25 @@ $dataset = $client->Dataset();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `result` | `array` | No |  |
-| `success` | `bool` | No |  |
+| `author` | `string` | No |  |
+| `author_email` | `string` | No |  |
+| `count` | `int` | No |  |
+| `facets` | `array` | No |  |
+| `id` | `string` | No |  |
+| `license_id` | `string` | No |  |
+| `license_title` | `string` | No |  |
+| `maintainer` | `string` | No |  |
+| `maintainer_email` | `string` | No |  |
+| `metadata_created` | `string` | No |  |
+| `metadata_modified` | `string` | No |  |
+| `name` | `string` | No |  |
+| `notes` | `string` | No |  |
+| `organization` | `array` | No |  |
+| `resources` | `array` | No |  |
+| `results` | `array` | No |  |
+| `search_facets` | `array` | No |  |
+| `tags` | `array` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
@@ -111,7 +128,7 @@ $dataset = $client->Dataset();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Dataset()->load();
+$result = $client->Dataset()->load(["id" => "dataset_id"]);
 ```
 
 ### Common Methods
@@ -207,8 +224,16 @@ $organization = $client->Organization();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `created` | `string` | No |  |
+| `description` | `string` | No |  |
+| `id` | `string` | No |  |
+| `image_url` | `string` | No |  |
+| `name` | `string` | No |  |
+| `package_count` | `int` | No |  |
+| `packages` | `array` | No |  |
 | `result` | `array` | No |  |
 | `success` | `bool` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
@@ -225,7 +250,7 @@ $results = $client->Organization()->list();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Organization()->load();
+$result = $client->Organization()->load(["id" => "organization_id"]);
 ```
 
 ### Common Methods

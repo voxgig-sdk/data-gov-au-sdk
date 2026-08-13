@@ -31,3 +31,5 @@ main: {
       website: "https://docs.ckan.org/en/latest/api/"
     }
   }
+}
+

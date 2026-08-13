@@ -96,8 +96,25 @@ dataset = client.Dataset()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `result` | `dict` | No |  |
-| `success` | `bool` | No |  |
+| `author` | `str` | No |  |
+| `author_email` | `str` | No |  |
+| `count` | `int` | No |  |
+| `facets` | `dict` | No |  |
+| `id` | `str` | No |  |
+| `license_id` | `str` | No |  |
+| `license_title` | `str` | No |  |
+| `maintainer` | `str` | No |  |
+| `maintainer_email` | `str` | No |  |
+| `metadata_created` | `str` | No |  |
+| `metadata_modified` | `str` | No |  |
+| `name` | `str` | No |  |
+| `notes` | `str` | No |  |
+| `organization` | `dict` | No |  |
+| `resources` | `list` | No |  |
+| `results` | `list` | No |  |
+| `search_facets` | `dict` | No |  |
+| `tags` | `list` | No |  |
+| `title` | `str` | No |  |
 
 ### Operations
 
@@ -106,7 +123,7 @@ dataset = client.Dataset()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Dataset().load()
+result = client.Dataset().load({"id": "dataset_id"})
 ```
 
 ### Common Methods
@@ -202,8 +219,16 @@ organization = client.Organization()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `result` | `dict` | No |  |
+| `created` | `str` | No |  |
+| `description` | `str` | No |  |
+| `id` | `str` | No |  |
+| `image_url` | `str` | No |  |
+| `name` | `str` | No |  |
+| `package_count` | `int` | No |  |
+| `packages` | `list` | No |  |
+| `result` | `list` | No |  |
 | `success` | `bool` | No |  |
+| `title` | `str` | No |  |
 
 ### Operations
 
@@ -222,7 +247,7 @@ for organization in results:
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Organization().load()
+result = client.Organization().load({"id": "organization_id"})
 ```
 
 ### Common Methods

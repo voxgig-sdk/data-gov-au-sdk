@@ -8,24 +8,29 @@ guide: {
   entity: dataset: {
     path: "/action/package_search": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.result`")|top
     }
     path: "/action/package_show": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.result`")|top
     }
   }
 
   entity: metadata: {
     path: "/action/tag_list": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.result`")|top
     }
   }
 
   entity: organization: {
     path: "/action/organization_list": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.result`")|top
     }
     path: "/action/organization_show": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.result`")|top
     }
   }
 

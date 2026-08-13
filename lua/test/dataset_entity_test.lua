@@ -29,7 +29,7 @@ describe("DatasetEntity", function()
     -- The basic flow consumes synthetic IDs from the fixture. In live mode
     -- without an *_ENTID env override, those IDs hit the live API and 4xx.
     if setup.synthetic_only then
-      pending("live entity test uses synthetic IDs from fixture — set DATAGOVAU_TEST_DATASET_ENTID JSON to run live")
+      pending("live entity test uses synthetic IDs from fixture — set DATA_GOV_AU_TEST_DATASET_ENTID JSON to run live")
       return
     end
     local client = setup.client
@@ -44,10 +44,14 @@ describe("DatasetEntity", function()
 
     -- LOAD
     local dataset_ref01_ent = client:Dataset(nil)
-    local dataset_ref01_match_dt0 = {}
+    local dataset_ref01_match_dt0 = {
+      id = dataset_ref01_data["id"],
+    }
     local dataset_ref01_data_dt0_loaded, err = dataset_ref01_ent:load(dataset_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(dataset_ref01_data_dt0_loaded)
+    local dataset_ref01_data_dt0_load_result = helpers.to_map(type(dataset_ref01_data_dt0_loaded) == 'table' and dataset_ref01_data_dt0_loaded.data_get and dataset_ref01_data_dt0_loaded:data_get() or dataset_ref01_data_dt0_loaded)
+    assert.is_not_nil(dataset_ref01_data_dt0_load_result)
+    assert.are.equal(dataset_ref01_data_dt0_load_result["id"], dataset_ref01_data["id"])
 
   end)
 end)
@@ -84,39 +88,39 @@ function dataset_basic_setup(extra)
   -- Detect ENTID env override before envOverride consumes it. When live
   -- mode is on without a real override, the basic test runs against synthetic
   -- IDs from the fixture and 4xx's. Surface this so the test can skip.
-  local entid_env_raw = os.getenv("DATAGOVAU_TEST_DATASET_ENTID")
+  local entid_env_raw = os.getenv("DATA_GOV_AU_TEST_DATASET_ENTID")
   local idmap_overridden = entid_env_raw ~= nil and entid_env_raw:match("^%s*{") ~= nil
 
   local env = runner.env_override({
-    ["DATAGOVAU_TEST_DATASET_ENTID"] = idmap,
-    ["DATAGOVAU_TEST_LIVE"] = "FALSE",
-    ["DATAGOVAU_TEST_EXPLAIN"] = "FALSE",
-    ["DATAGOVAU_APIKEY"] = "NONE",
+    ["DATA_GOV_AU_TEST_DATASET_ENTID"] = idmap,
+    ["DATA_GOV_AU_TEST_LIVE"] = "FALSE",
+    ["DATA_GOV_AU_TEST_EXPLAIN"] = "FALSE",
+    ["DATA_GOV_AU_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
-    env["DATAGOVAU_TEST_DATASET_ENTID"])
+    env["DATA_GOV_AU_TEST_DATASET_ENTID"])
   if idmap_resolved == nil then
     idmap_resolved = helpers.to_map(idmap)
   end
 
-  if env["DATAGOVAU_TEST_LIVE"] == "TRUE" then
+  if env["DATA_GOV_AU_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
-        apikey = env["DATAGOVAU_APIKEY"],
+        apikey = env["DATA_GOV_AU_APIKEY"],
       },
       extra or {},
     })
     client = sdk.new(helpers.to_map(merged_opts))
   end
 
-  local live = env["DATAGOVAU_TEST_LIVE"] == "TRUE"
+  local live = env["DATA_GOV_AU_TEST_LIVE"] == "TRUE"
   return {
     client = client,
     data = entity_data,
     idmap = idmap_resolved,
     env = env,
-    explain = env["DATAGOVAU_TEST_EXPLAIN"] == "TRUE",
+    explain = env["DATA_GOV_AU_TEST_EXPLAIN"] == "TRUE",
     live = live,
     synthetic_only = live and not idmap_overridden,
     now = os.time() * 1000,

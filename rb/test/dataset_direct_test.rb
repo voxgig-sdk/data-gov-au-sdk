@@ -59,16 +59,16 @@ def dataset_direct_setup(mockres)
   calls = []
 
   env = Runner.env_override({
-    "DATAGOVAU_TEST_DATASET_ENTID" => {},
-    "DATAGOVAU_TEST_LIVE" => "FALSE",
-    "DATAGOVAU_APIKEY" => "NONE",
+    "DATA_GOV_AU_TEST_DATASET_ENTID" => {},
+    "DATA_GOV_AU_TEST_LIVE" => "FALSE",
+    "DATA_GOV_AU_APIKEY" => "NONE",
   })
 
-  live = env["DATAGOVAU_TEST_LIVE"] == "TRUE"
+  live = env["DATA_GOV_AU_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
-      "apikey" => env["DATAGOVAU_APIKEY"],
+      "apikey" => env["DATA_GOV_AU_APIKEY"],
     }
     client = DataGovAuSDK.new(merged_opts)
     return {

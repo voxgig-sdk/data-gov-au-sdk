@@ -36,8 +36,8 @@ client = DataGovAuSDK.new({
 
 ```ruby
 begin
-  # load returns the bare Dataset record (raises on error).
-  dataset = client.Dataset.load()
+  # load returns the ENTITY — call data_get for the Dataset record (raises on error).
+  dataset = client.Dataset.load({ "id" => "example_id" })
   puts dataset
 rescue => err
   warn "load failed: #{err}"
@@ -51,9 +51,9 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  dataset = client.Dataset.load()
+  organizations = client.Organization.list()
 rescue => err
-  warn "load failed: #{err}"
+  warn "list failed: #{err}"
 end
 ```
 
@@ -114,14 +114,18 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = DataGovAuSDK.test
+client = DataGovAuSDK.test({
+  "entity" => { "organization" => { "test01" => { "id" => "test01" } } },
+})
 
-# Entity ops return the bare mock record (raises on error).
-dataset = client.Dataset.load()
-puts dataset
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
+organization = client.Organization.list()
+puts organization
 ```
 
 ### Use a custom fetch function
@@ -241,8 +245,25 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `result` |  |
-| `success` |  |
+| `author` |  |
+| `author_email` |  |
+| `count` |  |
+| `facets` |  |
+| `id` |  |
+| `license_id` |  |
+| `license_title` |  |
+| `maintainer` |  |
+| `maintainer_email` |  |
+| `metadata_created` |  |
+| `metadata_modified` |  |
+| `name` |  |
+| `notes` |  |
+| `organization` |  |
+| `resources` |  |
+| `results` |  |
+| `search_facets` |  |
+| `tags` |  |
+| `title` |  |
 
 Operations: Load.
 
@@ -263,8 +284,16 @@ API path: `/action/tag_list`
 
 | Field | Description |
 | --- | --- |
+| `created` |  |
+| `description` |  |
+| `id` |  |
+| `image_url` |  |
+| `name` |  |
+| `package_count` |  |
+| `packages` |  |
 | `result` |  |
 | `success` |  |
+| `title` |  |
 
 Operations: List, Load.
 
@@ -289,14 +318,31 @@ Create an instance: `dataset = client.Dataset`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `result` | `Hash` |  |
-| `success` | `Boolean` |  |
+| `author` | `String` |  |
+| `author_email` | `String` |  |
+| `count` | `Integer` |  |
+| `facets` | `Hash` |  |
+| `id` | `String` |  |
+| `license_id` | `String` |  |
+| `license_title` | `String` |  |
+| `maintainer` | `String` |  |
+| `maintainer_email` | `String` |  |
+| `metadata_created` | `String` |  |
+| `metadata_modified` | `String` |  |
+| `name` | `String` |  |
+| `notes` | `String` |  |
+| `organization` | `Hash` |  |
+| `resources` | `Array` |  |
+| `results` | `Array` |  |
+| `search_facets` | `Hash` |  |
+| `tags` | `Array` |  |
+| `title` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Dataset record (raises on error).
-dataset = client.Dataset.load()
+# load returns the ENTITY — call data_get for the Dataset record (raises on error).
+dataset = client.Dataset.load({ "id" => "dataset_id" })
 ```
 
 
@@ -340,14 +386,22 @@ Create an instance: `organization = client.Organization`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `result` | `Hash` |  |
+| `created` | `String` |  |
+| `description` | `String` |  |
+| `id` | `String` |  |
+| `image_url` | `String` |  |
+| `name` | `String` |  |
+| `package_count` | `Integer` |  |
+| `packages` | `Array` |  |
+| `result` | `Array` |  |
 | `success` | `Boolean` |  |
+| `title` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Organization record (raises on error).
-organization = client.Organization.load()
+# load returns the ENTITY — call data_get for the Organization record (raises on error).
+organization = client.Organization.load({ "id" => "organization_id" })
 ```
 
 #### Example: List
@@ -430,15 +484,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-dataset = client.Dataset
-dataset.load()
+organization = client.Organization
+organization.list()
 
-# dataset.data_get now returns the dataset data from the last load
-# dataset.match_get returns the last match criteria
+# organization.data_get now returns the organization data from the last list
+# organization.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

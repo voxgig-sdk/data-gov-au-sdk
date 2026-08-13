@@ -111,16 +111,16 @@ function organization_direct_setup($mockres)
     $calls = new \ArrayObject();
 
     $env = Runner::env_override([
-        "DATAGOVAU_TEST_ORGANIZATION_ENTID" => [],
-        "DATAGOVAU_TEST_LIVE" => "FALSE",
-        "DATAGOVAU_APIKEY" => "NONE",
+        "DATA_GOV_AU_TEST_ORGANIZATION_ENTID" => [],
+        "DATA_GOV_AU_TEST_LIVE" => "FALSE",
+        "DATA_GOV_AU_APIKEY" => "NONE",
     ]);
 
-    $live = $env["DATAGOVAU_TEST_LIVE"] === "TRUE";
+    $live = $env["DATA_GOV_AU_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
-            "apikey" => $env["DATAGOVAU_APIKEY"],
+            "apikey" => $env["DATA_GOV_AU_APIKEY"],
         ];
         $client = new DataGovAuSDK($merged_opts);
         return [

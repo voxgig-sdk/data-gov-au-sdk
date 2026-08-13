@@ -2,27 +2,91 @@
   "existing": {
     "dataset": {
       "DATASET00": {
-        "result": {},
-        "success": false,
-        "id": "DATASET00"
+        "author": "sbe",
+        "author_email": "sbf",
+        "count": "sc0",
+        "facets": {},
+        "id": "DATASET00",
+        "license_id": "LICENSE01",
+        "license_title": "sc4",
+        "maintainer": "sc5",
+        "maintainer_email": "sc6",
+        "metadata_created": "sc7",
+        "metadata_modified": "sc8",
+        "name": "sc9",
+        "notes": "sca",
+        "organization": {},
+        "resources": [],
+        "results": [],
+        "search_facets": {},
+        "tags": [],
+        "title": "sd0"
       },
       "DATASET01": {
-        "result": {},
-        "success": false,
-        "id": "DATASET01"
+        "author": "s17c",
+        "author_email": "s17d",
+        "count": "s17e",
+        "facets": {},
+        "id": "DATASET01",
+        "license_id": "LICENSE01",
+        "license_title": "s182",
+        "maintainer": "s183",
+        "maintainer_email": "s184",
+        "metadata_created": "s185",
+        "metadata_modified": "s186",
+        "name": "s187",
+        "notes": "s188",
+        "organization": {},
+        "resources": [],
+        "results": [],
+        "search_facets": {},
+        "tags": [],
+        "title": "s18e"
       },
       "DATASET02": {
-        "result": {},
-        "success": false,
-        "id": "DATASET02"
+        "author": "s23a",
+        "author_email": "s23b",
+        "count": "s23c",
+        "facets": {},
+        "id": "DATASET02",
+        "license_id": "LICENSE01",
+        "license_title": "s240",
+        "maintainer": "s241",
+        "maintainer_email": "s242",
+        "metadata_created": "s243",
+        "metadata_modified": "s244",
+        "name": "s245",
+        "notes": "s246",
+        "organization": {},
+        "resources": [],
+        "results": [],
+        "search_facets": {},
+        "tags": [],
+        "title": "s24c"
       }
     }
   },
   "new": {
     "dataset": {
       "dataset_ref01": {
-        "result": {},
-        "success": false
+        "author": "s2f8",
+        "author_email": "s2f9",
+        "count": "s2fa",
+        "facets": {},
+        "license_id": "LICENSE01",
+        "license_title": "s2fe",
+        "maintainer": "s2ff",
+        "maintainer_email": "s300",
+        "metadata_created": "s301",
+        "metadata_modified": "s302",
+        "name": "s303",
+        "notes": "s304",
+        "organization": {},
+        "resources": [],
+        "results": [],
+        "search_facets": {},
+        "tags": [],
+        "title": "s30a"
       }
     }
   }

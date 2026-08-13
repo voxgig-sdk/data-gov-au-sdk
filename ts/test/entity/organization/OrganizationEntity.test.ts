@@ -26,8 +26,8 @@ import {
 describe('OrganizationEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when DATAGOVAU_TEST_LIVE=TRUE.
-  afterEach(liveDelay('DATAGOVAU_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when DATA_GOV_AU_TEST_LIVE=TRUE.
+  afterEach(liveDelay('DATA_GOV_AU_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = DataGovAuSDK.test()
@@ -63,13 +63,14 @@ describe('OrganizationEntity', async () => {
     const organization_ref01_ent = client.Organization()
     const organization_ref01_match: any = {}
 
-    const organization_ref01_list = await organization_ref01_ent.list(organization_ref01_match)
+    const organization_ref01_list = (await organization_ref01_ent.list(organization_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const organization_ref01_match_dt0: any = {}
-    const organization_ref01_data_dt0 = await organization_ref01_ent.load(organization_ref01_match_dt0)
-    assert(null != organization_ref01_data_dt0)
+    organization_ref01_match_dt0.id = organization_ref01_data.id
+    const organization_ref01_data_dt0 = (await organization_ref01_ent.load(organization_ref01_match_dt0)).data()
+    assert(organization_ref01_data_dt0.id === organization_ref01_data.id)
 
 
   })
