@@ -40,7 +40,7 @@ class DataGovAuSDK
         $utility = new DataGovAuUtility();
         $this->_utility = $utility;
 
-        $config = DataGovAuConfig::make_config();
+        $config = DataGovAuConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

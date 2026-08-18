@@ -5,6 +5,29 @@ declare(strict_types=1);
 
 class DataGovAuConfig
 {
+    /** @var array<string,mixed>|null */
+    private static ?array $shared_config = null;
+
+    /**
+     * Return the process-wide config, built once on first use. The SDK reads
+     * the config on every request and never writes to it, so one instance is
+     * shared by every client rather than rebuilt per client.
+     *
+     * PHP arrays are copy-on-write, so callers that do mutate the result get
+     * their own copy and cannot disturb the shared one.
+     */
+    public static function shared_config(): array
+    {
+        if (self::$shared_config === null) {
+            self::$shared_config = self::make_config();
+        }
+        return self::$shared_config;
+    }
+
+    /**
+     * Build a fresh, fully materialised config array. Every call rebuilds the
+     * whole structure, so prefer shared_config unless you need a private copy.
+     */
     public static function make_config(): array
     {
         return [
@@ -36,137 +59,80 @@ class DataGovAuConfig
         'dataset' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'author',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'author_email',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'count',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'facets',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'id',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'license_id',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'license_title',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'maintainer',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 7,
             ],
             [
-              'active' => true,
               'name' => 'maintainer_email',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 8,
             ],
             [
-              'active' => true,
               'name' => 'metadata_created',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 9,
             ],
             [
-              'active' => true,
               'name' => 'metadata_modified',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 10,
             ],
             [
-              'active' => true,
               'name' => 'name',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 11,
             ],
             [
-              'active' => true,
               'name' => 'notes',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 12,
             ],
             [
-              'active' => true,
               'name' => 'organization',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 13,
             ],
             [
-              'active' => true,
               'name' => 'resources',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 14,
             ],
             [
-              'active' => true,
               'name' => 'results',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 15,
             ],
             [
-              'active' => true,
               'name' => 'search_facets',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 16,
             ],
             [
-              'active' => true,
               'name' => 'tags',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 17,
             ],
             [
-              'active' => true,
               'name' => 'title',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 18,
             ],
           ],
           'name' => 'dataset',
@@ -176,69 +142,54 @@ class DataGovAuConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'facet_field',
                         'orig' => 'facet_field',
-                        'reqd' => false,
                         'type' => '`$ARRAY`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'organization:health-dept',
                         'kind' => 'query',
                         'name' => 'fq',
                         'orig' => 'fq',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => false,
                         'kind' => 'query',
                         'name' => 'include_private',
                         'orig' => 'include_private',
-                        'reqd' => false,
                         'type' => '`$BOOLEAN`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'health',
                         'kind' => 'query',
                         'name' => 'q',
                         'orig' => 'q',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 10,
                         'kind' => 'query',
                         'name' => 'row',
                         'orig' => 'row',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'metadata_modified desc',
                         'kind' => 'query',
                         'name' => 'sort',
                         'orig' => 'sort',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 0,
                         'kind' => 'query',
                         'name' => 'start',
                         'orig' => 'start',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                     ],
@@ -265,14 +216,11 @@ class DataGovAuConfig
                     'req' => '`reqdata`',
                     'res' => '`body.result`',
                   ],
-                  'index$' => 0,
                 ],
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'id',
                         'orig' => 'id',
@@ -280,12 +228,10 @@ class DataGovAuConfig
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => false,
                         'kind' => 'query',
                         'name' => 'include_tracking',
                         'orig' => 'include_tracking',
-                        'reqd' => false,
                         'type' => '`$BOOLEAN`',
                       ],
                     ],
@@ -307,10 +253,8 @@ class DataGovAuConfig
                     'req' => '`reqdata`',
                     'res' => '`body.result`',
                   ],
-                  'index$' => 1,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -320,18 +264,17 @@ class DataGovAuConfig
         'metadata' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'result',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 0,
+              'union' => [
+                'branches' => 2,
+                'count' => 1,
+                'depth' => 1,
+              ],
             ],
             [
-              'active' => true,
               'name' => 'success',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 1,
             ],
           ],
           'name' => 'metadata',
@@ -341,16 +284,13 @@ class DataGovAuConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'example' => false,
                         'kind' => 'query',
                         'name' => 'all_field',
                         'orig' => 'all_field',
-                        'reqd' => false,
                         'type' => '`$BOOLEAN`',
                       ],
                     ],
@@ -371,10 +311,8 @@ class DataGovAuConfig
                     'req' => '`reqdata`',
                     'res' => '`body.result`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
           ],
           'relations' => [
@@ -384,74 +322,49 @@ class DataGovAuConfig
         'organization' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'created',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'description',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'id',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'image_url',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'name',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'package_count',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'packages',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'result',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 7,
+              'union' => [
+                'branches' => 2,
+                'count' => 1,
+                'depth' => 1,
+              ],
             ],
             [
-              'active' => true,
               'name' => 'success',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 8,
             ],
             [
-              'active' => true,
               'name' => 'title',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 9,
             ],
           ],
           'name' => 'organization',
@@ -461,33 +374,26 @@ class DataGovAuConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'example' => false,
                         'kind' => 'query',
                         'name' => 'all_field',
                         'orig' => 'all_field',
-                        'reqd' => false,
                         'type' => '`$BOOLEAN`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'limit',
                         'orig' => 'limit',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'example' => 0,
                         'kind' => 'query',
                         'name' => 'offset',
                         'orig' => 'offset',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                     ],
@@ -510,21 +416,17 @@ class DataGovAuConfig
                     'req' => '`reqdata`',
                     'res' => '`body.result`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
             'load' => [
               'input' => 'data',
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'id',
                         'orig' => 'id',
@@ -532,12 +434,10 @@ class DataGovAuConfig
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => true,
                         'kind' => 'query',
                         'name' => 'include_dataset',
                         'orig' => 'include_dataset',
-                        'reqd' => false,
                         'type' => '`$BOOLEAN`',
                       ],
                     ],
@@ -559,10 +459,8 @@ class DataGovAuConfig
                     'req' => '`reqdata`',
                     'res' => '`body.result`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [

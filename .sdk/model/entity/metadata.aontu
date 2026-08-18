@@ -9,6 +9,11 @@ main: kit: entity: metadata: {
       name: "result"
       req: false
       type: "`$ARRAY`"
+      union: {
+        branches: 2
+        count: 1
+        depth: 1
+      }
     }
     {
       name: "success"

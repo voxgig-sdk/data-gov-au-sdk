@@ -28,7 +28,7 @@ class DataGovAuSDK
     utility = DataGovAuUtility.new
     @_utility = utility
 
-    config = DataGovAuConfig.make_config
+    config = DataGovAuConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,
