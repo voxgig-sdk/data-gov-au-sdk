@@ -19,9 +19,20 @@ class Config {
     return fi
   }
 
+  // False for a feature added at runtime via options.extend (station's
+  // adopt path) - the constructor uses this to skip makeFeature for names
+  // no generated class backs.
+  hasFeature(this: any, fn: string) {
+    return null != FEATURE_CLASS[fn]
+  }
+
 
   main = {
     name: 'DataGovAu',
+        slug: "data-gov-au",
+    version: "0.0.1",
+    target: "ts",
+
   }
 
 
@@ -74,10 +85,12 @@ class Config {
         },
         {
           "name": "count",
+          "short": "Total number of datasets matching the query",
           "type": "`$INTEGER`"
         },
         {
           "name": "facets",
+          "short": "Faceted search results for aggregation",
           "type": "`$OBJECT`"
         },
         {
@@ -130,6 +143,7 @@ class Config {
         },
         {
           "name": "search_facets",
+          "short": "Search facet information",
           "type": "`$OBJECT`"
         },
         {

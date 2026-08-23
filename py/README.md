@@ -251,8 +251,8 @@ On error, `ok` is `False` and `err` contains the error value.
 | --- | --- |
 | `author` |  |
 | `author_email` |  |
-| `count` |  |
-| `facets` |  |
+| `count` | Total number of datasets matching the query |
+| `facets` | Faceted search results for aggregation |
 | `id` |  |
 | `license_id` |  |
 | `license_title` |  |
@@ -265,7 +265,7 @@ On error, `ok` is `False` and `err` contains the error value.
 | `organization` |  |
 | `resources` |  |
 | `results` |  |
-| `search_facets` |  |
+| `search_facets` | Search facet information |
 | `tags` |  |
 | `title` |  |
 
@@ -324,8 +324,8 @@ Create an instance: `dataset = client.Dataset()`
 | --- | --- | --- |
 | `author` | `str` |  |
 | `author_email` | `str` |  |
-| `count` | `int` |  |
-| `facets` | `dict` |  |
+| `count` | `int` | Total number of datasets matching the query |
+| `facets` | `dict` | Faceted search results for aggregation |
 | `id` | `str` |  |
 | `license_id` | `str` |  |
 | `license_title` | `str` |  |
@@ -338,7 +338,7 @@ Create an instance: `dataset = client.Dataset()`
 | `organization` | `dict` |  |
 | `resources` | `list` |  |
 | `results` | `list` |  |
-| `search_facets` | `dict` |  |
+| `search_facets` | `dict` | Search facet information |
 | `tags` | `list` |  |
 | `title` | `str` |  |
 

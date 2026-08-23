@@ -235,8 +235,8 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 | --- | --- |
 | `author` |  |
 | `author_email` |  |
-| `count` |  |
-| `facets` |  |
+| `count` | Total number of datasets matching the query |
+| `facets` | Faceted search results for aggregation |
 | `id` |  |
 | `license_id` |  |
 | `license_title` |  |
@@ -249,7 +249,7 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 | `organization` |  |
 | `resources` |  |
 | `results` |  |
-| `search_facets` |  |
+| `search_facets` | Search facet information |
 | `tags` |  |
 | `title` |  |
 
@@ -308,8 +308,8 @@ Create an instance: `local dataset = client:Dataset(nil)`
 | --- | --- | --- |
 | `author` | `string` |  |
 | `author_email` | `string` |  |
-| `count` | `number` |  |
-| `facets` | `table` |  |
+| `count` | `number` | Total number of datasets matching the query |
+| `facets` | `table` | Faceted search results for aggregation |
 | `id` | `string` |  |
 | `license_id` | `string` |  |
 | `license_title` | `string` |  |
@@ -322,7 +322,7 @@ Create an instance: `local dataset = client:Dataset(nil)`
 | `organization` | `table` |  |
 | `resources` | `table` |  |
 | `results` | `table` |  |
-| `search_facets` | `table` |  |
+| `search_facets` | `table` | Search facet information |
 | `tags` | `table` |  |
 | `title` | `string` |  |
 

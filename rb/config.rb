@@ -19,6 +19,9 @@ module DataGovAuConfig
     {
       "main" => {
         "name" => "DataGovAu",
+        "slug" => "data-gov-au",
+        "version" => "0.0.1",
+        "target" => "rb",
       },
       "feature" => {
         "test" => {
@@ -54,10 +57,12 @@ module DataGovAuConfig
             },
             {
               "name" => "count",
+              "short" => "Total number of datasets matching the query",
               "type" => "`$INTEGER`",
             },
             {
               "name" => "facets",
+              "short" => "Faceted search results for aggregation",
               "type" => "`$OBJECT`",
             },
             {
@@ -110,6 +115,7 @@ module DataGovAuConfig
             },
             {
               "name" => "search_facets",
+              "short" => "Search facet information",
               "type" => "`$OBJECT`",
             },
             {

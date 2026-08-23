@@ -109,8 +109,8 @@ fmt.Println(dataset.GetName()) // "dataset"
 | --- | --- | --- | --- |
 | `author` | `string` | No |  |
 | `author_email` | `string` | No |  |
-| `count` | `int` | No |  |
-| `facets` | `map[string]any` | No |  |
+| `count` | `int` | No | Total number of datasets matching the query |
+| `facets` | `map[string]any` | No | Faceted search results for aggregation |
 | `id` | `string` | No |  |
 | `license_id` | `string` | No |  |
 | `license_title` | `string` | No |  |
@@ -123,7 +123,7 @@ fmt.Println(dataset.GetName()) // "dataset"
 | `organization` | `map[string]any` | No |  |
 | `resources` | `[]any` | No |  |
 | `results` | `[]any` | No |  |
-| `search_facets` | `map[string]any` | No |  |
+| `search_facets` | `map[string]any` | No | Search facet information |
 | `tags` | `[]any` | No |  |
 | `title` | `string` | No |  |
 

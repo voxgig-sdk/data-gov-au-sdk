@@ -6,7 +6,7 @@ The Golang SDK for the DataGovAu API — an entity-oriented client using standar
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.Dataset(nil)` — each with the same small set of operations (`List`, `Load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -269,8 +269,8 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 | --- | --- |
 | `"author"` |  |
 | `"author_email"` |  |
-| `"count"` |  |
-| `"facets"` |  |
+| `"count"` | Total number of datasets matching the query |
+| `"facets"` | Faceted search results for aggregation |
 | `"id"` |  |
 | `"license_id"` |  |
 | `"license_title"` |  |
@@ -283,7 +283,7 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 | `"organization"` |  |
 | `"resources"` |  |
 | `"results"` |  |
-| `"search_facets"` |  |
+| `"search_facets"` | Search facet information |
 | `"tags"` |  |
 | `"title"` |  |
 
@@ -342,8 +342,8 @@ Create an instance: `dataset := client.Dataset(nil)`
 | --- | --- | --- |
 | `author` | `string` |  |
 | `author_email` | `string` |  |
-| `count` | `int` |  |
-| `facets` | `map[string]any` |  |
+| `count` | `int` | Total number of datasets matching the query |
+| `facets` | `map[string]any` | Faceted search results for aggregation |
 | `id` | `string` |  |
 | `license_id` | `string` |  |
 | `license_title` | `string` |  |
@@ -356,7 +356,7 @@ Create an instance: `dataset := client.Dataset(nil)`
 | `organization` | `map[string]any` |  |
 | `resources` | `[]any` |  |
 | `results` | `[]any` |  |
-| `search_facets` | `map[string]any` |  |
+| `search_facets` | `map[string]any` | Search facet information |
 | `tags` | `[]any` |  |
 | `title` | `string` |  |
 

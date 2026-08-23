@@ -7,6 +7,9 @@ local function make_config()
   return {
     main = {
       name = "DataGovAu",
+      slug = "data-gov-au",
+      version = "0.0.1",
+      target = "lua",
     },
     feature = {
       ["test"] = {
@@ -42,10 +45,12 @@ local function make_config()
           },
           {
             ["name"] = "count",
+            ["short"] = "Total number of datasets matching the query",
             ["type"] = "`$INTEGER`",
           },
           {
             ["name"] = "facets",
+            ["short"] = "Faceted search results for aggregation",
             ["type"] = "`$OBJECT`",
           },
           {
@@ -98,6 +103,7 @@ local function make_config()
           },
           {
             ["name"] = "search_facets",
+            ["short"] = "Search facet information",
             ["type"] = "`$OBJECT`",
           },
           {

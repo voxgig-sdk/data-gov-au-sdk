@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "DataGovAu",
+			"slug": "data-gov-au",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -46,10 +49,12 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "count",
+						"short": "Total number of datasets matching the query",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "facets",
+						"short": "Faceted search results for aggregation",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
@@ -102,6 +107,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "search_facets",
+						"short": "Search facet information",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{

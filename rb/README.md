@@ -247,8 +247,8 @@ returns a result `Hash` with these keys:
 | --- | --- |
 | `author` |  |
 | `author_email` |  |
-| `count` |  |
-| `facets` |  |
+| `count` | Total number of datasets matching the query |
+| `facets` | Faceted search results for aggregation |
 | `id` |  |
 | `license_id` |  |
 | `license_title` |  |
@@ -261,7 +261,7 @@ returns a result `Hash` with these keys:
 | `organization` |  |
 | `resources` |  |
 | `results` |  |
-| `search_facets` |  |
+| `search_facets` | Search facet information |
 | `tags` |  |
 | `title` |  |
 
@@ -320,8 +320,8 @@ Create an instance: `dataset = client.Dataset`
 | --- | --- | --- |
 | `author` | `String` |  |
 | `author_email` | `String` |  |
-| `count` | `Integer` |  |
-| `facets` | `Hash` |  |
+| `count` | `Integer` | Total number of datasets matching the query |
+| `facets` | `Hash` | Faceted search results for aggregation |
 | `id` | `String` |  |
 | `license_id` | `String` |  |
 | `license_title` | `String` |  |
@@ -334,7 +334,7 @@ Create an instance: `dataset = client.Dataset`
 | `organization` | `Hash` |  |
 | `resources` | `Array` |  |
 | `results` | `Array` |  |
-| `search_facets` | `Hash` |  |
+| `search_facets` | `Hash` | Search facet information |
 | `tags` | `Array` |  |
 | `title` | `String` |  |
 

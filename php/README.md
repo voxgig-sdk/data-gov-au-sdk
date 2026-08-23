@@ -257,8 +257,8 @@ On error, `ok` is `false` and `$err` contains the error value.
 | --- | --- |
 | `author` |  |
 | `author_email` |  |
-| `count` |  |
-| `facets` |  |
+| `count` | Total number of datasets matching the query |
+| `facets` | Faceted search results for aggregation |
 | `id` |  |
 | `license_id` |  |
 | `license_title` |  |
@@ -271,7 +271,7 @@ On error, `ok` is `false` and `$err` contains the error value.
 | `organization` |  |
 | `resources` |  |
 | `results` |  |
-| `search_facets` |  |
+| `search_facets` | Search facet information |
 | `tags` |  |
 | `title` |  |
 
@@ -330,8 +330,8 @@ Create an instance: `$dataset = $client->Dataset();`
 | --- | --- | --- |
 | `author` | `string` |  |
 | `author_email` | `string` |  |
-| `count` | `int` |  |
-| `facets` | `array` |  |
+| `count` | `int` | Total number of datasets matching the query |
+| `facets` | `array` | Faceted search results for aggregation |
 | `id` | `string` |  |
 | `license_id` | `string` |  |
 | `license_title` | `string` |  |
@@ -344,7 +344,7 @@ Create an instance: `$dataset = $client->Dataset();`
 | `organization` | `array` |  |
 | `resources` | `array` |  |
 | `results` | `array` |  |
-| `search_facets` | `array` |  |
+| `search_facets` | `array` | Search facet information |
 | `tags` | `array` |  |
 | `title` | `string` |  |
 

@@ -18,11 +18,13 @@ main: kit: entity: dataset: {
     {
       name: "count"
       req: false
+      short: "Total number of datasets matching the query"
       type: "`$INTEGER`"
     }
     {
       name: "facets"
       req: false
+      short: "Faceted search results for aggregation"
       type: "`$OBJECT`"
     }
     {
@@ -88,6 +90,7 @@ main: kit: entity: dataset: {
     {
       name: "search_facets"
       req: false
+      short: "Search facet information"
       type: "`$OBJECT`"
     }
     {

@@ -103,8 +103,8 @@ $dataset = $client->Dataset();
 | --- | --- | --- | --- |
 | `author` | `string` | No |  |
 | `author_email` | `string` | No |  |
-| `count` | `int` | No |  |
-| `facets` | `array` | No |  |
+| `count` | `int` | No | Total number of datasets matching the query |
+| `facets` | `array` | No | Faceted search results for aggregation |
 | `id` | `string` | No |  |
 | `license_id` | `string` | No |  |
 | `license_title` | `string` | No |  |
@@ -117,7 +117,7 @@ $dataset = $client->Dataset();
 | `organization` | `array` | No |  |
 | `resources` | `array` | No |  |
 | `results` | `array` | No |  |
-| `search_facets` | `array` | No |  |
+| `search_facets` | `array` | No | Search facet information |
 | `tags` | `array` | No |  |
 | `title` | `string` | No |  |
 

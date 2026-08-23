@@ -101,8 +101,8 @@ local dataset = client:Dataset(nil)
 | --- | --- | --- | --- |
 | `author` | `string` | No |  |
 | `author_email` | `string` | No |  |
-| `count` | `number` | No |  |
-| `facets` | `table` | No |  |
+| `count` | `number` | No | Total number of datasets matching the query |
+| `facets` | `table` | No | Faceted search results for aggregation |
 | `id` | `string` | No |  |
 | `license_id` | `string` | No |  |
 | `license_title` | `string` | No |  |
@@ -115,7 +115,7 @@ local dataset = client:Dataset(nil)
 | `organization` | `table` | No |  |
 | `resources` | `table` | No |  |
 | `results` | `table` | No |  |
-| `search_facets` | `table` | No |  |
+| `search_facets` | `table` | No | Search facet information |
 | `tags` | `table` | No |  |
 | `title` | `string` | No |  |
 

@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -298,8 +298,8 @@ The `prepare()` method returns:
 | --- | --- |
 | `author` |  |
 | `author_email` |  |
-| `count` |  |
-| `facets` |  |
+| `count` | Total number of datasets matching the query |
+| `facets` | Faceted search results for aggregation |
 | `id` |  |
 | `license_id` |  |
 | `license_title` |  |
@@ -312,7 +312,7 @@ The `prepare()` method returns:
 | `organization` |  |
 | `resources` |  |
 | `results` |  |
-| `search_facets` |  |
+| `search_facets` | Search facet information |
 | `tags` |  |
 | `title` |  |
 
@@ -371,8 +371,8 @@ Create an instance: `const dataset = client.Dataset()`
 | --- | --- | --- |
 | `author` | `string` |  |
 | `author_email` | `string` |  |
-| `count` | `number` |  |
-| `facets` | `Record<string, any>` |  |
+| `count` | `number` | Total number of datasets matching the query |
+| `facets` | `Record<string, any>` | Faceted search results for aggregation |
 | `id` | `string` |  |
 | `license_id` | `string` |  |
 | `license_title` | `string` |  |
@@ -385,7 +385,7 @@ Create an instance: `const dataset = client.Dataset()`
 | `organization` | `Record<string, any>` |  |
 | `resources` | `any[]` |  |
 | `results` | `any[]` |  |
-| `search_facets` | `Record<string, any>` |  |
+| `search_facets` | `Record<string, any>` | Search facet information |
 | `tags` | `any[]` |  |
 | `title` | `string` |  |
 

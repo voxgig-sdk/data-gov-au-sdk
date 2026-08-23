@@ -28,6 +28,9 @@ def make_config():
     return {
         "main": {
             "name": "DataGovAu",
+            "slug": "data-gov-au",
+            "version": "0.0.1",
+            "target": "py",
         },
         "feature": {
             "test": {
@@ -63,10 +66,12 @@ def make_config():
           },
           {
             "name": "count",
+            "short": "Total number of datasets matching the query",
             "type": "`$INTEGER`",
           },
           {
             "name": "facets",
+            "short": "Faceted search results for aggregation",
             "type": "`$OBJECT`",
           },
           {
@@ -119,6 +124,7 @@ def make_config():
           },
           {
             "name": "search_facets",
+            "short": "Search facet information",
             "type": "`$OBJECT`",
           },
           {

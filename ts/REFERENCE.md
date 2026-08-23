@@ -143,8 +143,8 @@ const dataset = client.Dataset()
 | --- | --- | --- | --- |
 | `author` | `string` | No |  |
 | `author_email` | `string` | No |  |
-| `count` | `number` | No |  |
-| `facets` | `Record<string, any>` | No |  |
+| `count` | `number` | No | Total number of datasets matching the query |
+| `facets` | `Record<string, any>` | No | Faceted search results for aggregation |
 | `id` | `string` | No |  |
 | `license_id` | `string` | No |  |
 | `license_title` | `string` | No |  |
@@ -157,7 +157,7 @@ const dataset = client.Dataset()
 | `organization` | `Record<string, any>` | No |  |
 | `resources` | `any[]` | No |  |
 | `results` | `any[]` | No |  |
-| `search_facets` | `Record<string, any>` | No |  |
+| `search_facets` | `Record<string, any>` | No | Search facet information |
 | `tags` | `any[]` | No |  |
 | `title` | `string` | No |  |
 

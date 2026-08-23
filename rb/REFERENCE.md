@@ -104,8 +104,8 @@ dataset = client.Dataset
 | --- | --- | --- | --- |
 | `author` | `String` | No |  |
 | `author_email` | `String` | No |  |
-| `count` | `Integer` | No |  |
-| `facets` | `Hash` | No |  |
+| `count` | `Integer` | No | Total number of datasets matching the query |
+| `facets` | `Hash` | No | Faceted search results for aggregation |
 | `id` | `String` | No |  |
 | `license_id` | `String` | No |  |
 | `license_title` | `String` | No |  |
@@ -118,7 +118,7 @@ dataset = client.Dataset
 | `organization` | `Hash` | No |  |
 | `resources` | `Array` | No |  |
 | `results` | `Array` | No |  |
-| `search_facets` | `Hash` | No |  |
+| `search_facets` | `Hash` | No | Search facet information |
 | `tags` | `Array` | No |  |
 | `title` | `String` | No |  |
 
