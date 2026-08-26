@@ -28,6 +28,7 @@ module DataGovAuConfig
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {
