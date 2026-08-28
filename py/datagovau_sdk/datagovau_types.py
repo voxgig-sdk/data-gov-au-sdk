@@ -38,29 +38,14 @@ class Dataset(TypedDict, total=False):
     title: str
 
 
-class DatasetLoadMatchRequired(TypedDict):
-    id: str
-
-
-class DatasetLoadMatch(DatasetLoadMatchRequired, total=False):
-    author: str
-    author_email: str
-    count: int
-    facets: dict
-    license_id: str
-    license_title: str
-    maintainer: str
-    maintainer_email: str
-    metadata_created: str
-    metadata_modified: str
-    name: str
-    notes: str
-    organization: dict
-    resources: list
-    results: list
-    search_facets: dict
-    tags: list
-    title: str
+class DatasetLoadMatch(TypedDict, total=False):
+    facet_field: list
+    fq: str
+    include_private: bool
+    q: str
+    row: int
+    sort: str
+    start: int
 
 
 class Metadata(TypedDict, total=False):
@@ -69,8 +54,7 @@ class Metadata(TypedDict, total=False):
 
 
 class MetadataListMatch(TypedDict, total=False):
-    result: list
-    success: bool
+    all_field: bool
 
 
 class Organization(TypedDict, total=False):
@@ -91,25 +75,10 @@ class OrganizationLoadMatchRequired(TypedDict):
 
 
 class OrganizationLoadMatch(OrganizationLoadMatchRequired, total=False):
-    created: str
-    description: str
-    image_url: str
-    name: str
-    package_count: int
-    packages: list
-    result: list
-    success: bool
-    title: str
+    include_dataset: bool
 
 
 class OrganizationListMatch(TypedDict, total=False):
-    created: str
-    description: str
-    id: str
-    image_url: str
-    name: str
-    package_count: int
-    packages: list
-    result: list
-    success: bool
-    title: str
+    all_field: bool
+    limit: int
+    offset: int

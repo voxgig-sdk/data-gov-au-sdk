@@ -38,7 +38,7 @@ local client = sdk.new({
 ### 3. Load a dataset
 
 ```lua
-local dataset, err = client:Dataset():load({ id = "example_id" })
+local dataset, err = client:Dataset():load()
 if err then error(err) end
 print(dataset)
 ```
@@ -220,7 +220,7 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local dataset, err = client:Dataset():load({ id = "example_id" })
+    local dataset, err = client:Dataset():load()
     if err then error(err) end
     -- dataset is the loaded record
 
@@ -329,7 +329,7 @@ Create an instance: `local dataset = client:Dataset(nil)`
 #### Example: Load
 
 ```lua
-local dataset, err = client:Dataset():load({ id = "dataset_id" })
+local dataset, err = client:Dataset():load()
 ```
 
 
@@ -394,6 +394,29 @@ local organization, err = client:Organization():load({ id = "organization_id" })
 ```lua
 local organizations, err = client:Organization():list()
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced

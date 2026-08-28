@@ -37,25 +37,13 @@ type Dataset struct {
 
 // DatasetLoadMatch is the typed request payload for Dataset.LoadTyped.
 type DatasetLoadMatch struct {
-	Author *string `json:"author,omitempty"`
-	AuthorEmail *string `json:"author_email,omitempty"`
-	Count *int `json:"count,omitempty"`
-	Facets *map[string]any `json:"facets,omitempty"`
-	Id string `json:"id"`
-	LicenseId *string `json:"license_id,omitempty"`
-	LicenseTitle *string `json:"license_title,omitempty"`
-	Maintainer *string `json:"maintainer,omitempty"`
-	MaintainerEmail *string `json:"maintainer_email,omitempty"`
-	MetadataCreated *string `json:"metadata_created,omitempty"`
-	MetadataModified *string `json:"metadata_modified,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Notes *string `json:"notes,omitempty"`
-	Organization *map[string]any `json:"organization,omitempty"`
-	Resources *[]any `json:"resources,omitempty"`
-	Results *[]any `json:"results,omitempty"`
-	SearchFacets *map[string]any `json:"search_facets,omitempty"`
-	Tags *[]any `json:"tags,omitempty"`
-	Title *string `json:"title,omitempty"`
+	FacetField *[]any `json:"facet_field,omitempty"`
+	Fq *string `json:"fq,omitempty"`
+	IncludePrivate *bool `json:"include_private,omitempty"`
+	Q *string `json:"q,omitempty"`
+	Row *int `json:"row,omitempty"`
+	Sort *string `json:"sort,omitempty"`
+	Start *int `json:"start,omitempty"`
 }
 
 // Metadata is the typed data model for the metadata entity.
@@ -66,8 +54,7 @@ type Metadata struct {
 
 // MetadataListMatch is the typed request payload for Metadata.ListTyped.
 type MetadataListMatch struct {
-	Result *[]any `json:"result,omitempty"`
-	Success *bool `json:"success,omitempty"`
+	AllField *bool `json:"all_field,omitempty"`
 }
 
 // Organization is the typed data model for the organization entity.
@@ -86,30 +73,15 @@ type Organization struct {
 
 // OrganizationLoadMatch is the typed request payload for Organization.LoadTyped.
 type OrganizationLoadMatch struct {
-	Created *string `json:"created,omitempty"`
-	Description *string `json:"description,omitempty"`
 	Id string `json:"id"`
-	ImageUrl *string `json:"image_url,omitempty"`
-	Name *string `json:"name,omitempty"`
-	PackageCount *int `json:"package_count,omitempty"`
-	Packages *[]any `json:"packages,omitempty"`
-	Result *[]any `json:"result,omitempty"`
-	Success *bool `json:"success,omitempty"`
-	Title *string `json:"title,omitempty"`
+	IncludeDataset *bool `json:"include_dataset,omitempty"`
 }
 
 // OrganizationListMatch is the typed request payload for Organization.ListTyped.
 type OrganizationListMatch struct {
-	Created *string `json:"created,omitempty"`
-	Description *string `json:"description,omitempty"`
-	Id *string `json:"id,omitempty"`
-	ImageUrl *string `json:"image_url,omitempty"`
-	Name *string `json:"name,omitempty"`
-	PackageCount *int `json:"package_count,omitempty"`
-	Packages *[]any `json:"packages,omitempty"`
-	Result *[]any `json:"result,omitempty"`
-	Success *bool `json:"success,omitempty"`
-	Title *string `json:"title,omitempty"`
+	AllField *bool `json:"all_field,omitempty"`
+	Limit *int `json:"limit,omitempty"`
+	Offset *int `json:"offset,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

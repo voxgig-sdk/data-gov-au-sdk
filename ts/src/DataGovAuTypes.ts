@@ -28,25 +28,13 @@ export interface Dataset {
 }
 
 export interface DatasetLoadMatch {
-  author?: string
-  author_email?: string
-  count?: number
-  facets?: Record<string, any>
-  id: string
-  license_id?: string
-  license_title?: string
-  maintainer?: string
-  maintainer_email?: string
-  metadata_created?: string
-  metadata_modified?: string
-  name?: string
-  notes?: string
-  organization?: Record<string, any>
-  resources?: any[]
-  results?: any[]
-  search_facets?: Record<string, any>
-  tags?: any[]
-  title?: string
+  facet_field?: any[]
+  fq?: string
+  include_private?: boolean
+  q?: string
+  row?: number
+  sort?: string
+  start?: number
 }
 
 export interface Metadata {
@@ -55,8 +43,7 @@ export interface Metadata {
 }
 
 export interface MetadataListMatch {
-  result?: any[]
-  success?: boolean
+  all_field?: boolean
 }
 
 export interface Organization {
@@ -73,28 +60,13 @@ export interface Organization {
 }
 
 export interface OrganizationLoadMatch {
-  created?: string
-  description?: string
   id: string
-  image_url?: string
-  name?: string
-  package_count?: number
-  packages?: any[]
-  result?: any[]
-  success?: boolean
-  title?: string
+  include_dataset?: boolean
 }
 
 export interface OrganizationListMatch {
-  created?: string
-  description?: string
-  id?: string
-  image_url?: string
-  name?: string
-  package_count?: number
-  packages?: any[]
-  result?: any[]
-  success?: boolean
-  title?: string
+  all_field?: boolean
+  limit?: number
+  offset?: number
 }
 

@@ -41,7 +41,7 @@ const client = new DataGovAuSDK({
 
 ```ts
 try {
-  const dataset = await client.Dataset().load({ id: 'example_id' })
+  const dataset = await client.Dataset().load()
   console.log(dataset)
 } catch (err) {
   console.error('load failed:', err)
@@ -392,7 +392,7 @@ Create an instance: `const dataset = client.Dataset()`
 #### Example: Load
 
 ```ts
-const dataset = await client.Dataset().load({ id: 'dataset_id' })
+const dataset = await client.Dataset().load()
 ```
 
 
@@ -457,6 +457,29 @@ const organization = await client.Organization().load({ id: 'organization_id' })
 ```ts
 const organizations = await client.Organization().list()
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced
