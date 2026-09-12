@@ -41,6 +41,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "email",
             ["name"] = "author_email",
             ["type"] = "`$STRING`",
           },
@@ -71,14 +72,17 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "email",
             ["name"] = "maintainer_email",
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "date-time",
             ["name"] = "metadata_created",
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "date-time",
             ["name"] = "metadata_modified",
             ["type"] = "`$STRING`",
           },
@@ -115,6 +119,10 @@ local function make_config()
             ["name"] = "title",
             ["type"] = "`$STRING`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "dataset",
         ["op"] = {
@@ -178,9 +186,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/action/package_search",
-                ["parts"] = {
-                  "action",
-                  "package_search",
+                ["segments"] = {
+                  {
+                    ["lit"] = "action",
+                  },
+                  {
+                    ["lit"] = "package_search",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -196,6 +208,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.result`",
+                },
+                ["parts"] = {
+                  "action",
+                  "package_search",
                 },
               },
               {
@@ -220,9 +236,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/action/package_show",
-                ["parts"] = {
-                  "action",
-                  "package_show",
+                ["segments"] = {
+                  {
+                    ["lit"] = "action",
+                  },
+                  {
+                    ["lit"] = "package_show",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -233,6 +253,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.result`",
+                },
+                ["parts"] = {
+                  "action",
+                  "package_show",
                 },
               },
             },
@@ -279,9 +303,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/action/tag_list",
-                ["parts"] = {
-                  "action",
-                  "tag_list",
+                ["segments"] = {
+                  {
+                    ["lit"] = "action",
+                  },
+                  {
+                    ["lit"] = "tag_list",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -291,6 +319,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.result`",
+                },
+                ["parts"] = {
+                  "action",
+                  "tag_list",
                 },
               },
             },
@@ -303,6 +335,7 @@ local function make_config()
       ["organization"] = {
         ["fields"] = {
           {
+            ["format"] = "date-time",
             ["name"] = "created",
             ["type"] = "`$STRING`",
           },
@@ -315,6 +348,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "uri",
             ["name"] = "image_url",
             ["type"] = "`$STRING`",
           },
@@ -347,6 +381,10 @@ local function make_config()
             ["name"] = "title",
             ["type"] = "`$STRING`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "organization",
         ["op"] = {
@@ -382,9 +420,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/action/organization_list",
-                ["parts"] = {
-                  "action",
-                  "organization_list",
+                ["segments"] = {
+                  {
+                    ["lit"] = "action",
+                  },
+                  {
+                    ["lit"] = "organization_list",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -396,6 +438,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.result`",
+                },
+                ["parts"] = {
+                  "action",
+                  "organization_list",
                 },
               },
             },
@@ -426,9 +472,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/action/organization_show",
-                ["parts"] = {
-                  "action",
-                  "organization_show",
+                ["segments"] = {
+                  {
+                    ["lit"] = "action",
+                  },
+                  {
+                    ["lit"] = "organization_show",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -439,6 +489,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.result`",
+                },
+                ["parts"] = {
+                  "action",
+                  "organization_show",
                 },
               },
             },

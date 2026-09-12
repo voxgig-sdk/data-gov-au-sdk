@@ -40,6 +40,7 @@
             },
             {
               "active": true,
+              "format": "email",
               "name": "author_email",
               "req": false,
               "type": "`$STRING`"
@@ -84,18 +85,21 @@
             },
             {
               "active": true,
+              "format": "email",
               "name": "maintainer_email",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
+              "format": "date-time",
               "name": "metadata_created",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
+              "format": "date-time",
               "name": "metadata_modified",
               "req": false,
               "type": "`$STRING`"
@@ -231,9 +235,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/action/package_search",
-                  "parts": [
-                    "action",
-                    "package_search"
+                  "segments": [
+                    {
+                      "lit": "action"
+                    },
+                    {
+                      "lit": "package_search"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -277,9 +285,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/action/package_show",
-                  "parts": [
-                    "action",
-                    "package_show"
+                  "segments": [
+                    {
+                      "lit": "action"
+                    },
+                    {
+                      "lit": "package_show"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -347,9 +359,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/action/tag_list",
-                  "parts": [
-                    "action",
-                    "tag_list"
+                  "segments": [
+                    {
+                      "lit": "action"
+                    },
+                    {
+                      "lit": "tag_list"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -376,6 +392,7 @@
           "fields": [
             {
               "active": true,
+              "format": "date-time",
               "name": "created",
               "req": false,
               "type": "`$STRING`"
@@ -394,6 +411,7 @@
             },
             {
               "active": true,
+              "format": "uri",
               "name": "image_url",
               "req": false,
               "type": "`$STRING`"
@@ -485,9 +503,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/action/organization_list",
-                  "parts": [
-                    "action",
-                    "organization_list"
+                  "segments": [
+                    {
+                      "lit": "action"
+                    },
+                    {
+                      "lit": "organization_list"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -533,9 +555,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/action/organization_show",
-                  "parts": [
-                    "action",
-                    "organization_show"
+                  "segments": [
+                    {
+                      "lit": "action"
+                    },
+                    {
+                      "lit": "organization_show"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -620,8 +646,11 @@
             }
           },
           "name": "test",
+          "needs": {},
           "origname": "",
           "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
           "target": {
             "go": {
               "deps": {}
@@ -825,6 +854,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -850,6 +882,10 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/runner_test.go",
+            "test/struct_runner_test.go"
+          ],
           "title": "Golang"
         },
         "go-cli": {
@@ -901,6 +937,7 @@
               "active": false
             }
           },
+          "provides": {},
           "publish": {
             "registry": {
               "active": false,
@@ -925,6 +962,7 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [],
           "title": "Go CLI"
         },
         "go-mcp": {
@@ -976,6 +1014,7 @@
               "active": false
             }
           },
+          "provides": {},
           "publish": {
             "registry": {
               "active": false,
@@ -1000,6 +1039,7 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [],
           "title": "Go MCP server"
         },
         "lua": {
@@ -1040,6 +1080,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1065,6 +1108,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.lua"
+          ],
           "title": "Lua"
         },
         "php": {
@@ -1099,6 +1145,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1124,6 +1173,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/StructRunner.php"
+          ],
           "title": "PHP"
         },
         "py": {
@@ -1164,6 +1216,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1189,6 +1244,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.py"
+          ],
           "title": "Python"
         },
         "rb": {
@@ -1234,6 +1292,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1259,6 +1320,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.rb"
+          ],
           "title": "Ruby"
         },
         "ts": {
@@ -1276,11 +1340,6 @@
               "active": true,
               "kind": "dev",
               "version": "^25.6.0"
-            },
-            "dotenv": {
-              "active": true,
-              "kind": "dev",
-              "version": "^17.4.2"
             },
             "typescript": {
               "active": true,
@@ -1309,6 +1368,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1333,6 +1395,14 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [
+            "test/runner.ts",
+            "test/vendor/omni/compat.ts",
+            "src/feature/secrets/sekreto/Providers.ts",
+            "src/feature/secrets/sekreto/Sigv4.ts",
+            "src/feature/secrets/sekreto/provider/Registry.ts",
+            "src/feature/secrets/sekreto/provider/http.ts"
+          ],
           "title": "TypeScript"
         }
       },

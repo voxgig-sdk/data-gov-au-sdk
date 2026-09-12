@@ -67,15 +67,17 @@ function dataset_direct_setup($mockres)
     $env = Runner::env_override([
         "DATA_GOV_AU_TEST_DATASET_ENTID" => [],
         "DATA_GOV_AU_TEST_LIVE" => "FALSE",
-        "DATA_GOV_AU_APIKEY" => "NONE",
+        "DATA_GOV_AU_APIKEY" => "",
     ]);
 
     $live = $env["DATA_GOV_AU_TEST_LIVE"] === "TRUE";
 
     if ($live) {
-        $merged_opts = [
+        // Merged so the generated fields win: sdk-test-control.json's
+        // test.client.options adds to the live client, it does not redirect it.
+        $merged_opts = array_merge(Runner::live_client_options(), [
             "apikey" => $env["DATA_GOV_AU_APIKEY"],
-        ];
+        ]);
         $client = new DataGovAuSDK($merged_opts);
         return [
             "client" => $client,

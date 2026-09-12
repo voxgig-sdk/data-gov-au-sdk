@@ -42,9 +42,13 @@ main: kit: entity: metadata: {
           }
           method: "GET"
           orig: "/action/tag_list"
-          parts: [
-            "action"
-            "tag_list"
+          segments: [
+            {
+              lit: "action"
+            }
+            {
+              lit: "tag_list"
+            }
           ]
           select: {
             exist: [

@@ -53,6 +53,7 @@ module DataGovAuConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "email",
               "name" => "author_email",
               "type" => "`$STRING`",
             },
@@ -83,14 +84,17 @@ module DataGovAuConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "email",
               "name" => "maintainer_email",
               "type" => "`$STRING`",
             },
             {
+              "format" => "date-time",
               "name" => "metadata_created",
               "type" => "`$STRING`",
             },
             {
+              "format" => "date-time",
               "name" => "metadata_modified",
               "type" => "`$STRING`",
             },
@@ -128,6 +132,10 @@ module DataGovAuConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "dataset",
           "op" => {
             "load" => {
@@ -190,9 +198,13 @@ module DataGovAuConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/action/package_search",
-                  "parts" => [
-                    "action",
-                    "package_search",
+                  "segments" => [
+                    {
+                      "lit" => "action",
+                    },
+                    {
+                      "lit" => "package_search",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -209,6 +221,10 @@ module DataGovAuConfig
                     "req" => "`reqdata`",
                     "res" => "`body.result`",
                   },
+                  "parts" => [
+                    "action",
+                    "package_search",
+                  ],
                 },
                 {
                   "args" => {
@@ -232,9 +248,13 @@ module DataGovAuConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/action/package_show",
-                  "parts" => [
-                    "action",
-                    "package_show",
+                  "segments" => [
+                    {
+                      "lit" => "action",
+                    },
+                    {
+                      "lit" => "package_show",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -246,6 +266,10 @@ module DataGovAuConfig
                     "req" => "`reqdata`",
                     "res" => "`body.result`",
                   },
+                  "parts" => [
+                    "action",
+                    "package_show",
+                  ],
                 },
               ],
             },
@@ -291,9 +315,13 @@ module DataGovAuConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/action/tag_list",
-                  "parts" => [
-                    "action",
-                    "tag_list",
+                  "segments" => [
+                    {
+                      "lit" => "action",
+                    },
+                    {
+                      "lit" => "tag_list",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -304,6 +332,10 @@ module DataGovAuConfig
                     "req" => "`reqdata`",
                     "res" => "`body.result`",
                   },
+                  "parts" => [
+                    "action",
+                    "tag_list",
+                  ],
                 },
               ],
             },
@@ -315,6 +347,7 @@ module DataGovAuConfig
         "organization" => {
           "fields" => [
             {
+              "format" => "date-time",
               "name" => "created",
               "type" => "`$STRING`",
             },
@@ -327,6 +360,7 @@ module DataGovAuConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "uri",
               "name" => "image_url",
               "type" => "`$STRING`",
             },
@@ -360,6 +394,10 @@ module DataGovAuConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "organization",
           "op" => {
             "list" => {
@@ -394,9 +432,13 @@ module DataGovAuConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/action/organization_list",
-                  "parts" => [
-                    "action",
-                    "organization_list",
+                  "segments" => [
+                    {
+                      "lit" => "action",
+                    },
+                    {
+                      "lit" => "organization_list",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -409,6 +451,10 @@ module DataGovAuConfig
                     "req" => "`reqdata`",
                     "res" => "`body.result`",
                   },
+                  "parts" => [
+                    "action",
+                    "organization_list",
+                  ],
                 },
               ],
             },
@@ -438,9 +484,13 @@ module DataGovAuConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/action/organization_show",
-                  "parts" => [
-                    "action",
-                    "organization_show",
+                  "segments" => [
+                    {
+                      "lit" => "action",
+                    },
+                    {
+                      "lit" => "organization_show",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -452,6 +502,10 @@ module DataGovAuConfig
                     "req" => "`reqdata`",
                     "res" => "`body.result`",
                   },
+                  "parts" => [
+                    "action",
+                    "organization_show",
+                  ],
                 },
               ],
             },

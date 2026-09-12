@@ -85,7 +85,7 @@ def dataset_basic_setup(extra)
     "DATA_GOV_AU_TEST_DATASET_ENTID" => idmap,
     "DATA_GOV_AU_TEST_LIVE" => "FALSE",
     "DATA_GOV_AU_TEST_EXPLAIN" => "FALSE",
-    "DATA_GOV_AU_APIKEY" => "NONE",
+    "DATA_GOV_AU_APIKEY" => "",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -96,6 +96,9 @@ def dataset_basic_setup(extra)
 
   if env["DATA_GOV_AU_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
+      # FIRST, so the generated fields below win: sdk-test-control.json's
+      # test.client.options adds to the live client, it does not redirect it.
+      Runner.live_client_options,
       {
         "apikey" => env["DATA_GOV_AU_APIKEY"],
       },

@@ -6,6 +6,7 @@ main: kit: entity: organization: {
 
   fields: [
     {
+      format: "date-time"
       name: "created"
       req: false
       type: "`$STRING`"
@@ -21,6 +22,7 @@ main: kit: entity: organization: {
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "image_url"
       req: false
       type: "`$STRING`"
@@ -102,9 +104,13 @@ main: kit: entity: organization: {
           }
           method: "GET"
           orig: "/action/organization_list"
-          parts: [
-            "action"
-            "organization_list"
+          segments: [
+            {
+              lit: "action"
+            }
+            {
+              lit: "organization_list"
+            }
           ]
           select: {
             exist: [
@@ -145,9 +151,13 @@ main: kit: entity: organization: {
           }
           method: "GET"
           orig: "/action/organization_show"
-          parts: [
-            "action"
-            "organization_show"
+          segments: [
+            {
+              lit: "action"
+            }
+            {
+              lit: "organization_show"
+            }
           ]
           select: {
             exist: [

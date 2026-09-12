@@ -11,6 +11,7 @@ main: kit: entity: dataset: {
       type: "`$STRING`"
     }
     {
+      format: "email"
       name: "author_email"
       req: false
       type: "`$STRING`"
@@ -48,16 +49,19 @@ main: kit: entity: dataset: {
       type: "`$STRING`"
     }
     {
+      format: "email"
       name: "maintainer_email"
       req: false
       type: "`$STRING`"
     }
     {
+      format: "date-time"
       name: "metadata_created"
       req: false
       type: "`$STRING`"
     }
     {
+      format: "date-time"
       name: "metadata_modified"
       req: false
       type: "`$STRING`"
@@ -177,9 +181,13 @@ main: kit: entity: dataset: {
           }
           method: "GET"
           orig: "/action/package_search"
-          parts: [
-            "action"
-            "package_search"
+          segments: [
+            {
+              lit: "action"
+            }
+            {
+              lit: "package_search"
+            }
           ]
           select: {
             exist: [
@@ -219,9 +227,13 @@ main: kit: entity: dataset: {
           }
           method: "GET"
           orig: "/action/package_show"
-          parts: [
-            "action"
-            "package_show"
+          segments: [
+            {
+              lit: "action"
+            }
+            {
+              lit: "package_show"
+            }
           ]
           select: {
             exist: [

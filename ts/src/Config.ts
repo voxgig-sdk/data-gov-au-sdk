@@ -10,6 +10,17 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
+// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
+// the model's active plugin groups. A feature that takes a `plugins` option
+// (secrets over sekreto) reads its own entry; a feature with no plugins has
+// none. Named imports above make each definition statically reachable, so
+// an SDK carries exactly the plugin modules its model selects — the same
+// leanness the old side-effect registry imports bought, without a registry.
+const FEATURE_PLUGINS: Record<string, any[]> = {
+  
+}
+
+
 class Config {
 
   makeFeature(this: any, fn: string) {
@@ -81,6 +92,7 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "email",
           "name": "author_email",
           "type": "`$STRING`"
         },
@@ -111,14 +123,17 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "email",
           "name": "maintainer_email",
           "type": "`$STRING`"
         },
         {
+          "format": "date-time",
           "name": "metadata_created",
           "type": "`$STRING`"
         },
         {
+          "format": "date-time",
           "name": "metadata_modified",
           "type": "`$STRING`"
         },
@@ -156,6 +171,10 @@ class Config {
           "type": "`$STRING`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "dataset",
       "op": {
         "load": {
@@ -218,9 +237,13 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/action/package_search",
-              "parts": [
-                "action",
-                "package_search"
+              "segments": [
+                {
+                  "lit": "action"
+                },
+                {
+                  "lit": "package_search"
+                }
               ],
               "select": {
                 "exist": [
@@ -236,7 +259,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.result`"
-              }
+              },
+              "parts": [
+                "action",
+                "package_search"
+              ]
             },
             {
               "args": {
@@ -260,9 +287,13 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/action/package_show",
-              "parts": [
-                "action",
-                "package_show"
+              "segments": [
+                {
+                  "lit": "action"
+                },
+                {
+                  "lit": "package_show"
+                }
               ],
               "select": {
                 "exist": [
@@ -273,7 +304,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.result`"
-              }
+              },
+              "parts": [
+                "action",
+                "package_show"
+              ]
             }
           ]
         }
@@ -319,9 +354,13 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/action/tag_list",
-              "parts": [
-                "action",
-                "tag_list"
+              "segments": [
+                {
+                  "lit": "action"
+                },
+                {
+                  "lit": "tag_list"
+                }
               ],
               "select": {
                 "exist": [
@@ -331,7 +370,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.result`"
-              }
+              },
+              "parts": [
+                "action",
+                "tag_list"
+              ]
             }
           ]
         }
@@ -343,6 +386,7 @@ class Config {
     "organization": {
       "fields": [
         {
+          "format": "date-time",
           "name": "created",
           "type": "`$STRING`"
         },
@@ -355,6 +399,7 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "uri",
           "name": "image_url",
           "type": "`$STRING`"
         },
@@ -388,6 +433,10 @@ class Config {
           "type": "`$STRING`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "organization",
       "op": {
         "list": {
@@ -422,9 +471,13 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/action/organization_list",
-              "parts": [
-                "action",
-                "organization_list"
+              "segments": [
+                {
+                  "lit": "action"
+                },
+                {
+                  "lit": "organization_list"
+                }
               ],
               "select": {
                 "exist": [
@@ -436,7 +489,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.result`"
-              }
+              },
+              "parts": [
+                "action",
+                "organization_list"
+              ]
             }
           ]
         },
@@ -466,9 +523,13 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/action/organization_show",
-              "parts": [
-                "action",
-                "organization_show"
+              "segments": [
+                {
+                  "lit": "action"
+                },
+                {
+                  "lit": "organization_show"
+                }
               ],
               "select": {
                 "exist": [
@@ -479,7 +540,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.result`"
-              }
+              },
+              "parts": [
+                "action",
+                "organization_show"
+              ]
             }
           ]
         }
@@ -495,6 +560,7 @@ class Config {
 const config = new Config()
 
 export {
-  config
+  config,
+  FEATURE_PLUGINS,
 }
 

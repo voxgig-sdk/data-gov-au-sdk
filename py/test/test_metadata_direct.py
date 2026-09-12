@@ -60,15 +60,18 @@ def _metadata_direct_setup(mockres):
     env = runner.env_override({
         "DATA_GOV_AU_TEST_METADATA_ENTID": {},
         "DATA_GOV_AU_TEST_LIVE": "FALSE",
-        "DATA_GOV_AU_APIKEY": "NONE",
+        "DATA_GOV_AU_APIKEY": "",
     })
 
     live = env.get("DATA_GOV_AU_TEST_LIVE") == "TRUE"
 
     if live:
-        merged_opts = {
+        # sdk-test-control.json's test.client.options seeds the live
+        # client; the generated fields below overwrite anything they name.
+        merged_opts = dict(runner.live_client_options())
+        merged_opts.update({
             "apikey": env.get("DATA_GOV_AU_APIKEY"),
-        }
+        })
         client = DataGovAuSDK(merged_opts)
         return {
             "client": client,

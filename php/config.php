@@ -67,6 +67,7 @@ class DataGovAuConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'email',
               'name' => 'author_email',
               'type' => '`$STRING`',
             ],
@@ -97,14 +98,17 @@ class DataGovAuConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'email',
               'name' => 'maintainer_email',
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'date-time',
               'name' => 'metadata_created',
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'date-time',
               'name' => 'metadata_modified',
               'type' => '`$STRING`',
             ],
@@ -141,6 +145,10 @@ class DataGovAuConfig
               'name' => 'title',
               'type' => '`$STRING`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
           ],
           'name' => 'dataset',
           'op' => [
@@ -204,9 +212,13 @@ class DataGovAuConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/action/package_search',
-                  'parts' => [
-                    'action',
-                    'package_search',
+                  'segments' => [
+                    [
+                      'lit' => 'action',
+                    ],
+                    [
+                      'lit' => 'package_search',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -222,6 +234,10 @@ class DataGovAuConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.result`',
+                  ],
+                  'parts' => [
+                    'action',
+                    'package_search',
                   ],
                 ],
                 [
@@ -246,9 +262,13 @@ class DataGovAuConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/action/package_show',
-                  'parts' => [
-                    'action',
-                    'package_show',
+                  'segments' => [
+                    [
+                      'lit' => 'action',
+                    ],
+                    [
+                      'lit' => 'package_show',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -259,6 +279,10 @@ class DataGovAuConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.result`',
+                  ],
+                  'parts' => [
+                    'action',
+                    'package_show',
                   ],
                 ],
               ],
@@ -305,9 +329,13 @@ class DataGovAuConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/action/tag_list',
-                  'parts' => [
-                    'action',
-                    'tag_list',
+                  'segments' => [
+                    [
+                      'lit' => 'action',
+                    ],
+                    [
+                      'lit' => 'tag_list',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -317,6 +345,10 @@ class DataGovAuConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.result`',
+                  ],
+                  'parts' => [
+                    'action',
+                    'tag_list',
                   ],
                 ],
               ],
@@ -329,6 +361,7 @@ class DataGovAuConfig
         'organization' => [
           'fields' => [
             [
+              'format' => 'date-time',
               'name' => 'created',
               'type' => '`$STRING`',
             ],
@@ -341,6 +374,7 @@ class DataGovAuConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'uri',
               'name' => 'image_url',
               'type' => '`$STRING`',
             ],
@@ -373,6 +407,10 @@ class DataGovAuConfig
               'name' => 'title',
               'type' => '`$STRING`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
           ],
           'name' => 'organization',
           'op' => [
@@ -408,9 +446,13 @@ class DataGovAuConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/action/organization_list',
-                  'parts' => [
-                    'action',
-                    'organization_list',
+                  'segments' => [
+                    [
+                      'lit' => 'action',
+                    ],
+                    [
+                      'lit' => 'organization_list',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -422,6 +464,10 @@ class DataGovAuConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.result`',
+                  ],
+                  'parts' => [
+                    'action',
+                    'organization_list',
                   ],
                 ],
               ],
@@ -452,9 +498,13 @@ class DataGovAuConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/action/organization_show',
-                  'parts' => [
-                    'action',
-                    'organization_show',
+                  'segments' => [
+                    [
+                      'lit' => 'action',
+                    ],
+                    [
+                      'lit' => 'organization_show',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -465,6 +515,10 @@ class DataGovAuConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.result`',
+                  ],
+                  'parts' => [
+                    'action',
+                    'organization_show',
                   ],
                 ],
               ],

@@ -1,6 +1,14 @@
 # DataGovAu SDK configuration
 
 
+# The sekreto plugin DEFINITIONS the model selected per feature, imported
+# above by name from the modules the catalogue's active `plugin.def`
+# entries declare. Handed to each feature (secrets builds its Sekreto
+# with them): a provider kind not listed here is unknown to that SDK.
+FEATURE_PLUGINS = {
+}
+
+
 _shared_config = None
 
 
@@ -62,6 +70,7 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "email",
             "name": "author_email",
             "type": "`$STRING`",
           },
@@ -92,14 +101,17 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "email",
             "name": "maintainer_email",
             "type": "`$STRING`",
           },
           {
+            "format": "date-time",
             "name": "metadata_created",
             "type": "`$STRING`",
           },
           {
+            "format": "date-time",
             "name": "metadata_modified",
             "type": "`$STRING`",
           },
@@ -137,6 +149,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "dataset",
         "op": {
           "load": {
@@ -199,9 +215,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/action/package_search",
-                "parts": [
-                  "action",
-                  "package_search",
+                "segments": [
+                  {
+                    "lit": "action",
+                  },
+                  {
+                    "lit": "package_search",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -218,6 +238,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.result`",
                 },
+                "parts": [
+                  "action",
+                  "package_search",
+                ],
               },
               {
                 "args": {
@@ -241,9 +265,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/action/package_show",
-                "parts": [
-                  "action",
-                  "package_show",
+                "segments": [
+                  {
+                    "lit": "action",
+                  },
+                  {
+                    "lit": "package_show",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -255,6 +283,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.result`",
                 },
+                "parts": [
+                  "action",
+                  "package_show",
+                ],
               },
             ],
           },
@@ -300,9 +332,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/action/tag_list",
-                "parts": [
-                  "action",
-                  "tag_list",
+                "segments": [
+                  {
+                    "lit": "action",
+                  },
+                  {
+                    "lit": "tag_list",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -313,6 +349,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.result`",
                 },
+                "parts": [
+                  "action",
+                  "tag_list",
+                ],
               },
             ],
           },
@@ -324,6 +364,7 @@ def make_config():
       "organization": {
         "fields": [
           {
+            "format": "date-time",
             "name": "created",
             "type": "`$STRING`",
           },
@@ -336,6 +377,7 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "uri",
             "name": "image_url",
             "type": "`$STRING`",
           },
@@ -369,6 +411,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "organization",
         "op": {
           "list": {
@@ -403,9 +449,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/action/organization_list",
-                "parts": [
-                  "action",
-                  "organization_list",
+                "segments": [
+                  {
+                    "lit": "action",
+                  },
+                  {
+                    "lit": "organization_list",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -418,6 +468,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.result`",
                 },
+                "parts": [
+                  "action",
+                  "organization_list",
+                ],
               },
             ],
           },
@@ -447,9 +501,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/action/organization_show",
-                "parts": [
-                  "action",
-                  "organization_show",
+                "segments": [
+                  {
+                    "lit": "action",
+                  },
+                  {
+                    "lit": "organization_show",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -461,6 +519,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.result`",
                 },
+                "parts": [
+                  "action",
+                  "organization_show",
+                ],
               },
             ],
           },
