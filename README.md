@@ -105,7 +105,7 @@ local results, err = client:Organization():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/data-gov-au` | publish pending — [install from git tag](https://github.com/voxgig-sdk/data-gov-au-sdk/releases) |
+| TypeScript | `@voxgig-sdk/data-gov-au-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/data-gov-au-sdk/releases) |
 | Python | `voxgig-sdk-data-gov-au` | publish pending — [install from git tag](https://github.com/voxgig-sdk/data-gov-au-sdk/releases) |
 | PHP | `voxgig-sdk/data-gov-au` | publish pending — [install from git tag](https://github.com/voxgig-sdk/data-gov-au-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/data-gov-au-sdk/go` | `go get github.com/voxgig-sdk/data-gov-au-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:Organization():list()
 ### TypeScript
 
 ```ts
-import { DataGovAuSDK } from '@voxgig-sdk/data-gov-au'
+import { DataGovAuSDK } from '@voxgig-sdk/data-gov-au-sdk'
 
 const client = new DataGovAuSDK({
   apikey: process.env.DATA_GOV_AU_APIKEY,

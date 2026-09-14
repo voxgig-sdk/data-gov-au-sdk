@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { DataGovAuSDK } from '@voxgig-sdk/data-gov-au'
+import { DataGovAuSDK } from '@voxgig-sdk/data-gov-au-sdk'
 
 const client = new DataGovAuSDK({
   apikey: process.env.DATA_GOV_AU_APIKEY,
@@ -541,7 +541,7 @@ data-gov-au/
 Import the SDK from the package root:
 
 ```ts
-import { DataGovAuSDK } from '@voxgig-sdk/data-gov-au'
+import { DataGovAuSDK } from '@voxgig-sdk/data-gov-au-sdk'
 ```
 
 ### Entity state
