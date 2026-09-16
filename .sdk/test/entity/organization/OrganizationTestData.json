@@ -7,7 +7,7 @@
         "id": "ORGANIZATION00",
         "image_url": "s67",
         "name": "s68",
-        "package_count": "s69",
+        "package_count": 105,
         "packages": [],
         "result": [],
         "success": true,
@@ -19,7 +19,7 @@
         "id": "ORGANIZATION01",
         "image_url": "scb",
         "name": "scc",
-        "package_count": "scd",
+        "package_count": 205,
         "packages": [],
         "result": [],
         "success": true,
@@ -31,7 +31,7 @@
         "id": "ORGANIZATION02",
         "image_url": "s12f",
         "name": "s130",
-        "package_count": "s131",
+        "package_count": 305,
         "packages": [],
         "result": [],
         "success": true,
@@ -46,11 +46,212 @@
         "description": "s191",
         "image_url": "s193",
         "name": "s194",
-        "package_count": "s195",
+        "package_count": 405,
         "packages": [],
         "result": [],
         "success": true,
         "title": "s199"
+      }
+    }
+  },
+  "requests": {
+    "GET /action/organization_list": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "listOrganizations",
+        "parameters": [
+          {
+            "description": "Return full organization details instead of just names",
+            "in": "query",
+            "name": "all_fields",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Maximum number of organizations to return",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Offset for pagination",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "minimum": 0,
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "result": {
+                      "items": {
+                        "oneOf": [
+                          {
+                            "description": "Organization name when all_fields is false",
+                            "type": "string"
+                          },
+                          {
+                            "description": "Organization details when all_fields is true",
+                            "properties": {
+                              "created": {
+                                "format": "date-time",
+                                "type": "string"
+                              },
+                              "description": {
+                                "type": "string"
+                              },
+                              "id": {
+                                "type": "string"
+                              },
+                              "image_url": {
+                                "format": "uri",
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "package_count": {
+                                "type": "integer"
+                              },
+                              "title": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "success": {
+                      "example": true,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response with list of organizations"
+          }
+        },
+        "securitySchemes": {
+          "ApiKeyAuth": {
+            "description": "API key for authentication (required for certain operations like creating or modifying datasets)",
+            "in": "header",
+            "name": "X-CKAN-API-Key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /action/organization_show": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getOrganization",
+        "parameters": [
+          {
+            "description": "The ID or name of the organization",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Include a list of the organization's datasets",
+            "in": "query",
+            "name": "include_datasets",
+            "required": false,
+            "schema": {
+              "default": true,
+              "type": "boolean"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "result": {
+                      "properties": {
+                        "created": {
+                          "format": "date-time",
+                          "type": "string"
+                        },
+                        "description": {
+                          "type": "string"
+                        },
+                        "id": {
+                          "type": "string"
+                        },
+                        "image_url": {
+                          "format": "uri",
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "package_count": {
+                          "type": "integer"
+                        },
+                        "packages": {
+                          "items": {
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "title": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "success": {
+                      "example": true,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response with organization details"
+          },
+          "404": {
+            "description": "Organization not found"
+          }
+        },
+        "securitySchemes": {
+          "ApiKeyAuth": {
+            "description": "API key for authentication (required for certain operations like creating or modifying datasets)",
+            "in": "header",
+            "name": "X-CKAN-API-Key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }

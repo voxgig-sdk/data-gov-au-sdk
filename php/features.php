@@ -4,7 +4,10 @@ declare(strict_types=1);
 // DataGovAu SDK feature factory
 
 require_once __DIR__ . '/feature/BaseFeature.php';
+require_once __DIR__ . '/feature/RatelimitFeature.php';
+require_once __DIR__ . '/feature/RetryFeature.php';
 require_once __DIR__ . '/feature/TestFeature.php';
+require_once __DIR__ . '/feature/TimeoutFeature.php';
 
 
 class DataGovAuFeatures
@@ -14,8 +17,14 @@ class DataGovAuFeatures
         switch ($name) {
             case "base":
                 return new DataGovAuBaseFeature();
+            case "ratelimit":
+                return new DataGovAuRatelimitFeature();
+            case "retry":
+                return new DataGovAuRetryFeature();
             case "test":
                 return new DataGovAuTestFeature();
+            case "timeout":
+                return new DataGovAuTimeoutFeature();
             default:
                 return new DataGovAuBaseFeature();
         }
@@ -31,7 +40,10 @@ class DataGovAuFeatures
     {
         switch ($name) {
             case "base":
+            case "ratelimit":
+            case "retry":
             case "test":
+            case "timeout":
                 return true;
             default:
                 return false;

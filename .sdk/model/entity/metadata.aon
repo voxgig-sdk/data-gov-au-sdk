@@ -40,6 +40,12 @@ main: kit: entity: metadata: {
               }
             ]
           }
+          contract: {
+            id: "GET /action/tag_list"
+            json: "{\"operationId\":\"listTags\",\"parameters\":[{\"description\":\"Return full tag details instead of just names\",\"in\":\"query\",\"name\":\"all_fields\",\"required\":false,\"schema\":{\"default\":false,\"type\":\"boolean\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"result\":{\"items\":{\"oneOf\":[{\"type\":\"string\"},{\"properties\":{\"id\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"vocabulary_id\":{\"nullable\":true,\"type\":\"string\"}},\"type\":\"object\"}]},\"type\":\"array\"},\"success\":{\"example\":true,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response with list of tags\"}},\"securitySchemes\":{\"ApiKeyAuth\":{\"description\":\"API key for authentication (required for certain operations like creating or modifying datasets)\",\"in\":\"header\",\"name\":\"X-CKAN-API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/action/tag_list"
           segments: [

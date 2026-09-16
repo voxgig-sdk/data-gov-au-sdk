@@ -1,12 +1,18 @@
 # DataGovAu SDK feature factory
 
 from datagovau_sdk.feature.base_feature import DataGovAuBaseFeature
+from datagovau_sdk.feature.ratelimit_feature import DataGovAuRatelimitFeature
+from datagovau_sdk.feature.retry_feature import DataGovAuRetryFeature
 from datagovau_sdk.feature.test_feature import DataGovAuTestFeature
+from datagovau_sdk.feature.timeout_feature import DataGovAuTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: DataGovAuBaseFeature(),
+    "ratelimit": lambda: DataGovAuRatelimitFeature(),
+    "retry": lambda: DataGovAuRetryFeature(),
     "test": lambda: DataGovAuTestFeature(),
+    "timeout": lambda: DataGovAuTimeoutFeature(),
 }
 
 
