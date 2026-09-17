@@ -106,6 +106,7 @@ def make_config():
             "base": "https://data.gov.au/data/api/3",
             "auth": {
                 "prefix": "",
+                "name": "X-CKAN-API-Key",
             },
             "headers": {
         "content-type": "application/json",

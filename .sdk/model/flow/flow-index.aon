@@ -1,5 +1,5 @@
 # Flows
 
-@"BasicDatasetFlow.aon"
-@"BasicMetadataFlow.aon"
-@"BasicOrganizationFlow.aon"
+@"./BasicDatasetFlow.aon"
+@"./BasicMetadataFlow.aon"
+@"./BasicOrganizationFlow.aon"

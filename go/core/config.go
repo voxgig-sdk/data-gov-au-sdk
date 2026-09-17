@@ -81,6 +81,7 @@ func MakeConfig() map[string]any {
 			"base": "https://data.gov.au/data/api/3",
 			"auth": map[string]any{
 				"prefix": "",
+				"name": "X-CKAN-API-Key",
 			},
 			"headers": map[string]any{
 				"content-type": "application/json",

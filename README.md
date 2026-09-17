@@ -105,12 +105,12 @@ local results, err = client:Organization():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/data-gov-au-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/data-gov-au-sdk/releases) |
-| Python | `voxgig-sdk-data-gov-au` | publish pending — [install from git tag](https://github.com/voxgig-sdk/data-gov-au-sdk/releases) |
-| PHP | `voxgig-sdk/data-gov-au` | publish pending — [install from git tag](https://github.com/voxgig-sdk/data-gov-au-sdk/releases) |
+| TypeScript | `@voxgig-sdk/data-gov-au-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/data-gov-au-sdk/tags) |
+| Python | `voxgig-sdk-data-gov-au` | publish pending — [install from git tag](https://github.com/voxgig-sdk/data-gov-au-sdk/tags) |
+| PHP | `voxgig-sdk/data-gov-au` | publish pending — [install from git tag](https://github.com/voxgig-sdk/data-gov-au-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/data-gov-au-sdk/go` | `go get github.com/voxgig-sdk/data-gov-au-sdk/go@latest` |
-| Ruby | `voxgig-sdk-data-gov-au` | publish pending — [install from git tag](https://github.com/voxgig-sdk/data-gov-au-sdk/releases) |
-| Lua | `voxgig-sdk-data-gov-au` | publish pending — [install from git tag](https://github.com/voxgig-sdk/data-gov-au-sdk/releases) |
+| Ruby | `voxgig-sdk-data-gov-au` | publish pending — [install from git tag](https://github.com/voxgig-sdk/data-gov-au-sdk/tags) |
+| Lua | `voxgig-sdk-data-gov-au` | publish pending — [install from git tag](https://github.com/voxgig-sdk/data-gov-au-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/data-gov-au-sdk/go-cli` | `go install github.com/voxgig-sdk/data-gov-au-sdk/go-cli/cmd/data-gov-au@latest` |
 | Go MCP server | `github.com/voxgig-sdk/data-gov-au-sdk/go-mcp` | `go get github.com/voxgig-sdk/data-gov-au-sdk/go-mcp@latest` |
 

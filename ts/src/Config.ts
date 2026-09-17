@@ -123,6 +123,7 @@ class Config {
 
     auth: {
       prefix: '',
+      name: 'X-CKAN-API-Key',
     },
 
     headers: {
@@ -131,15 +132,15 @@ class Config {
 
     entity: {
       
-      dataset: {
-      },
-
-      metadata: {
-      },
-
-      organization: {
-      },
-
+        dataset: {
+        },
+  
+        metadata: {
+        },
+  
+        organization: {
+        },
+  
     }
   }
 
