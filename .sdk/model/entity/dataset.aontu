@@ -1,0 +1,284 @@
+# Entity: dataset
+
+main: kit: entity: dataset: {
+
+  alias: field: {}
+
+  fields: {
+    author: {
+      h: "Author"
+      n: "author"
+      r: false
+      t: "`$STRING`"
+    }
+    author_email: {
+      fo: "email"
+      h: "Author Email"
+      n: "author_email"
+      r: false
+      t: "`$STRING`"
+    }
+    count: {
+      h: "Count"
+      n: "count"
+      r: false
+      sh: "Total number of datasets matching the query"
+      t: "`$INTEGER`"
+    }
+    facets: {
+      h: "Facets"
+      n: "facets"
+      r: false
+      sh: "Faceted search results for aggregation"
+      t: "`$OBJECT`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+    license_id: {
+      h: "License Id"
+      n: "license_id"
+      r: false
+      t: "`$STRING`"
+    }
+    license_title: {
+      h: "License Title"
+      n: "license_title"
+      r: false
+      t: "`$STRING`"
+    }
+    maintainer: {
+      h: "Maintainer"
+      n: "maintainer"
+      r: false
+      t: "`$STRING`"
+    }
+    maintainer_email: {
+      fo: "email"
+      h: "Maintainer Email"
+      n: "maintainer_email"
+      r: false
+      t: "`$STRING`"
+    }
+    metadata_created: {
+      fo: "date-time"
+      h: "Metadata Created"
+      n: "metadata_created"
+      r: false
+      t: "`$STRING`"
+    }
+    metadata_modified: {
+      fo: "date-time"
+      h: "Metadata Modified"
+      n: "metadata_modified"
+      r: false
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      t: "`$STRING`"
+    }
+    notes: {
+      h: "Notes"
+      n: "notes"
+      r: false
+      t: "`$STRING`"
+    }
+    organization: {
+      h: "Organization"
+      n: "organization"
+      r: false
+      t: "`$OBJECT`"
+    }
+    resources: {
+      h: "Resources"
+      n: "resources"
+      r: false
+      t: "`$ARRAY`"
+    }
+    results: {
+      h: "Results"
+      n: "results"
+      r: false
+      t: "`$ARRAY`"
+    }
+    search_facets: {
+      h: "Search Facets"
+      n: "search_facets"
+      r: false
+      sh: "Search facet information"
+      t: "`$OBJECT`"
+    }
+    tags: {
+      h: "Tags"
+      n: "tags"
+      r: false
+      t: "`$ARRAY`"
+    }
+    title: {
+      h: "Title"
+      n: "title"
+      r: false
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "dataset"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /action/package_search"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "facet_field"
+                or: "facet_field"
+                r: false
+                t: "`$ARRAY`"
+              }
+              {
+                ex: "organization:health-dept"
+                k: "query"
+                n: "fq"
+                or: "fq"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "include_private"
+                or: "include_private"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: "health"
+                k: "query"
+                n: "q"
+                or: "q"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: 10
+                k: "query"
+                n: "row"
+                or: "row"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: "metadata_modified desc"
+                k: "query"
+                n: "sort"
+                or: "sort"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: 0
+                k: "query"
+                n: "start"
+                or: "start"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/action/package_search"
+          q: {
+            exist: [
+              "facet_field"
+              "fq"
+              "include_private"
+              "q"
+              "row"
+              "sort"
+              "start"
+            ]
+          }
+          s: [
+            {
+              lit: "action"
+            }
+            {
+              lit: "package_search"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.result`"
+          }
+        }
+        {
+          co: {
+            id: "GET /action/package_show"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "include_tracking"
+                or: "include_tracking"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/action/package_show"
+          q: {
+            exist: [
+              "id"
+              "include_tracking"
+            ]
+          }
+          s: [
+            {
+              lit: "action"
+            }
+            {
+              lit: "package_show"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.result`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -11,19 +11,12 @@ const FEATURE_CLASS = {
     test: TestFeature_1.TestFeature,
     timeout: TimeoutFeature_1.TimeoutFeature,
 };
-// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
-// the model's active plugin groups. A feature that takes a `plugins` option
-// (secrets over sekreto) reads its own entry; a feature with no plugins has
-// none. Named imports above make each definition statically reachable, so
-// an SDK carries exactly the plugin modules its model selects — the same
-// leanness the old side-effect registry imports bought, without a registry.
 const FEATURE_PLUGINS = {};
 exports.FEATURE_PLUGINS = FEATURE_PLUGINS;
 class Config {
     makeFeature(fn) {
         const fc = FEATURE_CLASS[fn];
         const fi = new fc();
-        // TODO: errors etc
         return fi;
     }
     // False for a feature added at runtime via options.extend (station's
@@ -120,85 +113,104 @@ class Config {
             "fields": [
                 {
                     "name": "author",
+                    "title": "Author",
                     "type": "`$STRING`"
                 },
                 {
-                    "format": "email",
                     "name": "author_email",
-                    "type": "`$STRING`"
+                    "title": "Author Email",
+                    "type": "`$STRING`",
+                    "format": "email"
                 },
                 {
                     "name": "count",
-                    "short": "Total number of datasets matching the query",
-                    "type": "`$INTEGER`"
+                    "title": "Count",
+                    "type": "`$INTEGER`",
+                    "short": "Total number of datasets matching the query"
                 },
                 {
                     "name": "facets",
-                    "short": "Faceted search results for aggregation",
-                    "type": "`$OBJECT`"
+                    "title": "Facets",
+                    "type": "`$OBJECT`",
+                    "short": "Faceted search results for aggregation"
                 },
                 {
                     "name": "id",
+                    "title": "Id",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "license_id",
+                    "title": "License Id",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "license_title",
+                    "title": "License Title",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "maintainer",
+                    "title": "Maintainer",
                     "type": "`$STRING`"
                 },
                 {
-                    "format": "email",
                     "name": "maintainer_email",
-                    "type": "`$STRING`"
+                    "title": "Maintainer Email",
+                    "type": "`$STRING`",
+                    "format": "email"
                 },
                 {
-                    "format": "date-time",
                     "name": "metadata_created",
-                    "type": "`$STRING`"
+                    "title": "Metadata Created",
+                    "type": "`$STRING`",
+                    "format": "date-time"
                 },
                 {
-                    "format": "date-time",
                     "name": "metadata_modified",
-                    "type": "`$STRING`"
+                    "title": "Metadata Modified",
+                    "type": "`$STRING`",
+                    "format": "date-time"
                 },
                 {
                     "name": "name",
+                    "title": "Name",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "notes",
+                    "title": "Notes",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "organization",
+                    "title": "Organization",
                     "type": "`$OBJECT`"
                 },
                 {
                     "name": "resources",
+                    "title": "Resources",
                     "type": "`$ARRAY`"
                 },
                 {
                     "name": "results",
+                    "title": "Results",
                     "type": "`$ARRAY`"
                 },
                 {
                     "name": "search_facets",
-                    "short": "Search facet information",
-                    "type": "`$OBJECT`"
+                    "title": "Search Facets",
+                    "type": "`$OBJECT`",
+                    "short": "Search facet information"
                 },
                 {
                     "name": "tags",
+                    "title": "Tags",
                     "type": "`$ARRAY`"
                 },
                 {
                     "name": "title",
+                    "title": "Title",
                     "type": "`$STRING`"
                 }
             ],
@@ -213,58 +225,6 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "facet_field",
-                                        "orig": "facet_field",
-                                        "type": "`$ARRAY`"
-                                    },
-                                    {
-                                        "example": "organization:health-dept",
-                                        "kind": "query",
-                                        "name": "fq",
-                                        "orig": "fq",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "example": false,
-                                        "kind": "query",
-                                        "name": "include_private",
-                                        "orig": "include_private",
-                                        "type": "`$BOOLEAN`"
-                                    },
-                                    {
-                                        "example": "health",
-                                        "kind": "query",
-                                        "name": "q",
-                                        "orig": "q",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "example": 10,
-                                        "kind": "query",
-                                        "name": "row",
-                                        "orig": "row",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "example": "metadata_modified desc",
-                                        "kind": "query",
-                                        "name": "sort",
-                                        "orig": "sort",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "example": 0,
-                                        "kind": "query",
-                                        "name": "start",
-                                        "orig": "start",
-                                        "type": "`$INTEGER`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/action/package_search",
@@ -276,6 +236,67 @@ class Config {
                                     "lit": "package_search"
                                 }
                             ],
+                            "parts": [
+                                "action",
+                                "package_search"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body.result`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "facet_field",
+                                        "orig": "facet_field",
+                                        "type": "`$ARRAY`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "fq",
+                                        "orig": "fq",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "example": "organization:health-dept"
+                                    },
+                                    {
+                                        "name": "include_private",
+                                        "orig": "include_private",
+                                        "type": "`$BOOLEAN`",
+                                        "kind": "query",
+                                        "example": false
+                                    },
+                                    {
+                                        "name": "q",
+                                        "orig": "q",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "example": "health"
+                                    },
+                                    {
+                                        "name": "row",
+                                        "orig": "row",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 10
+                                    },
+                                    {
+                                        "name": "sort",
+                                        "orig": "sort",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "example": "metadata_modified desc"
+                                    },
+                                    {
+                                        "name": "start",
+                                        "orig": "start",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 0
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "facet_field",
@@ -286,35 +307,9 @@ class Config {
                                     "sort",
                                     "start"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body.result`"
-                            },
-                            "parts": [
-                                "action",
-                                "package_search"
-                            ]
+                            }
                         },
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "id",
-                                        "orig": "id",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "example": false,
-                                        "kind": "query",
-                                        "name": "include_tracking",
-                                        "orig": "include_tracking",
-                                        "type": "`$BOOLEAN`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/action/package_show",
@@ -326,20 +321,39 @@ class Config {
                                     "lit": "package_show"
                                 }
                             ],
+                            "parts": [
+                                "action",
+                                "package_show"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body.result`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "id",
+                                        "orig": "id",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "reqd": true
+                                    },
+                                    {
+                                        "name": "include_tracking",
+                                        "orig": "include_tracking",
+                                        "type": "`$BOOLEAN`",
+                                        "kind": "query",
+                                        "example": false
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "id",
                                     "include_tracking"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body.result`"
-                            },
-                            "parts": [
-                                "action",
-                                "package_show"
-                            ]
+                            }
                         }
                     ]
                 }
@@ -352,15 +366,12 @@ class Config {
             "fields": [
                 {
                     "name": "result",
-                    "type": "`$ARRAY`",
-                    "union": {
-                        "branches": 2,
-                        "count": 1,
-                        "depth": 1
-                    }
+                    "title": "Result",
+                    "type": "`$ARRAY`"
                 },
                 {
                     "name": "success",
+                    "title": "Success",
                     "type": "`$BOOLEAN`"
                 }
             ],
@@ -371,17 +382,6 @@ class Config {
                     "name": "list",
                     "points": [
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "example": false,
-                                        "kind": "query",
-                                        "name": "all_field",
-                                        "orig": "all_field",
-                                        "type": "`$BOOLEAN`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/action/tag_list",
@@ -393,19 +393,31 @@ class Config {
                                     "lit": "tag_list"
                                 }
                             ],
-                            "select": {
-                                "exist": [
-                                    "all_field"
-                                ]
-                            },
+                            "parts": [
+                                "action",
+                                "tag_list"
+                            ],
+                            "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body.result`"
                             },
-                            "parts": [
-                                "action",
-                                "tag_list"
-                            ]
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "all_field",
+                                        "orig": "all_field",
+                                        "type": "`$BOOLEAN`",
+                                        "kind": "query",
+                                        "example": false
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "exist": [
+                                    "all_field"
+                                ]
+                            }
                         }
                     ]
                 }
@@ -417,50 +429,55 @@ class Config {
         "organization": {
             "fields": [
                 {
-                    "format": "date-time",
                     "name": "created",
-                    "type": "`$STRING`"
+                    "title": "Created",
+                    "type": "`$STRING`",
+                    "format": "date-time"
                 },
                 {
                     "name": "description",
+                    "title": "Description",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "id",
+                    "title": "Id",
                     "type": "`$STRING`"
                 },
                 {
-                    "format": "uri",
                     "name": "image_url",
-                    "type": "`$STRING`"
+                    "title": "Image Url",
+                    "type": "`$STRING`",
+                    "format": "uri"
                 },
                 {
                     "name": "name",
+                    "title": "Name",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "package_count",
+                    "title": "Package Count",
                     "type": "`$INTEGER`"
                 },
                 {
                     "name": "packages",
+                    "title": "Packages",
                     "type": "`$ARRAY`"
                 },
                 {
                     "name": "result",
-                    "type": "`$ARRAY`",
-                    "union": {
-                        "branches": 2,
-                        "count": 1,
-                        "depth": 1
-                    }
+                    "title": "Result",
+                    "type": "`$ARRAY`"
                 },
                 {
                     "name": "success",
+                    "title": "Success",
                     "type": "`$BOOLEAN`"
                 },
                 {
                     "name": "title",
+                    "title": "Title",
                     "type": "`$STRING`"
                 }
             ],
@@ -475,30 +492,6 @@ class Config {
                     "name": "list",
                     "points": [
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "example": false,
-                                        "kind": "query",
-                                        "name": "all_field",
-                                        "orig": "all_field",
-                                        "type": "`$BOOLEAN`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "limit",
-                                        "orig": "limit",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "example": 0,
-                                        "kind": "query",
-                                        "name": "offset",
-                                        "orig": "offset",
-                                        "type": "`$INTEGER`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/action/organization_list",
@@ -510,21 +503,46 @@ class Config {
                                     "lit": "organization_list"
                                 }
                             ],
+                            "parts": [
+                                "action",
+                                "organization_list"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body.result`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "all_field",
+                                        "orig": "all_field",
+                                        "type": "`$BOOLEAN`",
+                                        "kind": "query",
+                                        "example": false
+                                    },
+                                    {
+                                        "name": "limit",
+                                        "orig": "limit",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "offset",
+                                        "orig": "offset",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 0
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "all_field",
                                     "limit",
                                     "offset"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body.result`"
-                            },
-                            "parts": [
-                                "action",
-                                "organization_list"
-                            ]
+                            }
                         }
                     ]
                 },
@@ -533,24 +551,6 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "id",
-                                        "orig": "id",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "example": true,
-                                        "kind": "query",
-                                        "name": "include_dataset",
-                                        "orig": "include_dataset",
-                                        "type": "`$BOOLEAN`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/action/organization_show",
@@ -562,20 +562,39 @@ class Config {
                                     "lit": "organization_show"
                                 }
                             ],
+                            "parts": [
+                                "action",
+                                "organization_show"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body.result`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "id",
+                                        "orig": "id",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "reqd": true
+                                    },
+                                    {
+                                        "name": "include_dataset",
+                                        "orig": "include_dataset",
+                                        "type": "`$BOOLEAN`",
+                                        "kind": "query",
+                                        "example": true
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "id",
                                     "include_dataset"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body.result`"
-                            },
-                            "parts": [
-                                "action",
-                                "organization_show"
-                            ]
+                            }
                         }
                     ]
                 }

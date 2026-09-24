@@ -19,7 +19,6 @@ import type {
   MetadataListMatch,
 } from '../DataGovAuTypes'
 
-// TODO: needs Entity superclass
 class MetadataEntity extends DataGovAuEntityBase<Metadata> {
 
   constructor(client: DataGovAuSDK, entopts: any) {

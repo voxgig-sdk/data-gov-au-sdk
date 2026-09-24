@@ -97,85 +97,104 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "author",
+						"title": "Author",
 						"type": "`$STRING`",
 					},
 					map[string]any{
-						"format": "email",
 						"name": "author_email",
+						"title": "Author Email",
 						"type": "`$STRING`",
+						"format": "email",
 					},
 					map[string]any{
 						"name": "count",
-						"short": "Total number of datasets matching the query",
+						"title": "Count",
 						"type": "`$INTEGER`",
+						"short": "Total number of datasets matching the query",
 					},
 					map[string]any{
 						"name": "facets",
-						"short": "Faceted search results for aggregation",
+						"title": "Facets",
 						"type": "`$OBJECT`",
+						"short": "Faceted search results for aggregation",
 					},
 					map[string]any{
 						"name": "id",
+						"title": "Id",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "license_id",
+						"title": "License Id",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "license_title",
+						"title": "License Title",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "maintainer",
+						"title": "Maintainer",
 						"type": "`$STRING`",
 					},
 					map[string]any{
-						"format": "email",
 						"name": "maintainer_email",
+						"title": "Maintainer Email",
 						"type": "`$STRING`",
+						"format": "email",
 					},
 					map[string]any{
-						"format": "date-time",
 						"name": "metadata_created",
+						"title": "Metadata Created",
 						"type": "`$STRING`",
+						"format": "date-time",
 					},
 					map[string]any{
-						"format": "date-time",
 						"name": "metadata_modified",
+						"title": "Metadata Modified",
 						"type": "`$STRING`",
+						"format": "date-time",
 					},
 					map[string]any{
 						"name": "name",
+						"title": "Name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "notes",
+						"title": "Notes",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "organization",
+						"title": "Organization",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "resources",
+						"title": "Resources",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "results",
+						"title": "Results",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "search_facets",
-						"short": "Search facet information",
+						"title": "Search Facets",
 						"type": "`$OBJECT`",
+						"short": "Search facet information",
 					},
 					map[string]any{
 						"name": "tags",
+						"title": "Tags",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "title",
+						"title": "Title",
 						"type": "`$STRING`",
 					},
 				},
@@ -190,58 +209,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "facet_field",
-											"orig": "facet_field",
-											"type": "`$ARRAY`",
-										},
-										map[string]any{
-											"example": "organization:health-dept",
-											"kind": "query",
-											"name": "fq",
-											"orig": "fq",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": false,
-											"kind": "query",
-											"name": "include_private",
-											"orig": "include_private",
-											"type": "`$BOOLEAN`",
-										},
-										map[string]any{
-											"example": "health",
-											"kind": "query",
-											"name": "q",
-											"orig": "q",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": 10,
-											"kind": "query",
-											"name": "row",
-											"orig": "row",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"example": "metadata_modified desc",
-											"kind": "query",
-											"name": "sort",
-											"orig": "sort",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": 0,
-											"kind": "query",
-											"name": "start",
-											"orig": "start",
-											"type": "`$INTEGER`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/action/package_search",
@@ -251,6 +218,67 @@ func MakeConfig() map[string]any {
 									},
 									map[string]any{
 										"lit": "package_search",
+									},
+								},
+								"parts": []any{
+									"action",
+									"package_search",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.result`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "facet_field",
+											"orig": "facet_field",
+											"type": "`$ARRAY`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "fq",
+											"orig": "fq",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "organization:health-dept",
+										},
+										map[string]any{
+											"name": "include_private",
+											"orig": "include_private",
+											"type": "`$BOOLEAN`",
+											"kind": "query",
+											"example": false,
+										},
+										map[string]any{
+											"name": "q",
+											"orig": "q",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "health",
+										},
+										map[string]any{
+											"name": "row",
+											"orig": "row",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 10,
+										},
+										map[string]any{
+											"name": "sort",
+											"orig": "sort",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "metadata_modified desc",
+										},
+										map[string]any{
+											"name": "start",
+											"orig": "start",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 0,
+										},
 									},
 								},
 								"select": map[string]any{
@@ -264,34 +292,8 @@ func MakeConfig() map[string]any {
 										"start",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.result`",
-								},
-								"parts": []any{
-									"action",
-									"package_search",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": false,
-											"kind": "query",
-											"name": "include_tracking",
-											"orig": "include_tracking",
-											"type": "`$BOOLEAN`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/action/package_show",
@@ -303,19 +305,38 @@ func MakeConfig() map[string]any {
 										"lit": "package_show",
 									},
 								},
+								"parts": []any{
+									"action",
+									"package_show",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.result`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "query",
+											"reqd": true,
+										},
+										map[string]any{
+											"name": "include_tracking",
+											"orig": "include_tracking",
+											"type": "`$BOOLEAN`",
+											"kind": "query",
+											"example": false,
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"id",
 										"include_tracking",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.result`",
-								},
-								"parts": []any{
-									"action",
-									"package_show",
 								},
 							},
 						},
@@ -329,15 +350,12 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "result",
+						"title": "Result",
 						"type": "`$ARRAY`",
-						"union": map[string]any{
-							"branches": 2,
-							"count": 1,
-							"depth": 1,
-						},
 					},
 					map[string]any{
 						"name": "success",
+						"title": "Success",
 						"type": "`$BOOLEAN`",
 					},
 				},
@@ -348,17 +366,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": false,
-											"kind": "query",
-											"name": "all_field",
-											"orig": "all_field",
-											"type": "`$BOOLEAN`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/action/tag_list",
@@ -370,18 +377,30 @@ func MakeConfig() map[string]any {
 										"lit": "tag_list",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"all_field",
-									},
+								"parts": []any{
+									"action",
+									"tag_list",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.result`",
 								},
-								"parts": []any{
-									"action",
-									"tag_list",
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "all_field",
+											"orig": "all_field",
+											"type": "`$BOOLEAN`",
+											"kind": "query",
+											"example": false,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"all_field",
+									},
 								},
 							},
 						},
@@ -394,50 +413,55 @@ func MakeConfig() map[string]any {
 			"organization": map[string]any{
 				"fields": []any{
 					map[string]any{
-						"format": "date-time",
 						"name": "created",
+						"title": "Created",
 						"type": "`$STRING`",
+						"format": "date-time",
 					},
 					map[string]any{
 						"name": "description",
+						"title": "Description",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "id",
+						"title": "Id",
 						"type": "`$STRING`",
 					},
 					map[string]any{
-						"format": "uri",
 						"name": "image_url",
+						"title": "Image Url",
 						"type": "`$STRING`",
+						"format": "uri",
 					},
 					map[string]any{
 						"name": "name",
+						"title": "Name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "package_count",
+						"title": "Package Count",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "packages",
+						"title": "Packages",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "result",
+						"title": "Result",
 						"type": "`$ARRAY`",
-						"union": map[string]any{
-							"branches": 2,
-							"count": 1,
-							"depth": 1,
-						},
 					},
 					map[string]any{
 						"name": "success",
+						"title": "Success",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "title",
+						"title": "Title",
 						"type": "`$STRING`",
 					},
 				},
@@ -452,30 +476,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": false,
-											"kind": "query",
-											"name": "all_field",
-											"orig": "all_field",
-											"type": "`$BOOLEAN`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"example": 0,
-											"kind": "query",
-											"name": "offset",
-											"orig": "offset",
-											"type": "`$INTEGER`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/action/organization_list",
@@ -487,20 +487,45 @@ func MakeConfig() map[string]any {
 										"lit": "organization_list",
 									},
 								},
+								"parts": []any{
+									"action",
+									"organization_list",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.result`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "all_field",
+											"orig": "all_field",
+											"type": "`$BOOLEAN`",
+											"kind": "query",
+											"example": false,
+										},
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "offset",
+											"orig": "offset",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 0,
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"all_field",
 										"limit",
 										"offset",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.result`",
-								},
-								"parts": []any{
-									"action",
-									"organization_list",
 								},
 							},
 						},
@@ -510,24 +535,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": true,
-											"kind": "query",
-											"name": "include_dataset",
-											"orig": "include_dataset",
-											"type": "`$BOOLEAN`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/action/organization_show",
@@ -539,19 +546,38 @@ func MakeConfig() map[string]any {
 										"lit": "organization_show",
 									},
 								},
+								"parts": []any{
+									"action",
+									"organization_show",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.result`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "query",
+											"reqd": true,
+										},
+										map[string]any{
+											"name": "include_dataset",
+											"orig": "include_dataset",
+											"type": "`$BOOLEAN`",
+											"kind": "query",
+											"example": true,
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"id",
 										"include_dataset",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.result`",
-								},
-								"parts": []any{
-									"action",
-									"organization_show",
 								},
 							},
 						},

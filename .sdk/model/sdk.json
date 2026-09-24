@@ -24,135 +24,220 @@
         "repr": "auto"
       },
       "contributor": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "published": false,
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
       "entity": {
         "dataset": {
           "active": true,
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "author",
-              "req": false,
-              "type": "`$STRING`"
+          "fields": {
+            "author": {
+              "a": true,
+              "h": "Author",
+              "n": "author",
+              "r": false,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "email",
-              "name": "author_email",
-              "req": false,
-              "type": "`$STRING`"
+            "author_email": {
+              "a": true,
+              "fo": "email",
+              "h": "Author Email",
+              "n": "author_email",
+              "r": false,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "count",
-              "req": false,
-              "short": "Total number of datasets matching the query",
-              "type": "`$INTEGER`"
+            "count": {
+              "a": true,
+              "h": "Count",
+              "n": "count",
+              "r": false,
+              "sh": "Total number of datasets matching the query",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "facets",
-              "req": false,
-              "short": "Faceted search results for aggregation",
-              "type": "`$OBJECT`"
+            "facets": {
+              "a": true,
+              "h": "Facets",
+              "n": "facets",
+              "r": false,
+              "sh": "Faceted search results for aggregation",
+              "t": "`$OBJECT`"
             },
-            {
-              "active": true,
-              "name": "id",
-              "req": false,
-              "type": "`$STRING`"
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "license_id",
-              "req": false,
-              "type": "`$STRING`"
+            "license_id": {
+              "a": true,
+              "h": "License Id",
+              "n": "license_id",
+              "r": false,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "license_title",
-              "req": false,
-              "type": "`$STRING`"
+            "license_title": {
+              "a": true,
+              "h": "License Title",
+              "n": "license_title",
+              "r": false,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "maintainer",
-              "req": false,
-              "type": "`$STRING`"
+            "maintainer": {
+              "a": true,
+              "h": "Maintainer",
+              "n": "maintainer",
+              "r": false,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "email",
-              "name": "maintainer_email",
-              "req": false,
-              "type": "`$STRING`"
+            "maintainer_email": {
+              "a": true,
+              "fo": "email",
+              "h": "Maintainer Email",
+              "n": "maintainer_email",
+              "r": false,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "date-time",
-              "name": "metadata_created",
-              "req": false,
-              "type": "`$STRING`"
+            "metadata_created": {
+              "a": true,
+              "fo": "date-time",
+              "h": "Metadata Created",
+              "n": "metadata_created",
+              "r": false,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "date-time",
-              "name": "metadata_modified",
-              "req": false,
-              "type": "`$STRING`"
+            "metadata_modified": {
+              "a": true,
+              "fo": "date-time",
+              "h": "Metadata Modified",
+              "n": "metadata_modified",
+              "r": false,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "name",
-              "req": false,
-              "type": "`$STRING`"
+            "name": {
+              "a": true,
+              "h": "Name",
+              "n": "name",
+              "r": false,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "notes",
-              "req": false,
-              "type": "`$STRING`"
+            "notes": {
+              "a": true,
+              "h": "Notes",
+              "n": "notes",
+              "r": false,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "organization",
-              "req": false,
-              "type": "`$OBJECT`"
+            "organization": {
+              "a": true,
+              "h": "Organization",
+              "n": "organization",
+              "r": false,
+              "t": "`$OBJECT`"
             },
-            {
-              "active": true,
-              "name": "resources",
-              "req": false,
-              "type": "`$ARRAY`"
+            "resources": {
+              "a": true,
+              "h": "Resources",
+              "n": "resources",
+              "r": false,
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "results",
-              "req": false,
-              "type": "`$ARRAY`"
+            "results": {
+              "a": true,
+              "h": "Results",
+              "n": "results",
+              "r": false,
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "search_facets",
-              "req": false,
-              "short": "Search facet information",
-              "type": "`$OBJECT`"
+            "search_facets": {
+              "a": true,
+              "h": "Search Facets",
+              "n": "search_facets",
+              "r": false,
+              "sh": "Search facet information",
+              "t": "`$OBJECT`"
             },
-            {
-              "active": true,
-              "name": "tags",
-              "req": false,
-              "type": "`$ARRAY`"
+            "tags": {
+              "a": true,
+              "h": "Tags",
+              "n": "tags",
+              "r": false,
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "title",
-              "req": false,
-              "type": "`$STRING`"
+            "title": {
+              "a": true,
+              "h": "Title",
+              "n": "title",
+              "r": false,
+              "t": "`$STRING`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -164,91 +249,82 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /action/package_search",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "facet_field",
-                        "orig": "facet_field",
-                        "reqd": false,
-                        "type": "`$ARRAY`"
+                        "a": true,
+                        "k": "query",
+                        "n": "facet_field",
+                        "or": "facet_field",
+                        "r": false,
+                        "t": "`$ARRAY`"
                       },
                       {
-                        "active": true,
-                        "example": "organization:health-dept",
-                        "kind": "query",
-                        "name": "fq",
-                        "orig": "fq",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "organization:health-dept",
+                        "k": "query",
+                        "n": "fq",
+                        "or": "fq",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": false,
-                        "kind": "query",
-                        "name": "include_private",
-                        "orig": "include_private",
-                        "reqd": false,
-                        "type": "`$BOOLEAN`"
+                        "a": true,
+                        "ex": false,
+                        "k": "query",
+                        "n": "include_private",
+                        "or": "include_private",
+                        "r": false,
+                        "t": "`$BOOLEAN`"
                       },
                       {
-                        "active": true,
-                        "example": "health",
-                        "kind": "query",
-                        "name": "q",
-                        "orig": "q",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "health",
+                        "k": "query",
+                        "n": "q",
+                        "or": "q",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": 10,
-                        "kind": "query",
-                        "name": "row",
-                        "orig": "row",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "ex": 10,
+                        "k": "query",
+                        "n": "row",
+                        "or": "row",
+                        "r": false,
+                        "t": "`$INTEGER`"
                       },
                       {
-                        "active": true,
-                        "example": "metadata_modified desc",
-                        "kind": "query",
-                        "name": "sort",
-                        "orig": "sort",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "metadata_modified desc",
+                        "k": "query",
+                        "n": "sort",
+                        "or": "sort",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": 0,
-                        "kind": "query",
-                        "name": "start",
-                        "orig": "start",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "ex": 0,
+                        "k": "query",
+                        "n": "start",
+                        "or": "start",
+                        "r": false,
+                        "t": "`$INTEGER`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /action/package_search",
-                    "json": "{\"operationId\":\"searchDatasets\",\"parameters\":[{\"description\":\"Search query string to filter datasets\",\"in\":\"query\",\"name\":\"q\",\"required\":false,\"schema\":{\"example\":\"health\",\"type\":\"string\"}},{\"description\":\"Filter query using Solr syntax for advanced filtering\",\"in\":\"query\",\"name\":\"fq\",\"required\":false,\"schema\":{\"example\":\"organization:health-dept\",\"type\":\"string\"}},{\"description\":\"Number of results to return per page\",\"in\":\"query\",\"name\":\"rows\",\"required\":false,\"schema\":{\"default\":10,\"maximum\":1000,\"minimum\":1,\"type\":\"integer\"}},{\"description\":\"Offset for pagination\",\"in\":\"query\",\"name\":\"start\",\"required\":false,\"schema\":{\"default\":0,\"minimum\":0,\"type\":\"integer\"}},{\"description\":\"Sort order for results (e.g., 'metadata_modified desc')\",\"in\":\"query\",\"name\":\"sort\",\"required\":false,\"schema\":{\"example\":\"metadata_modified desc\",\"type\":\"string\"}},{\"description\":\"Fields to facet on for aggregated results\",\"explode\":true,\"in\":\"query\",\"name\":\"facet.field\",\"required\":false,\"schema\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"style\":\"form\"},{\"description\":\"Include private datasets (requires authentication)\",\"in\":\"query\",\"name\":\"include_private\",\"required\":false,\"schema\":{\"default\":false,\"type\":\"boolean\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"result\":{\"properties\":{\"count\":{\"description\":\"Total number of datasets matching the query\",\"type\":\"integer\"},\"facets\":{\"description\":\"Faceted search results for aggregation\",\"type\":\"object\"},\"results\":{\"items\":{\"properties\":{\"author\":{\"description\":\"Author of the dataset\",\"type\":\"string\"},\"author_email\":{\"description\":\"Contact email for the dataset author\",\"format\":\"email\",\"type\":\"string\"},\"id\":{\"description\":\"Unique identifier for the dataset\",\"type\":\"string\"},\"license_id\":{\"description\":\"License identifier for the dataset\",\"type\":\"string\"},\"license_title\":{\"description\":\"License title for the dataset\",\"type\":\"string\"},\"maintainer\":{\"description\":\"Maintainer of the dataset\",\"type\":\"string\"},\"maintainer_email\":{\"description\":\"Contact email for the dataset maintainer\",\"format\":\"email\",\"type\":\"string\"},\"metadata_created\":{\"description\":\"Date and time when the metadata was created\",\"format\":\"date-time\",\"type\":\"string\"},\"metadata_modified\":{\"description\":\"Date and time when the metadata was last modified\",\"format\":\"date-time\",\"type\":\"string\"},\"name\":{\"description\":\"Machine-readable name of the dataset\",\"type\":\"string\"},\"notes\":{\"description\":\"Description of the dataset\",\"type\":\"string\"},\"organization\":{\"properties\":{\"description\":{\"description\":\"Organization description\",\"type\":\"string\"},\"id\":{\"description\":\"Organization ID\",\"type\":\"string\"},\"name\":{\"description\":\"Organization name\",\"type\":\"string\"},\"title\":{\"description\":\"Organization title\",\"type\":\"string\"}},\"type\":\"object\"},\"resources\":{\"description\":\"List of downloadable resources associated with the dataset\",\"items\":{\"properties\":{\"created\":{\"format\":\"date-time\",\"type\":\"string\"},\"description\":{\"description\":\"Resource description\",\"type\":\"string\"},\"format\":{\"description\":\"File format of the resource\",\"type\":\"string\"},\"id\":{\"description\":\"Resource ID\",\"type\":\"string\"},\"last_modified\":{\"format\":\"date-time\",\"type\":\"string\"},\"name\":{\"description\":\"Resource name\",\"type\":\"string\"},\"url\":{\"description\":\"URL to download the resource\",\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"tags\":{\"items\":{\"properties\":{\"display_name\":{\"type\":\"string\"},\"id\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"title\":{\"description\":\"Human-readable title of the dataset\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"search_facets\":{\"description\":\"Search facet information\",\"type\":\"object\"}},\"type\":\"object\"},\"success\":{\"example\":true,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response with dataset search results\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"__type\":{\"type\":\"string\"},\"message\":{\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Bad request - invalid parameters\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"message\":{\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"securitySchemes\":{\"ApiKeyAuth\":{\"description\":\"API key for authentication (required for certain operations like creating or modifying datasets)\",\"in\":\"header\",\"name\":\"X-CKAN-API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/action/package_search",
-                  "segments": [
-                    {
-                      "lit": "action"
-                    },
-                    {
-                      "lit": "package_search"
-                    }
-                  ],
-                  "select": {
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/action/package_search",
+                  "q": {
                     "exist": [
                       "facet_field",
                       "fq",
@@ -259,44 +335,59 @@
                       "start"
                     ]
                   },
-                  "transform": {
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "action"
+                    },
+                    {
+                      "lit": "package_search"
+                    }
+                  ],
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.result`"
                   }
                 },
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /action/package_show",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "id",
-                        "orig": "id",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "id",
+                        "or": "id",
+                        "r": true,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": false,
-                        "kind": "query",
-                        "name": "include_tracking",
-                        "orig": "include_tracking",
-                        "reqd": false,
-                        "type": "`$BOOLEAN`"
+                        "a": true,
+                        "ex": false,
+                        "k": "query",
+                        "n": "include_tracking",
+                        "or": "include_tracking",
+                        "r": false,
+                        "t": "`$BOOLEAN`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /action/package_show",
-                    "json": "{\"operationId\":\"getDataset\",\"parameters\":[{\"description\":\"The ID or name of the dataset\",\"in\":\"query\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Include tracking information\",\"in\":\"query\",\"name\":\"include_tracking\",\"required\":false,\"schema\":{\"default\":false,\"type\":\"boolean\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"result\":{\"properties\":{\"author\":{\"type\":\"string\"},\"author_email\":{\"format\":\"email\",\"type\":\"string\"},\"id\":{\"type\":\"string\"},\"license_id\":{\"type\":\"string\"},\"license_title\":{\"type\":\"string\"},\"maintainer\":{\"type\":\"string\"},\"maintainer_email\":{\"format\":\"email\",\"type\":\"string\"},\"metadata_created\":{\"format\":\"date-time\",\"type\":\"string\"},\"metadata_modified\":{\"format\":\"date-time\",\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"notes\":{\"type\":\"string\"},\"organization\":{\"type\":\"object\"},\"resources\":{\"items\":{\"type\":\"object\"},\"type\":\"array\"},\"tags\":{\"items\":{\"type\":\"object\"},\"type\":\"array\"},\"title\":{\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":true,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response with dataset details\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"message\":{\"example\":\"Not found\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Dataset not found\"}},\"securitySchemes\":{\"ApiKeyAuth\":{\"description\":\"API key for authentication (required for certain operations like creating or modifying datasets)\",\"in\":\"header\",\"name\":\"X-CKAN-API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/action/package_show",
+                  "q": {
+                    "exist": [
+                      "id",
+                      "include_tracking"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/action/package_show",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "action"
                     },
@@ -304,13 +395,7 @@
                       "lit": "package_show"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "id",
-                      "include_tracking"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.result`"
                   }
@@ -327,25 +412,27 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "result",
-              "req": false,
-              "type": "`$ARRAY`",
+          "fields": {
+            "result": {
+              "a": true,
+              "h": "Result",
+              "n": "result",
+              "r": false,
+              "t": "`$ARRAY`",
               "union": {
                 "branches": 2,
                 "count": 1,
                 "depth": 1
               }
             },
-            {
-              "active": true,
-              "name": "success",
-              "req": false,
-              "type": "`$BOOLEAN`"
+            "success": {
+              "a": true,
+              "h": "Success",
+              "n": "success",
+              "r": false,
+              "t": "`$BOOLEAN`"
             }
-          ],
+          },
           "name": "metadata",
           "op": {
             "list": {
@@ -353,30 +440,35 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /action/tag_list",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": false,
-                        "kind": "query",
-                        "name": "all_field",
-                        "orig": "all_field",
-                        "reqd": false,
-                        "type": "`$BOOLEAN`"
+                        "a": true,
+                        "ex": false,
+                        "k": "query",
+                        "n": "all_field",
+                        "or": "all_field",
+                        "r": false,
+                        "t": "`$BOOLEAN`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /action/tag_list",
-                    "json": "{\"operationId\":\"listTags\",\"parameters\":[{\"description\":\"Return full tag details instead of just names\",\"in\":\"query\",\"name\":\"all_fields\",\"required\":false,\"schema\":{\"default\":false,\"type\":\"boolean\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"result\":{\"items\":{\"oneOf\":[{\"type\":\"string\"},{\"properties\":{\"id\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"vocabulary_id\":{\"nullable\":true,\"type\":\"string\"}},\"type\":\"object\"}]},\"type\":\"array\"},\"success\":{\"example\":true,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response with list of tags\"}},\"securitySchemes\":{\"ApiKeyAuth\":{\"description\":\"API key for authentication (required for certain operations like creating or modifying datasets)\",\"in\":\"header\",\"name\":\"X-CKAN-API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/action/tag_list",
+                  "q": {
+                    "exist": [
+                      "all_field"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/action/tag_list",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "action"
                     },
@@ -384,12 +476,7 @@
                       "lit": "tag_list"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "all_field"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.result`"
                   }
@@ -406,75 +493,85 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "format": "date-time",
-              "name": "created",
-              "req": false,
-              "type": "`$STRING`"
+          "fields": {
+            "created": {
+              "a": true,
+              "fo": "date-time",
+              "h": "Created",
+              "n": "created",
+              "r": false,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "description",
-              "req": false,
-              "type": "`$STRING`"
+            "description": {
+              "a": true,
+              "h": "Description",
+              "n": "description",
+              "r": false,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "id",
-              "req": false,
-              "type": "`$STRING`"
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "image_url",
-              "req": false,
-              "type": "`$STRING`"
+            "image_url": {
+              "a": true,
+              "fo": "uri",
+              "h": "Image Url",
+              "n": "image_url",
+              "r": false,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "name",
-              "req": false,
-              "type": "`$STRING`"
+            "name": {
+              "a": true,
+              "h": "Name",
+              "n": "name",
+              "r": false,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "package_count",
-              "req": false,
-              "type": "`$INTEGER`"
+            "package_count": {
+              "a": true,
+              "h": "Package Count",
+              "n": "package_count",
+              "r": false,
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "packages",
-              "req": false,
-              "type": "`$ARRAY`"
+            "packages": {
+              "a": true,
+              "h": "Packages",
+              "n": "packages",
+              "r": false,
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "result",
-              "req": false,
-              "type": "`$ARRAY`",
+            "result": {
+              "a": true,
+              "h": "Result",
+              "n": "result",
+              "r": false,
+              "t": "`$ARRAY`",
               "union": {
                 "branches": 2,
                 "count": 1,
                 "depth": 1
               }
             },
-            {
-              "active": true,
-              "name": "success",
-              "req": false,
-              "type": "`$BOOLEAN`"
+            "success": {
+              "a": true,
+              "h": "Success",
+              "n": "success",
+              "r": false,
+              "t": "`$BOOLEAN`"
             },
-            {
-              "active": true,
-              "name": "title",
-              "req": false,
-              "type": "`$STRING`"
+            "title": {
+              "a": true,
+              "h": "Title",
+              "n": "title",
+              "r": false,
+              "t": "`$STRING`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -486,47 +583,54 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /action/organization_list",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": false,
-                        "kind": "query",
-                        "name": "all_field",
-                        "orig": "all_field",
-                        "reqd": false,
-                        "type": "`$BOOLEAN`"
+                        "a": true,
+                        "ex": false,
+                        "k": "query",
+                        "n": "all_field",
+                        "or": "all_field",
+                        "r": false,
+                        "t": "`$BOOLEAN`"
                       },
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "limit",
-                        "orig": "limit",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "k": "query",
+                        "n": "limit",
+                        "or": "limit",
+                        "r": false,
+                        "t": "`$INTEGER`"
                       },
                       {
-                        "active": true,
-                        "example": 0,
-                        "kind": "query",
-                        "name": "offset",
-                        "orig": "offset",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "ex": 0,
+                        "k": "query",
+                        "n": "offset",
+                        "or": "offset",
+                        "r": false,
+                        "t": "`$INTEGER`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /action/organization_list",
-                    "json": "{\"operationId\":\"listOrganizations\",\"parameters\":[{\"description\":\"Return full organization details instead of just names\",\"in\":\"query\",\"name\":\"all_fields\",\"required\":false,\"schema\":{\"default\":false,\"type\":\"boolean\"}},{\"description\":\"Maximum number of organizations to return\",\"in\":\"query\",\"name\":\"limit\",\"required\":false,\"schema\":{\"minimum\":1,\"type\":\"integer\"}},{\"description\":\"Offset for pagination\",\"in\":\"query\",\"name\":\"offset\",\"required\":false,\"schema\":{\"default\":0,\"minimum\":0,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"result\":{\"items\":{\"oneOf\":[{\"description\":\"Organization name when all_fields is false\",\"type\":\"string\"},{\"description\":\"Organization details when all_fields is true\",\"properties\":{\"created\":{\"format\":\"date-time\",\"type\":\"string\"},\"description\":{\"type\":\"string\"},\"id\":{\"type\":\"string\"},\"image_url\":{\"format\":\"uri\",\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"package_count\":{\"type\":\"integer\"},\"title\":{\"type\":\"string\"}},\"type\":\"object\"}]},\"type\":\"array\"},\"success\":{\"example\":true,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response with list of organizations\"}},\"securitySchemes\":{\"ApiKeyAuth\":{\"description\":\"API key for authentication (required for certain operations like creating or modifying datasets)\",\"in\":\"header\",\"name\":\"X-CKAN-API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/action/organization_list",
+                  "q": {
+                    "exist": [
+                      "all_field",
+                      "limit",
+                      "offset"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/action/organization_list",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "action"
                     },
@@ -534,14 +638,7 @@
                       "lit": "organization_list"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "all_field",
-                      "limit",
-                      "offset"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.result`"
                   }
@@ -553,38 +650,44 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /action/organization_show",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "id",
-                        "orig": "id",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "id",
+                        "or": "id",
+                        "r": true,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": true,
-                        "kind": "query",
-                        "name": "include_dataset",
-                        "orig": "include_dataset",
-                        "reqd": false,
-                        "type": "`$BOOLEAN`"
+                        "a": true,
+                        "ex": true,
+                        "k": "query",
+                        "n": "include_dataset",
+                        "or": "include_dataset",
+                        "r": false,
+                        "t": "`$BOOLEAN`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /action/organization_show",
-                    "json": "{\"operationId\":\"getOrganization\",\"parameters\":[{\"description\":\"The ID or name of the organization\",\"in\":\"query\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Include a list of the organization's datasets\",\"in\":\"query\",\"name\":\"include_datasets\",\"required\":false,\"schema\":{\"default\":true,\"type\":\"boolean\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"result\":{\"properties\":{\"created\":{\"format\":\"date-time\",\"type\":\"string\"},\"description\":{\"type\":\"string\"},\"id\":{\"type\":\"string\"},\"image_url\":{\"format\":\"uri\",\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"package_count\":{\"type\":\"integer\"},\"packages\":{\"items\":{\"type\":\"object\"},\"type\":\"array\"},\"title\":{\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":true,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response with organization details\"},\"404\":{\"description\":\"Organization not found\"}},\"securitySchemes\":{\"ApiKeyAuth\":{\"description\":\"API key for authentication (required for certain operations like creating or modifying datasets)\",\"in\":\"header\",\"name\":\"X-CKAN-API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/action/organization_show",
+                  "q": {
+                    "exist": [
+                      "id",
+                      "include_dataset"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/action/organization_show",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "action"
                     },
@@ -592,13 +695,7 @@
                       "lit": "organization_show"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "id",
-                      "include_dataset"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.result`"
                   }
@@ -1027,17 +1124,17 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "dataset_ref01",
                 "srcdatavar": "dataset_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {},
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "m": {},
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -1057,13 +1154,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -1083,13 +1180,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -1099,17 +1196,17 @@
               ]
             },
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "organization_ref01",
                 "srcdatavar": "organization_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {},
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "m": {},
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {

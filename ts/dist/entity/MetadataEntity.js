@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MetadataEntity = void 0;
 const DataGovAuEntityBase_1 = require("../DataGovAuEntityBase");
-// TODO: needs Entity superclass
 class MetadataEntity extends DataGovAuEntityBase_1.DataGovAuEntityBase {
     constructor(client, entopts) {
         super(client, entopts);

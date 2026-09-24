@@ -1,0 +1,199 @@
+# Entity: organization
+
+main: kit: entity: organization: {
+
+  alias: field: {}
+
+  fields: {
+    created: {
+      fo: "date-time"
+      h: "Created"
+      n: "created"
+      r: false
+      t: "`$STRING`"
+    }
+    description: {
+      h: "Description"
+      n: "description"
+      r: false
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+    image_url: {
+      fo: "uri"
+      h: "Image Url"
+      n: "image_url"
+      r: false
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      t: "`$STRING`"
+    }
+    package_count: {
+      h: "Package Count"
+      n: "package_count"
+      r: false
+      t: "`$INTEGER`"
+    }
+    packages: {
+      h: "Packages"
+      n: "packages"
+      r: false
+      t: "`$ARRAY`"
+    }
+    result: {
+      h: "Result"
+      n: "result"
+      r: false
+      t: "`$ARRAY`"
+      union: {
+        branches: 2
+        count: 1
+        depth: 1
+      }
+    }
+    success: {
+      h: "Success"
+      n: "success"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    title: {
+      h: "Title"
+      n: "title"
+      r: false
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "organization"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /action/organization_list"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: false
+                k: "query"
+                n: "all_field"
+                or: "all_field"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: 0
+                k: "query"
+                n: "offset"
+                or: "offset"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/action/organization_list"
+          q: {
+            exist: [
+              "all_field"
+              "limit"
+              "offset"
+            ]
+          }
+          s: [
+            {
+              lit: "action"
+            }
+            {
+              lit: "organization_list"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.result`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /action/organization_show"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: true
+                k: "query"
+                n: "include_dataset"
+                or: "include_dataset"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/action/organization_show"
+          q: {
+            exist: [
+              "id"
+              "include_dataset"
+            ]
+          }
+          s: [
+            {
+              lit: "action"
+            }
+            {
+              lit: "organization_show"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.result`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -105,85 +105,104 @@ module DataGovAuConfig
           "fields" => [
             {
               "name" => "author",
+              "title" => "Author",
               "type" => "`$STRING`",
             },
             {
-              "format" => "email",
               "name" => "author_email",
+              "title" => "Author Email",
               "type" => "`$STRING`",
+              "format" => "email",
             },
             {
               "name" => "count",
-              "short" => "Total number of datasets matching the query",
+              "title" => "Count",
               "type" => "`$INTEGER`",
+              "short" => "Total number of datasets matching the query",
             },
             {
               "name" => "facets",
-              "short" => "Faceted search results for aggregation",
+              "title" => "Facets",
               "type" => "`$OBJECT`",
+              "short" => "Faceted search results for aggregation",
             },
             {
               "name" => "id",
+              "title" => "Id",
               "type" => "`$STRING`",
             },
             {
               "name" => "license_id",
+              "title" => "License Id",
               "type" => "`$STRING`",
             },
             {
               "name" => "license_title",
+              "title" => "License Title",
               "type" => "`$STRING`",
             },
             {
               "name" => "maintainer",
+              "title" => "Maintainer",
               "type" => "`$STRING`",
             },
             {
-              "format" => "email",
               "name" => "maintainer_email",
+              "title" => "Maintainer Email",
               "type" => "`$STRING`",
+              "format" => "email",
             },
             {
-              "format" => "date-time",
               "name" => "metadata_created",
+              "title" => "Metadata Created",
               "type" => "`$STRING`",
+              "format" => "date-time",
             },
             {
-              "format" => "date-time",
               "name" => "metadata_modified",
+              "title" => "Metadata Modified",
               "type" => "`$STRING`",
+              "format" => "date-time",
             },
             {
               "name" => "name",
+              "title" => "Name",
               "type" => "`$STRING`",
             },
             {
               "name" => "notes",
+              "title" => "Notes",
               "type" => "`$STRING`",
             },
             {
               "name" => "organization",
+              "title" => "Organization",
               "type" => "`$OBJECT`",
             },
             {
               "name" => "resources",
+              "title" => "Resources",
               "type" => "`$ARRAY`",
             },
             {
               "name" => "results",
+              "title" => "Results",
               "type" => "`$ARRAY`",
             },
             {
               "name" => "search_facets",
-              "short" => "Search facet information",
+              "title" => "Search Facets",
               "type" => "`$OBJECT`",
+              "short" => "Search facet information",
             },
             {
               "name" => "tags",
+              "title" => "Tags",
               "type" => "`$ARRAY`",
             },
             {
               "name" => "title",
+              "title" => "Title",
               "type" => "`$STRING`",
             },
           ],
@@ -198,58 +217,6 @@ module DataGovAuConfig
               "name" => "load",
               "points" => [
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "kind" => "query",
-                        "name" => "facet_field",
-                        "orig" => "facet_field",
-                        "type" => "`$ARRAY`",
-                      },
-                      {
-                        "example" => "organization:health-dept",
-                        "kind" => "query",
-                        "name" => "fq",
-                        "orig" => "fq",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "example" => false,
-                        "kind" => "query",
-                        "name" => "include_private",
-                        "orig" => "include_private",
-                        "type" => "`$BOOLEAN`",
-                      },
-                      {
-                        "example" => "health",
-                        "kind" => "query",
-                        "name" => "q",
-                        "orig" => "q",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "example" => 10,
-                        "kind" => "query",
-                        "name" => "row",
-                        "orig" => "row",
-                        "type" => "`$INTEGER`",
-                      },
-                      {
-                        "example" => "metadata_modified desc",
-                        "kind" => "query",
-                        "name" => "sort",
-                        "orig" => "sort",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "example" => 0,
-                        "kind" => "query",
-                        "name" => "start",
-                        "orig" => "start",
-                        "type" => "`$INTEGER`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/action/package_search",
@@ -261,6 +228,67 @@ module DataGovAuConfig
                       "lit" => "package_search",
                     },
                   ],
+                  "parts" => [
+                    "action",
+                    "package_search",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body.result`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "facet_field",
+                        "orig" => "facet_field",
+                        "type" => "`$ARRAY`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "fq",
+                        "orig" => "fq",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "organization:health-dept",
+                      },
+                      {
+                        "name" => "include_private",
+                        "orig" => "include_private",
+                        "type" => "`$BOOLEAN`",
+                        "kind" => "query",
+                        "example" => false,
+                      },
+                      {
+                        "name" => "q",
+                        "orig" => "q",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "health",
+                      },
+                      {
+                        "name" => "row",
+                        "orig" => "row",
+                        "type" => "`$INTEGER`",
+                        "kind" => "query",
+                        "example" => 10,
+                      },
+                      {
+                        "name" => "sort",
+                        "orig" => "sort",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "metadata_modified desc",
+                      },
+                      {
+                        "name" => "start",
+                        "orig" => "start",
+                        "type" => "`$INTEGER`",
+                        "kind" => "query",
+                        "example" => 0,
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "facet_field",
@@ -272,34 +300,8 @@ module DataGovAuConfig
                       "start",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body.result`",
-                  },
-                  "parts" => [
-                    "action",
-                    "package_search",
-                  ],
                 },
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "kind" => "query",
-                        "name" => "id",
-                        "orig" => "id",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "example" => false,
-                        "kind" => "query",
-                        "name" => "include_tracking",
-                        "orig" => "include_tracking",
-                        "type" => "`$BOOLEAN`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/action/package_show",
@@ -311,20 +313,39 @@ module DataGovAuConfig
                       "lit" => "package_show",
                     },
                   ],
+                  "parts" => [
+                    "action",
+                    "package_show",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body.result`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "id",
+                        "orig" => "id",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "reqd" => true,
+                      },
+                      {
+                        "name" => "include_tracking",
+                        "orig" => "include_tracking",
+                        "type" => "`$BOOLEAN`",
+                        "kind" => "query",
+                        "example" => false,
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "id",
                       "include_tracking",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body.result`",
-                  },
-                  "parts" => [
-                    "action",
-                    "package_show",
-                  ],
                 },
               ],
             },
@@ -337,15 +358,12 @@ module DataGovAuConfig
           "fields" => [
             {
               "name" => "result",
+              "title" => "Result",
               "type" => "`$ARRAY`",
-              "union" => {
-                "branches" => 2,
-                "count" => 1,
-                "depth" => 1,
-              },
             },
             {
               "name" => "success",
+              "title" => "Success",
               "type" => "`$BOOLEAN`",
             },
           ],
@@ -356,17 +374,6 @@ module DataGovAuConfig
               "name" => "list",
               "points" => [
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "example" => false,
-                        "kind" => "query",
-                        "name" => "all_field",
-                        "orig" => "all_field",
-                        "type" => "`$BOOLEAN`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/action/tag_list",
@@ -378,19 +385,31 @@ module DataGovAuConfig
                       "lit" => "tag_list",
                     },
                   ],
+                  "parts" => [
+                    "action",
+                    "tag_list",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body.result`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "all_field",
+                        "orig" => "all_field",
+                        "type" => "`$BOOLEAN`",
+                        "kind" => "query",
+                        "example" => false,
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "all_field",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body.result`",
-                  },
-                  "parts" => [
-                    "action",
-                    "tag_list",
-                  ],
                 },
               ],
             },
@@ -402,50 +421,55 @@ module DataGovAuConfig
         "organization" => {
           "fields" => [
             {
-              "format" => "date-time",
               "name" => "created",
+              "title" => "Created",
               "type" => "`$STRING`",
+              "format" => "date-time",
             },
             {
               "name" => "description",
+              "title" => "Description",
               "type" => "`$STRING`",
             },
             {
               "name" => "id",
+              "title" => "Id",
               "type" => "`$STRING`",
             },
             {
-              "format" => "uri",
               "name" => "image_url",
+              "title" => "Image Url",
               "type" => "`$STRING`",
+              "format" => "uri",
             },
             {
               "name" => "name",
+              "title" => "Name",
               "type" => "`$STRING`",
             },
             {
               "name" => "package_count",
+              "title" => "Package Count",
               "type" => "`$INTEGER`",
             },
             {
               "name" => "packages",
+              "title" => "Packages",
               "type" => "`$ARRAY`",
             },
             {
               "name" => "result",
+              "title" => "Result",
               "type" => "`$ARRAY`",
-              "union" => {
-                "branches" => 2,
-                "count" => 1,
-                "depth" => 1,
-              },
             },
             {
               "name" => "success",
+              "title" => "Success",
               "type" => "`$BOOLEAN`",
             },
             {
               "name" => "title",
+              "title" => "Title",
               "type" => "`$STRING`",
             },
           ],
@@ -460,30 +484,6 @@ module DataGovAuConfig
               "name" => "list",
               "points" => [
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "example" => false,
-                        "kind" => "query",
-                        "name" => "all_field",
-                        "orig" => "all_field",
-                        "type" => "`$BOOLEAN`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "limit",
-                        "orig" => "limit",
-                        "type" => "`$INTEGER`",
-                      },
-                      {
-                        "example" => 0,
-                        "kind" => "query",
-                        "name" => "offset",
-                        "orig" => "offset",
-                        "type" => "`$INTEGER`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/action/organization_list",
@@ -495,6 +495,39 @@ module DataGovAuConfig
                       "lit" => "organization_list",
                     },
                   ],
+                  "parts" => [
+                    "action",
+                    "organization_list",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body.result`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "all_field",
+                        "orig" => "all_field",
+                        "type" => "`$BOOLEAN`",
+                        "kind" => "query",
+                        "example" => false,
+                      },
+                      {
+                        "name" => "limit",
+                        "orig" => "limit",
+                        "type" => "`$INTEGER`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "offset",
+                        "orig" => "offset",
+                        "type" => "`$INTEGER`",
+                        "kind" => "query",
+                        "example" => 0,
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "all_field",
@@ -502,14 +535,6 @@ module DataGovAuConfig
                       "offset",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body.result`",
-                  },
-                  "parts" => [
-                    "action",
-                    "organization_list",
-                  ],
                 },
               ],
             },
@@ -518,24 +543,6 @@ module DataGovAuConfig
               "name" => "load",
               "points" => [
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "kind" => "query",
-                        "name" => "id",
-                        "orig" => "id",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "example" => true,
-                        "kind" => "query",
-                        "name" => "include_dataset",
-                        "orig" => "include_dataset",
-                        "type" => "`$BOOLEAN`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/action/organization_show",
@@ -547,20 +554,39 @@ module DataGovAuConfig
                       "lit" => "organization_show",
                     },
                   ],
+                  "parts" => [
+                    "action",
+                    "organization_show",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body.result`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "id",
+                        "orig" => "id",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "reqd" => true,
+                      },
+                      {
+                        "name" => "include_dataset",
+                        "orig" => "include_dataset",
+                        "type" => "`$BOOLEAN`",
+                        "kind" => "query",
+                        "example" => true,
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "id",
                       "include_dataset",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body.result`",
-                  },
-                  "parts" => [
-                    "action",
-                    "organization_show",
-                  ],
                 },
               ],
             },
