@@ -233,7 +233,7 @@ func MakeConfig() map[string]any {
 									"query": []any{
 										map[string]any{
 											"name": "facet_field",
-											"orig": "facet_field",
+											"orig": "facet.field",
 											"type": "`$ARRAY`",
 											"kind": "query",
 										},
@@ -260,7 +260,7 @@ func MakeConfig() map[string]any {
 										},
 										map[string]any{
 											"name": "row",
-											"orig": "row",
+											"orig": "rows",
 											"type": "`$INTEGER`",
 											"kind": "query",
 											"example": 10,
@@ -390,7 +390,7 @@ func MakeConfig() map[string]any {
 									"query": []any{
 										map[string]any{
 											"name": "all_field",
-											"orig": "all_field",
+											"orig": "all_fields",
 											"type": "`$BOOLEAN`",
 											"kind": "query",
 											"example": false,
@@ -500,7 +500,7 @@ func MakeConfig() map[string]any {
 									"query": []any{
 										map[string]any{
 											"name": "all_field",
-											"orig": "all_field",
+											"orig": "all_fields",
 											"type": "`$BOOLEAN`",
 											"kind": "query",
 											"example": false,
@@ -566,7 +566,7 @@ func MakeConfig() map[string]any {
 										},
 										map[string]any{
 											"name": "include_dataset",
-											"orig": "include_dataset",
+											"orig": "include_datasets",
 											"type": "`$BOOLEAN`",
 											"kind": "query",
 											"example": true,

@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 DataGovAuUtility.registrar = ->(u) {
   u.clean = DataGovAuUtilities::Clean
+  u.clean_add = DataGovAuUtilities::CleanAdd
+  u.clean_explain = DataGovAuUtilities::CleanExplain
   u.done = DataGovAuUtilities::Done
   u.make_error = DataGovAuUtilities::MakeError
   u.feature_add = DataGovAuUtilities::FeatureAdd

@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 DataGovAuUtility::setRegistrar(function (DataGovAuUtility $u): void {
     $u->clean = [DataGovAuClean::class, 'call'];
+    $u->clean_add = [DataGovAuClean::class, 'add'];
+    $u->clean_explain = [DataGovAuDone::class, 'clean_explain'];
     $u->done = [DataGovAuDone::class, 'call'];
     $u->make_error = [DataGovAuMakeError::class, 'call'];
     $u->feature_add = [DataGovAuFeatureAdd::class, 'call'];

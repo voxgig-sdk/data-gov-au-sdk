@@ -41,7 +41,7 @@ main: kit: entity: metadata: {
                 ex: false
                 k: "query"
                 n: "all_field"
-                or: "all_field"
+                or: "all_fields"
                 r: false
                 t: "`$BOOLEAN`"
               }

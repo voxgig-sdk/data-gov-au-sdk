@@ -258,7 +258,7 @@ def make_config():
                   "query": [
                     {
                       "name": "facet_field",
-                      "orig": "facet_field",
+                      "orig": "facet.field",
                       "type": "`$ARRAY`",
                       "kind": "query",
                     },
@@ -285,7 +285,7 @@ def make_config():
                     },
                     {
                       "name": "row",
-                      "orig": "row",
+                      "orig": "rows",
                       "type": "`$INTEGER`",
                       "kind": "query",
                       "example": 10,
@@ -415,7 +415,7 @@ def make_config():
                   "query": [
                     {
                       "name": "all_field",
-                      "orig": "all_field",
+                      "orig": "all_fields",
                       "type": "`$BOOLEAN`",
                       "kind": "query",
                       "example": False,
@@ -525,7 +525,7 @@ def make_config():
                   "query": [
                     {
                       "name": "all_field",
-                      "orig": "all_field",
+                      "orig": "all_fields",
                       "type": "`$BOOLEAN`",
                       "kind": "query",
                       "example": False,
@@ -591,7 +591,7 @@ def make_config():
                     },
                     {
                       "name": "include_dataset",
-                      "orig": "include_dataset",
+                      "orig": "include_datasets",
                       "type": "`$BOOLEAN`",
                       "kind": "query",
                       "example": True,

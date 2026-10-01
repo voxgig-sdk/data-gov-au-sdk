@@ -261,7 +261,7 @@
                         "a": true,
                         "k": "query",
                         "n": "facet_field",
-                        "or": "facet_field",
+                        "or": "facet.field",
                         "r": false,
                         "t": "`$ARRAY`"
                       },
@@ -297,7 +297,7 @@
                         "ex": 10,
                         "k": "query",
                         "n": "row",
-                        "or": "row",
+                        "or": "rows",
                         "r": false,
                         "t": "`$INTEGER`"
                       },
@@ -453,7 +453,7 @@
                         "ex": false,
                         "k": "query",
                         "n": "all_field",
-                        "or": "all_field",
+                        "or": "all_fields",
                         "r": false,
                         "t": "`$BOOLEAN`"
                       }
@@ -596,7 +596,7 @@
                         "ex": false,
                         "k": "query",
                         "n": "all_field",
-                        "or": "all_field",
+                        "or": "all_fields",
                         "r": false,
                         "t": "`$BOOLEAN`"
                       },
@@ -671,7 +671,7 @@
                         "ex": true,
                         "k": "query",
                         "n": "include_dataset",
-                        "or": "include_dataset",
+                        "or": "include_datasets",
                         "r": false,
                         "t": "`$BOOLEAN`"
                       }
@@ -1265,7 +1265,12 @@
         },
         "base": "http://localhost:8000",
         "clean": {
-          "keys": "key,token,id"
+          "active": true,
+          "hint": "0",
+          "keys": "key,secret,token,password,passwd,authorization,cookie,credential,signature",
+          "mask": "[redacted]",
+          "min": "4",
+          "values": ""
         },
         "entity": {
           "`$CHILD`": {

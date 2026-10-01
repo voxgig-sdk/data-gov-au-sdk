@@ -249,7 +249,7 @@ class Config {
                                 "query": [
                                     {
                                         "name": "facet_field",
-                                        "orig": "facet_field",
+                                        "orig": "facet.field",
                                         "type": "`$ARRAY`",
                                         "kind": "query"
                                     },
@@ -276,7 +276,7 @@ class Config {
                                     },
                                     {
                                         "name": "row",
-                                        "orig": "row",
+                                        "orig": "rows",
                                         "type": "`$INTEGER`",
                                         "kind": "query",
                                         "example": 10
@@ -406,7 +406,7 @@ class Config {
                                 "query": [
                                     {
                                         "name": "all_field",
-                                        "orig": "all_field",
+                                        "orig": "all_fields",
                                         "type": "`$BOOLEAN`",
                                         "kind": "query",
                                         "example": false
@@ -516,7 +516,7 @@ class Config {
                                 "query": [
                                     {
                                         "name": "all_field",
-                                        "orig": "all_field",
+                                        "orig": "all_fields",
                                         "type": "`$BOOLEAN`",
                                         "kind": "query",
                                         "example": false
@@ -582,7 +582,7 @@ class Config {
                                     },
                                     {
                                         "name": "include_dataset",
-                                        "orig": "include_dataset",
+                                        "orig": "include_datasets",
                                         "type": "`$BOOLEAN`",
                                         "kind": "query",
                                         "example": true

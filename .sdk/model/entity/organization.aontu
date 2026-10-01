@@ -96,7 +96,7 @@ main: kit: entity: organization: {
                 ex: false
                 k: "query"
                 n: "all_field"
-                or: "all_field"
+                or: "all_fields"
                 r: false
                 t: "`$BOOLEAN`"
               }
@@ -163,7 +163,7 @@ main: kit: entity: organization: {
                 ex: true
                 k: "query"
                 n: "include_dataset"
-                or: "include_dataset"
+                or: "include_datasets"
                 r: false
                 t: "`$BOOLEAN`"
               }

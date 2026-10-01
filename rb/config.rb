@@ -241,7 +241,7 @@ module DataGovAuConfig
                     "query" => [
                       {
                         "name" => "facet_field",
-                        "orig" => "facet_field",
+                        "orig" => "facet.field",
                         "type" => "`$ARRAY`",
                         "kind" => "query",
                       },
@@ -268,7 +268,7 @@ module DataGovAuConfig
                       },
                       {
                         "name" => "row",
-                        "orig" => "row",
+                        "orig" => "rows",
                         "type" => "`$INTEGER`",
                         "kind" => "query",
                         "example" => 10,
@@ -398,7 +398,7 @@ module DataGovAuConfig
                     "query" => [
                       {
                         "name" => "all_field",
-                        "orig" => "all_field",
+                        "orig" => "all_fields",
                         "type" => "`$BOOLEAN`",
                         "kind" => "query",
                         "example" => false,
@@ -508,7 +508,7 @@ module DataGovAuConfig
                     "query" => [
                       {
                         "name" => "all_field",
-                        "orig" => "all_field",
+                        "orig" => "all_fields",
                         "type" => "`$BOOLEAN`",
                         "kind" => "query",
                         "example" => false,
@@ -574,7 +574,7 @@ module DataGovAuConfig
                       },
                       {
                         "name" => "include_dataset",
-                        "orig" => "include_dataset",
+                        "orig" => "include_datasets",
                         "type" => "`$BOOLEAN`",
                         "kind" => "query",
                         "example" => true,

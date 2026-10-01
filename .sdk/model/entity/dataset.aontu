@@ -149,7 +149,7 @@ main: kit: entity: dataset: {
               {
                 k: "query"
                 n: "facet_field"
-                or: "facet_field"
+                or: "facet.field"
                 r: false
                 t: "`$ARRAY`"
               }
@@ -181,7 +181,7 @@ main: kit: entity: dataset: {
                 ex: 10
                 k: "query"
                 n: "row"
-                or: "row"
+                or: "rows"
                 r: false
                 t: "`$INTEGER`"
               }
