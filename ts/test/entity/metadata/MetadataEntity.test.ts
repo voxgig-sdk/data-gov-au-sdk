@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { DataGovAuSDK, BaseFeature, stdutil } from '../../..'
+import { DataGovAuSDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,64 @@ describe('MetadataEntity', async () => {
   })
 
 
+  class FailHook extends BaseFeature {
+    name = 'failhook'
+    version = '0.0.1'
+    active = true
+    unexpected = 0
+    init() { }
+    PreSpec() { throw new Error('metadata hook failed') }
+    PreUnexpected() { this.unexpected++ }
+  }
+
+  test('stream-error', async () => {
+    const offline = { net: { offline: true } }
+    await assert.rejects(async () => {
+      for await (const _item of DataGovAuSDK.test(offline).Metadata().stream('list')) { }
+    }, /offline/)
+
+    for await (const _item of DataGovAuSDK.test(offline).Metadata()
+      .stream('list', undefined, { ctrl: { throw: false } })) { }
+
+    if (null != (config as any).feature?.rbac) {
+      const denied = DataGovAuSDK.test(undefined, { feature: { rbac: { active: true, deny: true } } })
+      await assert.rejects(async () => {
+        for await (const _item of denied.Metadata().stream('list')) { }
+      }, (err: any) => 'rbac_denied' === err.code)
+    }
+  })
+
+  test('stream-ctrl', async () => {
+    const explain: any = {}
+    const ctrl: any = { explain }
+    for await (const _item of DataGovAuSDK.test().Metadata().stream('list', undefined, { ctrl })) { }
+    assert.deepStrictEqual(Object.keys(ctrl), ['explain'])
+    assert(explain === ctrl.explain && 0 < Object.keys(explain).length)
+  })
+
+  test('unexpected', async () => {
+    const hook = new FailHook()
+    const client = new DataGovAuSDK({ feature: { test: { active: true } }, extend: [hook] })
+    await assert.rejects(client.Metadata().list(), /hook failed/)
+    assert(0 < hook.unexpected)
+
+    const fired = hook.unexpected
+    assert.strictEqual(await client.Metadata().list(undefined, { throw: false }), undefined)
+    assert(fired < hook.unexpected)
+  })
+
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = DataGovAuSDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.Metadata().list({"all_field":"x"} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.DATA_GOV_AU_TEST_LIVE
@@ -51,7 +109,7 @@ describe('MetadataEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"result":{"a":true,"h":"Result","n":"result","r":false,"t":"`$ARRAY`","union":{"branches":2,"count":1,"depth":1},"key$":"result","index$":0},"success":{"a":true,"h":"Success","n":"success","r":false,"t":"`$BOOLEAN`","key$":"success","index$":1}},"name":"metadata","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /action/tag_list","source":"openapi3","version":2},"g":{"query":[{"a":true,"ex":false,"k":"query","n":"all_field","or":"all_fields","r":false,"t":"`$BOOLEAN`","index$":0}]},"k":"http","m":"GET","o":"/action/tag_list","q":{"exist":["all_field"]},"r":{},"s":[{"lit":"action"},{"lit":"tag_list"}],"t":{"req":"`reqdata`","res":"`body.result`"},"index$":0}],"key$":"list"}},"relations":{"ancestors":[]},"key$":"metadata","name__orig":"metadata","Name":"Metadata","name_":"metadata","name-":"metadata","NAME":"METADATA","index$":1}, {"active":true,"entity":"metadata","key$":"BasicMetadataFlow","kind":"basic","name":"BasicMetadataFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"metadata_ref01"}}],"index$":0}]}, 'Metadata', {"GET /action/tag_list":{"protocol":"http","parameters":[{"name":"all_fields","in":"query","description":"Return full tag details instead of just names","required":false,"schema":{"type":"boolean","default":false},"index$":0}]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"result":{"a":true,"h":"Result","n":"result","r":false,"t":"`$ARRAY`","union":{"branches":2,"count":1,"depth":1},"key$":"result","index$":0},"success":{"a":true,"h":"Success","n":"success","r":false,"t":"`$BOOLEAN`","key$":"success","index$":1}},"name":"metadata","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /action/tag_list","source":"openapi3","version":2},"g":{"query":[{"a":true,"ex":false,"k":"query","n":"all_field","or":"all_fields","r":false,"t":"`$BOOLEAN`","index$":0}]},"k":"http","m":"GET","o":"/action/tag_list","q":{},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"action"},{"lit":"tag_list"}],"t":{"req":"`reqdata`","res":"`body.result`"},"index$":0}],"key$":"list"}},"relations":{"ancestors":[]},"key$":"metadata","name__orig":"metadata","Name":"Metadata","name_":"metadata","name-":"metadata","NAME":"METADATA","index$":1}, {"active":true,"entity":"metadata","key$":"BasicMetadataFlow","kind":"basic","name":"BasicMetadataFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"metadata_ref01"}}],"index$":0}]}, 'Metadata', {"GET /action/tag_list":{"protocol":"http","parameters":[{"name":"all_fields","in":"query","description":"Return full tag details instead of just names","required":false,"schema":{"type":"boolean","default":false},"index$":0}]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -72,6 +130,12 @@ describe('MetadataEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

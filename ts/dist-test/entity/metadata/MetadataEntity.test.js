@@ -54,6 +54,53 @@ const utility_1 = require("../../utility");
         const ent = testsdk.Metadata();
         (0, node_assert_1.default)(null != ent);
     });
+    class FailHook extends __1.BaseFeature {
+        name = 'failhook';
+        version = '0.0.1';
+        active = true;
+        unexpected = 0;
+        init() { }
+        PreSpec() { throw new Error('metadata hook failed'); }
+        PreUnexpected() { this.unexpected++; }
+    }
+    (0, node_test_1.test)('stream-error', async () => {
+        const offline = { net: { offline: true } };
+        await node_assert_1.default.rejects(async () => {
+            for await (const _item of __1.DataGovAuSDK.test(offline).Metadata().stream('list')) { }
+        }, /offline/);
+        for await (const _item of __1.DataGovAuSDK.test(offline).Metadata()
+            .stream('list', undefined, { ctrl: { throw: false } })) { }
+        if (null != __1.config.feature?.rbac) {
+            const denied = __1.DataGovAuSDK.test(undefined, { feature: { rbac: { active: true, deny: true } } });
+            await node_assert_1.default.rejects(async () => {
+                for await (const _item of denied.Metadata().stream('list')) { }
+            }, (err) => 'rbac_denied' === err.code);
+        }
+    });
+    (0, node_test_1.test)('stream-ctrl', async () => {
+        const explain = {};
+        const ctrl = { explain };
+        for await (const _item of __1.DataGovAuSDK.test().Metadata().stream('list', undefined, { ctrl })) { }
+        node_assert_1.default.deepStrictEqual(Object.keys(ctrl), ['explain']);
+        (0, node_assert_1.default)(explain === ctrl.explain && 0 < Object.keys(explain).length);
+    });
+    (0, node_test_1.test)('unexpected', async () => {
+        const hook = new FailHook();
+        const client = new __1.DataGovAuSDK({ feature: { test: { active: true } }, extend: [hook] });
+        await node_assert_1.default.rejects(client.Metadata().list(), /hook failed/);
+        (0, node_assert_1.default)(0 < hook.unexpected);
+        const fired = hook.unexpected;
+        node_assert_1.default.strictEqual(await client.Metadata().list(undefined, { throw: false }), undefined);
+        (0, node_assert_1.default)(fired < hook.unexpected);
+    });
+    (0, node_test_1.test)('validate', async (t) => {
+        if (null == __1.config.feature?.validate) {
+            t.skip('feature not present in this SDK: validate');
+            return;
+        }
+        const client = __1.DataGovAuSDK.test(undefined, { feature: { validate: { active: true } } });
+        await node_assert_1.default.rejects(client.Metadata().list({ "all_field": "x" }), (err) => 'validate_failed' === err.code);
+    });
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.DATA_GOV_AU_TEST_LIVE;
         for (const op of ['list']) {
@@ -62,7 +109,7 @@ const utility_1 = require("../../utility");
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "result": { "a": true, "h": "Result", "n": "result", "r": false, "t": "`$ARRAY`", "union": { "branches": 2, "count": 1, "depth": 1 }, "key$": "result", "index$": 0 }, "success": { "a": true, "h": "Success", "n": "success", "r": false, "t": "`$BOOLEAN`", "key$": "success", "index$": 1 } }, "name": "metadata", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /action/tag_list", "source": "openapi3", "version": 2 }, "g": { "query": [{ "a": true, "ex": false, "k": "query", "n": "all_field", "or": "all_fields", "r": false, "t": "`$BOOLEAN`", "index$": 0 }] }, "k": "http", "m": "GET", "o": "/action/tag_list", "q": { "exist": ["all_field"] }, "r": {}, "s": [{ "lit": "action" }, { "lit": "tag_list" }], "t": { "req": "`reqdata`", "res": "`body.result`" }, "index$": 0 }], "key$": "list" } }, "relations": { "ancestors": [] }, "key$": "metadata", "name__orig": "metadata", "Name": "Metadata", "name_": "metadata", "name-": "metadata", "NAME": "METADATA", "index$": 1 }, { "active": true, "entity": "metadata", "key$": "BasicMetadataFlow", "kind": "basic", "name": "BasicMetadataFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": {}, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "metadata_ref01" } }], "index$": 0 }] }, 'Metadata', { "GET /action/tag_list": { "protocol": "http", "parameters": [{ "name": "all_fields", "in": "query", "description": "Return full tag details instead of just names", "required": false, "schema": { "type": "boolean", "default": false }, "index$": 0 }] } });
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "result": { "a": true, "h": "Result", "n": "result", "r": false, "t": "`$ARRAY`", "union": { "branches": 2, "count": 1, "depth": 1 }, "key$": "result", "index$": 0 }, "success": { "a": true, "h": "Success", "n": "success", "r": false, "t": "`$BOOLEAN`", "key$": "success", "index$": 1 } }, "name": "metadata", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /action/tag_list", "source": "openapi3", "version": 2 }, "g": { "query": [{ "a": true, "ex": false, "k": "query", "n": "all_field", "or": "all_fields", "r": false, "t": "`$BOOLEAN`", "index$": 0 }] }, "k": "http", "m": "GET", "o": "/action/tag_list", "q": {}, "r": {}, "rs": { "kind": "json", "media": "application/json" }, "s": [{ "lit": "action" }, { "lit": "tag_list" }], "t": { "req": "`reqdata`", "res": "`body.result`" }, "index$": 0 }], "key$": "list" } }, "relations": { "ancestors": [] }, "key$": "metadata", "name__orig": "metadata", "Name": "Metadata", "name_": "metadata", "name-": "metadata", "NAME": "METADATA", "index$": 1 }, { "active": true, "entity": "metadata", "key$": "BasicMetadataFlow", "kind": "basic", "name": "BasicMetadataFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": {}, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "metadata_ref01" } }], "index$": 0 }] }, 'Metadata', { "GET /action/tag_list": { "protocol": "http", "parameters": [{ "name": "all_fields", "in": "query", "description": "Return full tag details instead of just names", "required": false, "schema": { "type": "boolean", "default": false }, "index$": 0 }] } }, { strict: LIVE_STRICT, t });
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -75,6 +122,11 @@ const utility_1 = require("../../utility");
         const metadata_ref01_list = (await metadata_ref01_ent.list(metadata_ref01_match)).map((e) => e.data());
     });
 });
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true;
 function basicSetup(extra) {
     // TODO: fix test def options
     const options = {}; // null

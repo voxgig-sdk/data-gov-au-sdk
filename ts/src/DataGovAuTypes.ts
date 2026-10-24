@@ -28,13 +28,8 @@ export interface Dataset {
 }
 
 export interface DatasetLoadMatch {
-  facet_field?: any[]
-  fq?: string
-  include_private?: boolean
-  q?: string
-  row?: number
-  sort?: string
-  start?: number
+  id: string
+  include_tracking?: boolean
 }
 
 export interface Metadata {

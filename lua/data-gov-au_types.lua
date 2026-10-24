@@ -28,13 +28,8 @@
 ---@field title? string
 
 ---@class DatasetLoadMatch
----@field facet_field? table
----@field fq? string
----@field include_private? boolean
----@field q? string
----@field row? number
----@field sort? string
----@field start? number
+---@field id string
+---@field include_tracking? boolean
 
 ---@class Metadata
 ---@field result? table

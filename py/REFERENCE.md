@@ -118,12 +118,12 @@ dataset = client.Dataset()
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> dict`
+#### `load(reqmatch, ctrl=None) -> DatasetEntity`
 
-Load a single entity matching the given criteria. Returns the entity data and raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and raises on error.
 
 ```python
-result = client.Dataset().load()
+result = client.Dataset().load({"id": "dataset_id"})
 ```
 
 ### Common Methods
@@ -170,14 +170,14 @@ metadata = client.Metadata()
 
 ### Operations
 
-#### `list(reqmatch=None, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list[MetadataEntity]`
 
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
 
 ```python
 results = client.Metadata().list()
 for metadata in results:
-    print(metadata)
+    print(metadata.data_get())
 ```
 
 ### Common Methods
@@ -232,19 +232,19 @@ organization = client.Organization()
 
 ### Operations
 
-#### `list(reqmatch=None, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list[OrganizationEntity]`
 
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
 
 ```python
 results = client.Organization().list()
 for organization in results:
-    print(organization)
+    print(organization.data_get())
 ```
 
-#### `load(reqmatch, ctrl=None) -> dict`
+#### `load(reqmatch, ctrl=None) -> OrganizationEntity`
 
-Load a single entity matching the given criteria. Returns the entity data and raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and raises on error.
 
 ```python
 result = client.Organization().load({"id": "organization_id"})
@@ -436,6 +436,7 @@ Timeout.
 | Option | Type |
 |---|---|
 | `clearTimer` | function |
+| `now` | function |
 | `setTimer` | function |
 
 These take no default: the feature behaves one way when you supply them and

@@ -71,6 +71,7 @@ func MakeConfig() map[string]any {
 				},
 				"optspec": map[string]any{
 					"clearTimer": "`$FUNCTION`",
+					"now": "`$FUNCTION`",
 					"setTimer": "`$FUNCTION`",
 				},
 				"strict": false,
@@ -211,6 +212,56 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"kind": "http",
 								"method": "GET",
+								"orig": "/action/package_show",
+								"segments": []any{
+									map[string]any{
+										"lit": "action",
+									},
+									map[string]any{
+										"lit": "package_show",
+									},
+								},
+								"parts": []any{
+									"action",
+									"package_show",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.result`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "query",
+											"reqd": true,
+											"field": true,
+										},
+										map[string]any{
+											"name": "include_tracking",
+											"orig": "include_tracking",
+											"type": "`$BOOLEAN`",
+											"kind": "query",
+											"example": false,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
 								"orig": "/action/package_search",
 								"segments": []any{
 									map[string]any{
@@ -281,62 +332,10 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"facet_field",
-										"fq",
-										"include_private",
-										"q",
-										"row",
-										"sort",
-										"start",
-									},
-								},
-							},
-							map[string]any{
-								"kind": "http",
-								"method": "GET",
-								"orig": "/action/package_show",
-								"segments": []any{
-									map[string]any{
-										"lit": "action",
-									},
-									map[string]any{
-										"lit": "package_show",
-									},
-								},
-								"parts": []any{
-									"action",
-									"package_show",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.result`",
-								},
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"name": "id",
-											"orig": "id",
-											"type": "`$STRING`",
-											"kind": "query",
-											"reqd": true,
-										},
-										map[string]any{
-											"name": "include_tracking",
-											"orig": "include_tracking",
-											"type": "`$BOOLEAN`",
-											"kind": "query",
-											"example": false,
-										},
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-										"include_tracking",
-									},
+								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
 								},
 							},
 						},
@@ -397,10 +396,10 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"all_field",
-									},
+								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
 								},
 							},
 						},
@@ -520,12 +519,10 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"all_field",
-										"limit",
-										"offset",
-									},
+								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
 								},
 							},
 						},
@@ -563,6 +560,7 @@ func MakeConfig() map[string]any {
 											"type": "`$STRING`",
 											"kind": "query",
 											"reqd": true,
+											"field": true,
 										},
 										map[string]any{
 											"name": "include_dataset",
@@ -576,8 +574,11 @@ func MakeConfig() map[string]any {
 								"select": map[string]any{
 									"exist": []any{
 										"id",
-										"include_dataset",
 									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
 								},
 							},
 						},

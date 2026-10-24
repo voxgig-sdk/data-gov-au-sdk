@@ -140,6 +140,55 @@ main: kit: entity: dataset: {
       points: [
         {
           co: {
+            id: "GET /action/package_show"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "include_tracking"
+                or: "include_tracking"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/action/package_show"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "action"
+            }
+            {
+              lit: "package_show"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.result`"
+          }
+        }
+        {
+          co: {
             id: "GET /action/package_search"
             source: "openapi3"
             version: 2
@@ -205,16 +254,9 @@ main: kit: entity: dataset: {
           }
           m: "GET"
           o: "/action/package_search"
-          q: {
-            exist: [
-              "facet_field"
-              "fq"
-              "include_private"
-              "q"
-              "row"
-              "sort"
-              "start"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {
@@ -222,52 +264,6 @@ main: kit: entity: dataset: {
             }
             {
               lit: "package_search"
-            }
-          ]
-          t: {
-            req: "`reqdata`"
-            res: "`body.result`"
-          }
-        }
-        {
-          co: {
-            id: "GET /action/package_show"
-            source: "openapi3"
-            version: 2
-          }
-          g: {
-            query: [
-              {
-                k: "query"
-                n: "id"
-                or: "id"
-                r: true
-                t: "`$STRING`"
-              }
-              {
-                ex: false
-                k: "query"
-                n: "include_tracking"
-                or: "include_tracking"
-                r: false
-                t: "`$BOOLEAN`"
-              }
-            ]
-          }
-          m: "GET"
-          o: "/action/package_show"
-          q: {
-            exist: [
-              "id"
-              "include_tracking"
-            ]
-          }
-          s: [
-            {
-              lit: "action"
-            }
-            {
-              lit: "package_show"
             }
           ]
           t: {

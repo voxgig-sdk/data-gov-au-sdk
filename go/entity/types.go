@@ -18,13 +18,8 @@ type Dataset struct {
 
 // DatasetLoadMatch is the typed request payload for Dataset.LoadTyped.
 type DatasetLoadMatch struct {
-	FacetField *[]any `json:"facet_field,omitempty"`
-	Fq *string `json:"fq,omitempty"`
-	IncludePrivate *bool `json:"include_private,omitempty"`
-	Q *string `json:"q,omitempty"`
-	Row *int `json:"row,omitempty"`
-	Sort *string `json:"sort,omitempty"`
-	Start *int `json:"start,omitempty"`
+	Id string `json:"id"`
+	IncludeTracking *bool `json:"include_tracking,omitempty"`
 }
 
 // Metadata is the typed data model for the metadata entity.

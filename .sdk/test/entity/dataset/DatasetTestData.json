@@ -91,12 +91,12 @@
     }
   },
   "requests": {
-    "GET /action/package_search": {
+    "GET /action/package_show": {
       "provenance": "operation-contract",
       "version": 2,
       "source": "openapi3"
     },
-    "GET /action/package_show": {
+    "GET /action/package_search": {
       "provenance": "operation-contract",
       "version": 2,
       "source": "openapi3"

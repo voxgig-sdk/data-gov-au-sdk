@@ -13,75 +13,55 @@ const PLAN = [
         "accessor": "Dataset",
         "op": "load",
         "method": "GET",
-        "path": "/action/package_search",
+        "path": "/action/package_show",
         "args": [],
         "select": {
-            "facet_field": "v1",
-            "fq": "organization:health-dept",
-            "include_private": "v1",
-            "q": "health",
-            "row": "v1",
-            "sort": "metadata_modified desc",
-            "start": "v1"
+            "id": "v1",
+            "include_tracking": "v1"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [
-            "q",
-            "fq",
-            "rows",
-            "start",
-            "sort",
-            "facet.field",
-            "include_private"
+            "id",
+            "include_tracking"
+        ],
+        "queryArgs": [
+            {
+                "name": "id",
+                "wire": "id"
+            },
+            {
+                "name": "include_tracking",
+                "wire": "include_tracking"
+            }
         ],
         "auth": [],
         "status": 200,
         "sample": {
             "success": true,
             "result": {
-                "count": 1,
-                "facets": {},
-                "results": [
-                    {
-                        "author": "x",
-                        "author_email": "x",
-                        "id": "x",
-                        "license_id": "x",
-                        "license_title": "x",
-                        "maintainer": "x",
-                        "maintainer_email": "x",
-                        "metadata_created": "2026-01-01T00:00:00Z",
-                        "metadata_modified": "2026-01-01T00:00:00Z",
-                        "name": "x",
-                        "notes": "x",
-                        "organization": {
-                            "description": "x",
-                            "id": "x",
-                            "name": "x",
-                            "title": "x"
-                        },
-                        "resources": [
-                            {
-                                "created": "2026-01-01T00:00:00Z",
-                                "description": "x",
-                                "format": "x",
-                                "id": "x",
-                                "last_modified": "2026-01-01T00:00:00Z",
-                                "name": "x",
-                                "url": "x"
-                            }
-                        ],
-                        "tags": [
-                            {
-                                "display_name": "x",
-                                "id": "x",
-                                "name": "x"
-                            }
-                        ],
-                        "title": "x"
-                    }
+                "id": "x",
+                "name": "x",
+                "title": "x",
+                "notes": "x",
+                "author": "x",
+                "author_email": "x",
+                "maintainer": "x",
+                "maintainer_email": "x",
+                "license_id": "x",
+                "license_title": "x",
+                "metadata_created": "2026-01-01T00:00:00Z",
+                "metadata_modified": "2026-01-01T00:00:00Z",
+                "organization": {},
+                "tags": [
+                    {}
                 ],
-                "search_facets": {}
+                "resources": [
+                    {}
+                ]
             }
         },
         "idField": "id"
@@ -91,41 +71,109 @@ const PLAN = [
         "accessor": "Dataset",
         "op": "load",
         "method": "GET",
-        "path": "/action/package_show",
+        "path": "/action/package_search",
         "args": [],
         "select": {
-            "id": "v1",
-            "include_tracking": "v1"
+            "facet_field": "v1",
+            "fq": "organization:health-dept",
+            "include_private": "v1",
+            "q": "health",
+            "row": 10,
+            "sort": "metadata_modified desc",
+            "start": 0
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [
-            "id",
-            "include_tracking"
+            "q",
+            "fq",
+            "rows",
+            "start",
+            "sort",
+            "facet.field",
+            "include_private"
+        ],
+        "queryArgs": [
+            {
+                "name": "facet_field",
+                "wire": "facet.field"
+            },
+            {
+                "name": "fq",
+                "wire": "fq"
+            },
+            {
+                "name": "include_private",
+                "wire": "include_private"
+            },
+            {
+                "name": "q",
+                "wire": "q"
+            },
+            {
+                "name": "row",
+                "wire": "rows"
+            },
+            {
+                "name": "sort",
+                "wire": "sort"
+            },
+            {
+                "name": "start",
+                "wire": "start"
+            }
         ],
         "auth": [],
         "status": 200,
         "sample": {
             "success": true,
             "result": {
-                "author": "x",
-                "author_email": "x",
-                "id": "x",
-                "license_id": "x",
-                "license_title": "x",
-                "maintainer": "x",
-                "maintainer_email": "x",
-                "metadata_created": "2026-01-01T00:00:00Z",
-                "metadata_modified": "2026-01-01T00:00:00Z",
-                "name": "x",
-                "notes": "x",
-                "organization": {},
-                "resources": [
-                    {}
+                "count": 1,
+                "results": [
+                    {
+                        "id": "x",
+                        "name": "x",
+                        "title": "x",
+                        "notes": "x",
+                        "author": "x",
+                        "author_email": "x",
+                        "maintainer": "x",
+                        "maintainer_email": "x",
+                        "license_id": "x",
+                        "license_title": "x",
+                        "metadata_created": "2026-01-01T00:00:00Z",
+                        "metadata_modified": "2026-01-01T00:00:00Z",
+                        "organization": {
+                            "id": "x",
+                            "name": "x",
+                            "title": "x",
+                            "description": "x"
+                        },
+                        "tags": [
+                            {
+                                "id": "x",
+                                "name": "x",
+                                "display_name": "x"
+                            }
+                        ],
+                        "resources": [
+                            {
+                                "id": "x",
+                                "name": "x",
+                                "description": "x",
+                                "url": "x",
+                                "format": "x",
+                                "created": "2026-01-01T00:00:00Z",
+                                "last_modified": "2026-01-01T00:00:00Z"
+                            }
+                        ]
+                    }
                 ],
-                "tags": [
-                    {}
-                ],
-                "title": "x"
+                "facets": {},
+                "search_facets": {}
             }
         },
         "idField": "id"
@@ -141,8 +189,18 @@ const PLAN = [
             "all_field": "v1"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [
             "all_fields"
+        ],
+        "queryArgs": [
+            {
+                "name": "all_field",
+                "wire": "all_fields"
+            }
         ],
         "auth": [],
         "status": 200,
@@ -164,13 +222,31 @@ const PLAN = [
         "select": {
             "all_field": "v1",
             "limit": "v1",
-            "offset": "v1"
+            "offset": 0
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [
             "all_fields",
             "limit",
             "offset"
+        ],
+        "queryArgs": [
+            {
+                "name": "all_field",
+                "wire": "all_fields"
+            },
+            {
+                "name": "limit",
+                "wire": "limit"
+            },
+            {
+                "name": "offset",
+                "wire": "offset"
+            }
         ],
         "auth": [],
         "status": 200,
@@ -194,25 +270,39 @@ const PLAN = [
             "include_dataset": "v1"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [
             "id",
             "include_datasets"
+        ],
+        "queryArgs": [
+            {
+                "name": "id",
+                "wire": "id"
+            },
+            {
+                "name": "include_dataset",
+                "wire": "include_datasets"
+            }
         ],
         "auth": [],
         "status": 200,
         "sample": {
             "success": true,
             "result": {
-                "created": "2026-01-01T00:00:00Z",
-                "description": "x",
                 "id": "x",
-                "image_url": "x",
                 "name": "x",
+                "title": "x",
+                "description": "x",
+                "image_url": "x",
+                "created": "2026-01-01T00:00:00Z",
                 "package_count": 1,
                 "packages": [
                     {}
-                ],
-                "title": "x"
+                ]
             }
         },
         "idField": "id"

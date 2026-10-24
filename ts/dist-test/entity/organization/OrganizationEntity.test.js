@@ -54,6 +54,53 @@ const utility_1 = require("../../utility");
         const ent = testsdk.Organization();
         (0, node_assert_1.default)(null != ent);
     });
+    class FailHook extends __1.BaseFeature {
+        name = 'failhook';
+        version = '0.0.1';
+        active = true;
+        unexpected = 0;
+        init() { }
+        PreSpec() { throw new Error('organization hook failed'); }
+        PreUnexpected() { this.unexpected++; }
+    }
+    (0, node_test_1.test)('stream-error', async () => {
+        const offline = { net: { offline: true } };
+        await node_assert_1.default.rejects(async () => {
+            for await (const _item of __1.DataGovAuSDK.test(offline).Organization().stream('list')) { }
+        }, /offline/);
+        for await (const _item of __1.DataGovAuSDK.test(offline).Organization()
+            .stream('list', undefined, { ctrl: { throw: false } })) { }
+        if (null != __1.config.feature?.rbac) {
+            const denied = __1.DataGovAuSDK.test(undefined, { feature: { rbac: { active: true, deny: true } } });
+            await node_assert_1.default.rejects(async () => {
+                for await (const _item of denied.Organization().stream('list')) { }
+            }, (err) => 'rbac_denied' === err.code);
+        }
+    });
+    (0, node_test_1.test)('stream-ctrl', async () => {
+        const explain = {};
+        const ctrl = { explain };
+        for await (const _item of __1.DataGovAuSDK.test().Organization().stream('list', undefined, { ctrl })) { }
+        node_assert_1.default.deepStrictEqual(Object.keys(ctrl), ['explain']);
+        (0, node_assert_1.default)(explain === ctrl.explain && 0 < Object.keys(explain).length);
+    });
+    (0, node_test_1.test)('unexpected', async () => {
+        const hook = new FailHook();
+        const client = new __1.DataGovAuSDK({ feature: { test: { active: true } }, extend: [hook] });
+        await node_assert_1.default.rejects(client.Organization().list(), /hook failed/);
+        (0, node_assert_1.default)(0 < hook.unexpected);
+        const fired = hook.unexpected;
+        node_assert_1.default.strictEqual(await client.Organization().list(undefined, { throw: false }), undefined);
+        (0, node_assert_1.default)(fired < hook.unexpected);
+    });
+    (0, node_test_1.test)('validate', async (t) => {
+        if (null == __1.config.feature?.validate) {
+            t.skip('feature not present in this SDK: validate');
+            return;
+        }
+        const client = __1.DataGovAuSDK.test(undefined, { feature: { validate: { active: true } } });
+        await node_assert_1.default.rejects(client.Organization().list({ "all_field": "x" }), (err) => 'validate_failed' === err.code);
+    });
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.DATA_GOV_AU_TEST_LIVE;
         for (const op of ['list', 'load']) {
@@ -62,7 +109,7 @@ const utility_1 = require("../../utility");
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "created": { "a": true, "fo": "date-time", "h": "Created", "n": "created", "r": false, "t": "`$STRING`", "key$": "created", "index$": 0 }, "description": { "a": true, "h": "Description", "n": "description", "r": false, "t": "`$STRING`", "key$": "description", "index$": 1 }, "id": { "a": true, "h": "Id", "n": "id", "r": false, "t": "`$STRING`", "key$": "id", "index$": 2 }, "image_url": { "a": true, "fo": "uri", "h": "Image Url", "n": "image_url", "r": false, "t": "`$STRING`", "key$": "image_url", "index$": 3 }, "name": { "a": true, "h": "Name", "n": "name", "r": false, "t": "`$STRING`", "key$": "name", "index$": 4 }, "package_count": { "a": true, "h": "Package Count", "n": "package_count", "r": false, "t": "`$INTEGER`", "key$": "package_count", "index$": 5 }, "packages": { "a": true, "h": "Packages", "n": "packages", "r": false, "t": "`$ARRAY`", "key$": "packages", "index$": 6 }, "result": { "a": true, "h": "Result", "n": "result", "r": false, "t": "`$ARRAY`", "union": { "branches": 2, "count": 1, "depth": 1 }, "key$": "result", "index$": 7 }, "success": { "a": true, "h": "Success", "n": "success", "r": false, "t": "`$BOOLEAN`", "key$": "success", "index$": 8 }, "title": { "a": true, "h": "Title", "n": "title", "r": false, "t": "`$STRING`", "key$": "title", "index$": 9 } }, "id": { "field": "id", "name": "id" }, "name": "organization", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /action/organization_list", "source": "openapi3", "version": 2 }, "g": { "query": [{ "a": true, "ex": false, "k": "query", "n": "all_field", "or": "all_fields", "r": false, "t": "`$BOOLEAN`", "index$": 0 }, { "a": true, "k": "query", "n": "limit", "or": "limit", "r": false, "t": "`$INTEGER`", "index$": 1 }, { "a": true, "ex": 0, "k": "query", "n": "offset", "or": "offset", "r": false, "t": "`$INTEGER`", "index$": 2 }] }, "k": "http", "m": "GET", "o": "/action/organization_list", "q": { "exist": ["all_field", "limit", "offset"] }, "r": {}, "s": [{ "lit": "action" }, { "lit": "organization_list" }], "t": { "req": "`reqdata`", "res": "`body.result`" }, "index$": 0 }], "key$": "list" }, "load": { "input": "data", "name": "load", "points": [{ "a": true, "co": { "id": "GET /action/organization_show", "source": "openapi3", "version": 2 }, "g": { "query": [{ "a": true, "k": "query", "n": "id", "or": "id", "r": true, "t": "`$STRING`", "index$": 0 }, { "a": true, "ex": true, "k": "query", "n": "include_dataset", "or": "include_datasets", "r": false, "t": "`$BOOLEAN`", "index$": 1 }] }, "k": "http", "m": "GET", "o": "/action/organization_show", "q": { "exist": ["id", "include_dataset"] }, "r": {}, "s": [{ "lit": "action" }, { "lit": "organization_show" }], "t": { "req": "`reqdata`", "res": "`body.result`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "organization", "name__orig": "organization", "Name": "Organization", "name_": "organization", "name-": "organization", "NAME": "ORGANIZATION", "index$": 2 }, { "active": true, "entity": "organization", "key$": "BasicOrganizationFlow", "kind": "basic", "name": "BasicOrganizationFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": {}, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "organization_ref01" } }], "index$": 0 }, { "a": true, "d": {}, "i": { "ref": "organization_ref01", "srcdatavar": "organization_ref01_data", "suffix": "_dt0" }, "m": {}, "o": "load", "s": [], "v": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-organization_ref01" } }], "index$": 1 }] }, 'Organization', { "GET /action/organization_list": { "protocol": "http", "parameters": [{ "name": "all_fields", "in": "query", "description": "Return full organization details instead of just names", "required": false, "schema": { "type": "boolean", "default": false }, "index$": 0 }, { "name": "limit", "in": "query", "description": "Maximum number of organizations to return", "required": false, "schema": { "type": "integer", "minimum": 1 }, "index$": 1 }, { "name": "offset", "in": "query", "description": "Offset for pagination", "required": false, "schema": { "type": "integer", "minimum": 0, "default": 0 }, "index$": 2 }] }, "GET /action/organization_show": { "protocol": "http", "parameters": [{ "name": "id", "in": "query", "description": "The ID or name of the organization", "required": true, "schema": { "type": "string" }, "index$": 0 }, { "name": "include_datasets", "in": "query", "description": "Include a list of the organization's datasets", "required": false, "schema": { "type": "boolean", "default": true }, "index$": 1 }] } });
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "created": { "a": true, "fo": "date-time", "h": "Created", "n": "created", "r": false, "t": "`$STRING`", "key$": "created", "index$": 0 }, "description": { "a": true, "h": "Description", "n": "description", "r": false, "t": "`$STRING`", "key$": "description", "index$": 1 }, "id": { "a": true, "h": "Id", "n": "id", "r": false, "t": "`$STRING`", "key$": "id", "index$": 2 }, "image_url": { "a": true, "fo": "uri", "h": "Image Url", "n": "image_url", "r": false, "t": "`$STRING`", "key$": "image_url", "index$": 3 }, "name": { "a": true, "h": "Name", "n": "name", "r": false, "t": "`$STRING`", "key$": "name", "index$": 4 }, "package_count": { "a": true, "h": "Package Count", "n": "package_count", "r": false, "t": "`$INTEGER`", "key$": "package_count", "index$": 5 }, "packages": { "a": true, "h": "Packages", "n": "packages", "r": false, "t": "`$ARRAY`", "key$": "packages", "index$": 6 }, "result": { "a": true, "h": "Result", "n": "result", "r": false, "t": "`$ARRAY`", "union": { "branches": 2, "count": 1, "depth": 1 }, "key$": "result", "index$": 7 }, "success": { "a": true, "h": "Success", "n": "success", "r": false, "t": "`$BOOLEAN`", "key$": "success", "index$": 8 }, "title": { "a": true, "h": "Title", "n": "title", "r": false, "t": "`$STRING`", "key$": "title", "index$": 9 } }, "id": { "field": "id", "name": "id" }, "name": "organization", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /action/organization_list", "source": "openapi3", "version": 2 }, "g": { "query": [{ "a": true, "ex": false, "k": "query", "n": "all_field", "or": "all_fields", "r": false, "t": "`$BOOLEAN`", "index$": 0 }, { "a": true, "k": "query", "n": "limit", "or": "limit", "r": false, "t": "`$INTEGER`", "index$": 1 }, { "a": true, "ex": 0, "k": "query", "n": "offset", "or": "offset", "r": false, "t": "`$INTEGER`", "index$": 2 }] }, "k": "http", "m": "GET", "o": "/action/organization_list", "q": {}, "r": {}, "rs": { "kind": "json", "media": "application/json" }, "s": [{ "lit": "action" }, { "lit": "organization_list" }], "t": { "req": "`reqdata`", "res": "`body.result`" }, "index$": 0 }], "key$": "list" }, "load": { "input": "data", "name": "load", "points": [{ "a": true, "co": { "id": "GET /action/organization_show", "source": "openapi3", "version": 2 }, "g": { "query": [{ "a": true, "k": "query", "n": "id", "or": "id", "r": true, "t": "`$STRING`", "index$": 0 }, { "a": true, "ex": true, "k": "query", "n": "include_dataset", "or": "include_datasets", "r": false, "t": "`$BOOLEAN`", "index$": 1 }] }, "k": "http", "m": "GET", "o": "/action/organization_show", "q": { "exist": ["id"] }, "r": {}, "rs": { "kind": "json", "media": "application/json" }, "s": [{ "lit": "action" }, { "lit": "organization_show" }], "t": { "req": "`reqdata`", "res": "`body.result`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "organization", "name__orig": "organization", "Name": "Organization", "name_": "organization", "name-": "organization", "NAME": "ORGANIZATION", "index$": 2 }, { "active": true, "entity": "organization", "key$": "BasicOrganizationFlow", "kind": "basic", "name": "BasicOrganizationFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": {}, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "organization_ref01" } }], "index$": 0 }, { "a": true, "d": {}, "i": { "ref": "organization_ref01", "srcdatavar": "organization_ref01_data", "suffix": "_dt0" }, "m": {}, "o": "load", "s": [], "v": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-organization_ref01" } }], "index$": 1 }] }, 'Organization', { "GET /action/organization_list": { "protocol": "http", "parameters": [{ "name": "all_fields", "in": "query", "description": "Return full organization details instead of just names", "required": false, "schema": { "type": "boolean", "default": false }, "index$": 0 }, { "name": "limit", "in": "query", "description": "Maximum number of organizations to return", "required": false, "schema": { "type": "integer", "minimum": 1 }, "index$": 1 }, { "name": "offset", "in": "query", "description": "Offset for pagination", "required": false, "schema": { "type": "integer", "minimum": 0, "default": 0 }, "index$": 2 }] }, "GET /action/organization_show": { "protocol": "http", "parameters": [{ "name": "id", "in": "query", "description": "The ID or name of the organization", "required": true, "schema": { "type": "string" }, "index$": 0 }, { "name": "include_datasets", "in": "query", "description": "Include a list of the organization's datasets", "required": false, "schema": { "type": "boolean", "default": true }, "index$": 1 }] } }, { strict: LIVE_STRICT, t });
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -80,6 +127,11 @@ const utility_1 = require("../../utility");
         (0, node_assert_1.default)(organization_ref01_data_dt0.id === organization_ref01_data.id);
     });
 });
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true;
 function basicSetup(extra) {
     // TODO: fix test def options
     const options = {}; // null

@@ -3,11 +3,16 @@ declare(strict_types=1);
 
 // DataGovAu SDK utility: prepare_body
 
+require_once __DIR__ . '/Media.php';
+
 class DataGovAuPrepareBody
 {
     public static function call(DataGovAuContext $ctx): mixed
     {
         if ($ctx->op->input === 'data') {
+            if (DataGovAuMedia::isRawRequest($ctx->point)) {
+                return DataGovAuMedia::rawBody($ctx->reqdata);
+            }
             $body = ($ctx->utility->transform_request)($ctx);
             // PHP cannot tell an empty map from an empty list, and this
             // vendored struct answers [] where the canonical transform

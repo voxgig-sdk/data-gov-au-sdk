@@ -119,12 +119,9 @@ main: kit: entity: organization: {
           }
           m: "GET"
           o: "/action/organization_list"
-          q: {
-            exist: [
-              "all_field"
-              "limit"
-              "offset"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {
@@ -174,8 +171,11 @@ main: kit: entity: organization: {
           q: {
             exist: [
               "id"
-              "include_dataset"
             ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

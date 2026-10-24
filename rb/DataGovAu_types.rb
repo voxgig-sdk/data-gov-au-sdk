@@ -91,34 +91,14 @@ Dataset = Struct.new(
 
 # Request payload for Dataset#load.
 #
-# @!attribute [rw] facet_field
-#   @return [Array, nil]
+# @!attribute [rw] id
+#   @return [String]
 #
-# @!attribute [rw] fq
-#   @return [String, nil]
-#
-# @!attribute [rw] include_private
+# @!attribute [rw] include_tracking
 #   @return [Boolean, nil]
-#
-# @!attribute [rw] q
-#   @return [String, nil]
-#
-# @!attribute [rw] row
-#   @return [Integer, nil]
-#
-# @!attribute [rw] sort
-#   @return [String, nil]
-#
-# @!attribute [rw] start
-#   @return [Integer, nil]
 DatasetLoadMatch = Struct.new(
-  :facet_field,
-  :fq,
-  :include_private,
-  :q,
-  :row,
-  :sort,
-  :start,
+  :id,
+  :include_tracking,
   keyword_init: true
 )
 

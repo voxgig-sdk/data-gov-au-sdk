@@ -49,10 +49,9 @@ main: kit: entity: metadata: {
           }
           m: "GET"
           o: "/action/tag_list"
-          q: {
-            exist: [
-              "all_field"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

@@ -12,7 +12,7 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `$
 
 ## Install
 This package is not yet published to Packagist. Install it from the
-GitHub release tag (`php/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/data-gov-au-sdk/releases)), or
+GitHub release tag (`php/vX.Y.Z`, see [Tags](https://github.com/voxgig-sdk/data-gov-au-sdk/tags)), or
 from a clone as a Composer path repository:
 
 ```bash
@@ -25,7 +25,7 @@ composer require voxgig-sdk/data-gov-au-sdk:@dev
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
-loading a specific record.
+loading a specific record. The client sends the API key in the `X-CKAN-API-Key` header.
 
 ### 1. Create a client
 
@@ -43,7 +43,7 @@ $client = new DataGovAuSDK([
 ```php
 try {
     // load() returns the ENTITY — call data_get() for the Dataset record (throws on error).
-    $dataset = $client->Dataset()->load();
+    $dataset = $client->Dataset()->load(["id" => "example_id"]);
     print_r($dataset->data_get());
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -130,13 +130,13 @@ data via the `entity` option so offline calls resolve without a live server:
 
 ```php
 $client = DataGovAuSDK::test([
-    "entity" => ["organization" => ["test01" => ["id" => "test01"]]],
+    "entity" => ["dataset" => ["test01" => ["id" => "test01"]]],
 ]);
 
-// list() returns entity instances (throws on error);
+// Entity ops return the ENTITY (throws on error);
 // call data_get() for the mock record.
-$organization = $client->Organization()->list();
-print_r(array_map(fn($item) => $item->data_get(), $organization));
+$dataset = $client->Dataset()->load(["id" => "test01"]);
+print_r($dataset->data_get());
 ```
 
 ### Use a custom fetch function
@@ -227,8 +227,8 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `($reqmatch, $ctrl): array` | Load a single entity by match criteria. |
-| `list` | `(?array $reqmatch = null, $ctrl): array` | List entities matching the criteria (call with no argument to list all). |
+| `load` | `($reqmatch, $ctrl): mixed` | Load a single entity by match criteria, and return it. |
+| `list` | `(?array $reqmatch = null, $ctrl): mixed` | List entities matching the criteria (call with no argument to list all), one per record. |
 | `data_get` | `(): array` | Get entity data. |
 | `data_set` | `($data): void` | Set entity data. |
 | `match_get` | `(): array` | Get entity match criteria. |
@@ -238,9 +238,9 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
-ops, a `list` for `list`) and throw on error. Wrap calls in
-`try`/`catch` to handle failures.
+Entity operations return the entity, and `list` an `array` of entities, one
+per record; an entity's `data_get()` reads its record (an `array`). They
+throw on error, so wrap calls in `try`/`catch` to handle failures.
 
 The `direct()` escape hatch never throws — it returns a result `array`
 you branch on via `$result["ok"]`:
@@ -282,7 +282,7 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 Operations: Load.
 
-API path: `/action/package_search`
+API path: `/action/package_show`
 
 #### Metadata
 
@@ -357,7 +357,7 @@ Create an instance: `$dataset = $client->Dataset();`
 
 ```php
 // load() returns the ENTITY — call data_get() for the Dataset record (throws on error).
-$dataset = $client->Dataset()->load();
+$dataset = $client->Dataset()->load(["id" => "dataset_id"]);
 ```
 
 
@@ -381,7 +381,7 @@ Create an instance: `$metadata = $client->Metadata();`
 #### Example: List
 
 ```php
-// list() returns an array of Metadata records (throws on error).
+// list() returns an array of Metadata entities, one per record (throws on error).
 $metadatas = $client->Metadata()->list();
 ```
 
@@ -422,7 +422,7 @@ $organization = $client->Organization()->load(["id" => "organization_id"]);
 #### Example: List
 
 ```php
-// list() returns an array of Organization records (throws on error).
+// list() returns an array of Organization entities, one per record (throws on error).
 $organizations = $client->Organization()->list();
 ```
 

@@ -251,6 +251,60 @@
                 {
                   "a": true,
                   "co": {
+                    "id": "GET /action/package_show",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "query": [
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "id",
+                        "or": "id",
+                        "r": true,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "ex": false,
+                        "k": "query",
+                        "n": "include_tracking",
+                        "or": "include_tracking",
+                        "r": false,
+                        "t": "`$BOOLEAN`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/action/package_show",
+                  "q": {
+                    "exist": [
+                      "id"
+                    ]
+                  },
+                  "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
+                  "s": [
+                    {
+                      "lit": "action"
+                    },
+                    {
+                      "lit": "package_show"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body.result`"
+                  }
+                },
+                {
+                  "a": true,
+                  "co": {
                     "id": "GET /action/package_search",
                     "source": "openapi3",
                     "version": 2
@@ -324,75 +378,18 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/action/package_search",
-                  "q": {
-                    "exist": [
-                      "facet_field",
-                      "fq",
-                      "include_private",
-                      "q",
-                      "row",
-                      "sort",
-                      "start"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "action"
                     },
                     {
                       "lit": "package_search"
-                    }
-                  ],
-                  "t": {
-                    "req": "`reqdata`",
-                    "res": "`body.result`"
-                  }
-                },
-                {
-                  "a": true,
-                  "co": {
-                    "id": "GET /action/package_show",
-                    "source": "openapi3",
-                    "version": 2
-                  },
-                  "g": {
-                    "query": [
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "id",
-                        "or": "id",
-                        "r": true,
-                        "t": "`$STRING`"
-                      },
-                      {
-                        "a": true,
-                        "ex": false,
-                        "k": "query",
-                        "n": "include_tracking",
-                        "or": "include_tracking",
-                        "r": false,
-                        "t": "`$BOOLEAN`"
-                      }
-                    ]
-                  },
-                  "k": "http",
-                  "m": "GET",
-                  "o": "/action/package_show",
-                  "q": {
-                    "exist": [
-                      "id",
-                      "include_tracking"
-                    ]
-                  },
-                  "r": {},
-                  "s": [
-                    {
-                      "lit": "action"
-                    },
-                    {
-                      "lit": "package_show"
                     }
                   ],
                   "t": {
@@ -462,12 +459,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/action/tag_list",
-                  "q": {
-                    "exist": [
-                      "all_field"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "action"
@@ -622,14 +619,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/action/organization_list",
-                  "q": {
-                    "exist": [
-                      "all_field",
-                      "limit",
-                      "offset"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "action"
@@ -682,11 +677,14 @@
                   "o": "/action/organization_show",
                   "q": {
                     "exist": [
-                      "id",
-                      "include_dataset"
+                      "id"
                     ]
                   },
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "action"
@@ -1030,6 +1028,7 @@
             },
             "optspec": {
               "clearTimer": "`$FUNCTION`",
+              "now": "`$FUNCTION`",
               "setTimer": "`$FUNCTION`"
             },
             "strict": false
@@ -1254,7 +1253,7 @@
       "optspec": {
         "allow": {
           "method": "GET,PUT,POST,PATCH,DELETE,OPTIONS",
-          "op": "create,update,load,list,remove,command,direct,graphql"
+          "op": "create,update,patch,load,list,remove,command,direct,graphql"
         },
         "apikey": "",
         "auth": {
@@ -1307,6 +1306,11 @@
         "top": {
           "active": true
         }
+      },
+      "publisher": {
+        "name": "",
+        "security": "",
+        "url": ""
       },
       "repo": {
         "host": "github.com",
@@ -1537,7 +1541,10 @@
             "version": "0.0.1"
           },
           "superseded": [],
-          "title": "Go MCP server"
+          "title": "Go MCP server",
+          "tool": {
+            "write": false
+          }
         },
         "lua": {
           "active": true,
@@ -1914,6 +1921,17 @@
           "base": "",
           "strict": true
         }
+      },
+      "text": {
+        "about_md": "",
+        "docs_url": "",
+        "entity_desc": {},
+        "homepage": "",
+        "meta_source": "",
+        "summary": "",
+        "tagline": "",
+        "title": "",
+        "website": ""
       }
     }
   },

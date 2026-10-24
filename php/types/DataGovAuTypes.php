@@ -39,13 +39,8 @@ class Dataset
 /** Request payload for Dataset#load. */
 class DatasetLoadMatch
 {
-    public ?array $facet_field = null;
-    public ?string $fq = null;
-    public ?bool $include_private = null;
-    public ?string $q = null;
-    public ?int $row = null;
-    public ?string $sort = null;
-    public ?int $start = null;
+    public string $id;
+    public ?bool $include_tracking = null;
 }
 
 /** Metadata entity data model. */

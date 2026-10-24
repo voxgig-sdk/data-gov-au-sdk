@@ -38,14 +38,12 @@ class Dataset(TypedDict, total=False):
     title: str
 
 
-class DatasetLoadMatch(TypedDict, total=False):
-    facet_field: list
-    fq: str
-    include_private: bool
-    q: str
-    row: int
-    sort: str
-    start: int
+class DatasetLoadMatchRequired(TypedDict):
+    id: str
+
+
+class DatasetLoadMatch(DatasetLoadMatchRequired, total=False):
+    include_tracking: bool
 
 
 class Metadata(TypedDict, total=False):

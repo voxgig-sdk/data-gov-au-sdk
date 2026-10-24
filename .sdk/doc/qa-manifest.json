@@ -3,5 +3,22 @@
     "SUMMARY.md"
   ],
   "config": ".sdk/doc/qa/vale.ini",
-  "routes": {}
+  "routes": {},
+  "quoted": {
+    "SUMMARY.md": [
+      "API key for authentication (required for certain operations like creating or modifying datasets)",
+      "Author of the dataset",
+      "Contact email for the dataset author",
+      "Faceted search results for aggregation",
+      "Production CKAN API server",
+      "Successful response with dataset details",
+      "Successful response with dataset search results",
+      "Successful response with list of organizations",
+      "Successful response with list of tags",
+      "Successful response with organization details",
+      "The `Data.gov.au` API provides programmatic access to datasets published by the Australian government. It allows users to search, filter, and retrieve detailed information about datasets, including metadata and download options.",
+      "Total number of datasets matching the query",
+      "Unique identifier for the dataset"
+    ]
+  }
 }

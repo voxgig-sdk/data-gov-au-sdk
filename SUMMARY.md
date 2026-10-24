@@ -1,6 +1,6 @@
 # Data.gov.au API
 
-The Data.gov.au API provides programmatic access to datasets published by the Australian government. It allows users to search, filter, and retrieve detailed information about datasets, including metadata and download options.
+The `Data.gov.au` API provides programmatic access to datasets published by the Australian government. It allows users to search, filter, and retrieve detailed information about datasets, including metadata and download options.
 
 ## Start here
 
@@ -14,7 +14,7 @@ An entity groups related API operations. An operation can have several routes wi
 
 ### Dataset
 
-Results: Successful response with dataset search results; Successful response with dataset details.
+Results: Successful response with dataset details; Successful response with dataset search results.
 
 SDK operations: `load`.
 
@@ -44,8 +44,8 @@ Use this map to locate a capability. Consult the entity reference before supplyi
 
 | Entity | SDK operation | HTTP route | Authentication |
 | --- | --- | --- | --- |
-| Dataset | `load` | `GET /action/package_search` | See reference |
 | Dataset | `load` | `GET /action/package_show` | See reference |
+| Dataset | `load` | `GET /action/package_search` | See reference |
 | Metadata | `list` | `GET /action/tag_list` | See reference |
 | Organization | `list` | `GET /action/organization_list` | See reference |
 | Organization | `load` | `GET /action/organization_show` | See reference |

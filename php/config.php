@@ -93,6 +93,7 @@ class DataGovAuConfig
           ],
           'optspec' => [
             'clearTimer' => '`$FUNCTION`',
+            'now' => '`$FUNCTION`',
             'setTimer' => '`$FUNCTION`',
           ],
           'strict' => false,
@@ -233,6 +234,56 @@ class DataGovAuConfig
                 [
                   'kind' => 'http',
                   'method' => 'GET',
+                  'orig' => '/action/package_show',
+                  'segments' => [
+                    [
+                      'lit' => 'action',
+                    ],
+                    [
+                      'lit' => 'package_show',
+                    ],
+                  ],
+                  'parts' => [
+                    'action',
+                    'package_show',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body.result`',
+                  ],
+                  'args' => [
+                    'query' => [
+                      [
+                        'name' => 'id',
+                        'orig' => 'id',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                        'reqd' => true,
+                        'field' => true,
+                      ],
+                      [
+                        'name' => 'include_tracking',
+                        'orig' => 'include_tracking',
+                        'type' => '`$BOOLEAN`',
+                        'kind' => 'query',
+                        'example' => false,
+                      ],
+                    ],
+                  ],
+                  'select' => [
+                    'exist' => [
+                      'id',
+                    ],
+                  ],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
+                  ],
+                ],
+                [
+                  'kind' => 'http',
+                  'method' => 'GET',
                   'orig' => '/action/package_search',
                   'segments' => [
                     [
@@ -303,62 +354,10 @@ class DataGovAuConfig
                       ],
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'facet_field',
-                      'fq',
-                      'include_private',
-                      'q',
-                      'row',
-                      'sort',
-                      'start',
-                    ],
-                  ],
-                ],
-                [
-                  'kind' => 'http',
-                  'method' => 'GET',
-                  'orig' => '/action/package_show',
-                  'segments' => [
-                    [
-                      'lit' => 'action',
-                    ],
-                    [
-                      'lit' => 'package_show',
-                    ],
-                  ],
-                  'parts' => [
-                    'action',
-                    'package_show',
-                  ],
-                  'rename' => [],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body.result`',
-                  ],
-                  'args' => [
-                    'query' => [
-                      [
-                        'name' => 'id',
-                        'orig' => 'id',
-                        'type' => '`$STRING`',
-                        'kind' => 'query',
-                        'reqd' => true,
-                      ],
-                      [
-                        'name' => 'include_tracking',
-                        'orig' => 'include_tracking',
-                        'type' => '`$BOOLEAN`',
-                        'kind' => 'query',
-                        'example' => false,
-                      ],
-                    ],
-                  ],
-                  'select' => [
-                    'exist' => [
-                      'id',
-                      'include_tracking',
-                    ],
+                  'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],
@@ -419,10 +418,10 @@ class DataGovAuConfig
                       ],
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'all_field',
-                    ],
+                  'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],
@@ -542,12 +541,10 @@ class DataGovAuConfig
                       ],
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'all_field',
-                      'limit',
-                      'offset',
-                    ],
+                  'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],
@@ -585,6 +582,7 @@ class DataGovAuConfig
                         'type' => '`$STRING`',
                         'kind' => 'query',
                         'reqd' => true,
+                        'field' => true,
                       ],
                       [
                         'name' => 'include_dataset',
@@ -598,8 +596,11 @@ class DataGovAuConfig
                   'select' => [
                     'exist' => [
                       'id',
-                      'include_dataset',
                     ],
+                  ],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],
